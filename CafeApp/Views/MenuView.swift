@@ -9,7 +9,7 @@ import UIKit
 
 class MenuView: UIView {
 
-    // MARK: - UI Properties
+    // MARK: - UI Component Declarations
     
     var menuHeaderView: MenuHeaderView = {
         let headerView = MenuHeaderView()
@@ -44,7 +44,7 @@ class MenuView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - UI Setup
+    // MARK: - UI Setup Functions
     
     private func setUpUI() {
         

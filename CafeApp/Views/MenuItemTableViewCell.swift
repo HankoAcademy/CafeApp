@@ -9,31 +9,31 @@ import UIKit
 
 class MenuItemTableViewCell: UITableViewCell {
     
-// MARK: - UI Component Declarations
+    // MARK: - UI Component Declarations
     
     private let leftSideInfoStackView: UIStackView = {
         let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.alignment = .leading
         stackView.distribution = .fillProportionally
         stackView.spacing = 12
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
     private let itemImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
     private let textStackView: UIStackView = {
         let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .leading
         stackView.distribution = .fillProportionally
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
@@ -58,14 +58,14 @@ class MenuItemTableViewCell: UITableViewCell {
     
     private let itemPriceLabel: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.textColor = .black
         label.textAlignment = .right
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-// MARK: - Initializers
+    // MARK: - Initializers
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -78,8 +78,8 @@ class MenuItemTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-// MARK: - UI Configuration
-
+    // MARK: - UI Setup Functions
+    
     private func setupUI() {
         contentView.backgroundColor = UIColor(named: "Cream")
         
@@ -99,7 +99,7 @@ class MenuItemTableViewCell: UITableViewCell {
                         
             leftSideInfoStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             leftSideInfoStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-            leftSideInfoStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),            
+            leftSideInfoStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
             leftSideInfoStackView.trailingAnchor.constraint(equalTo: itemPriceLabel.leadingAnchor, constant: -8),
             
             itemPriceLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),

@@ -9,6 +9,8 @@ import UIKit
 
 class MenuTableHeaderView: UITableViewHeaderFooterView {
     
+    // MARK: - Class Properties
+    
     var headerName: String = "" {
         didSet {
             let attributedString = NSMutableAttributedString(string: headerName)
@@ -16,6 +18,8 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
             headerLabel.attributedText = attributedString
         }
     }
+    
+    // MARK: - UI Component Declarations
     
     private var headerLabel: UILabel = {
         let label = UILabel()
@@ -33,6 +37,8 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
         return line
     }()
     
+    // MARK: - Initializers
+    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
@@ -43,6 +49,8 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - UI Setup Functions
     
     private func setupUI() {
         contentView.backgroundColor = UIColor(named: "Cream")
