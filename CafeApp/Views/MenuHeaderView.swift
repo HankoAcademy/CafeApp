@@ -60,10 +60,10 @@ class MenuHeaderView: UIView {
     private func activateConstraints() {
         NSLayoutConstraint.activate([
             headerStackView.topAnchor.constraint(equalTo: topAnchor),
-            headerStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
             headerStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            headerStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
             headerStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-
+            
             coffeeImageView.widthAnchor.constraint(equalToConstant: 115),
             coffeeImageView.heightAnchor.constraint(equalToConstant: 106),
         ])

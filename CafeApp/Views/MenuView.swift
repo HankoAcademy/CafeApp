@@ -63,8 +63,8 @@ class MenuView: UIView {
             
             menuTableView.topAnchor.constraint(equalTo: menuHeaderView.bottomAnchor, constant: 24),
             menuTableView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            menuTableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            menuTableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            menuTableView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            menuTableView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
 }

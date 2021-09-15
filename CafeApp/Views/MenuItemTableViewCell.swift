@@ -96,11 +96,10 @@ class MenuItemTableViewCell: UITableViewCell {
     private func activateConstraints() {
         NSLayoutConstraint.activate([
             itemImageView.widthAnchor.constraint(equalToConstant: 30),
-            
-            leftSideInfoStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
+                        
             leftSideInfoStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            leftSideInfoStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
-            
+            leftSideInfoStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
+            leftSideInfoStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),            
             leftSideInfoStackView.trailingAnchor.constraint(equalTo: itemPriceLabel.leadingAnchor, constant: -8),
             
             itemPriceLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
