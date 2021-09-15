@@ -9,34 +9,9 @@ import UIKit
 
 class MenuItemTableViewCell: UITableViewCell {
     
-// MARK: - Parameter Properties
-    var imageName: String = "" {
-        didSet {
-            itemImageView.image = UIImage(named: imageName)
-        }
-    }
-    
-    var itemName: String = "" {
-        didSet {
-            itemNameLabel.text = itemName
-        }
-    }
-    
-    var itemDescription: String = "" {
-        didSet {
-            itemDescriptionLabel.text = itemDescription
-        }
-    }
-    
-    var itemPrice: Double = 0 {
-        didSet {
-            itemPriceLabel.text = String(format: "$%.02f", itemPrice)
-        }
-    }
-    
 // MARK: - UI Component Declarations
     
-    private var leftSideInfoStackView: UIStackView = {
+    private let leftSideInfoStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .leading
@@ -46,14 +21,14 @@ class MenuItemTableViewCell: UITableViewCell {
         return stackView
     }()
     
-    private var itemImageView: UIImageView = {
+    private let itemImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
-    private var textStackView: UIStackView = {
+    private let textStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .leading
@@ -62,7 +37,7 @@ class MenuItemTableViewCell: UITableViewCell {
         return stackView
     }()
     
-    private var itemNameLabel: UILabel = {
+    private let itemNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         label.textColor = .black
@@ -71,7 +46,7 @@ class MenuItemTableViewCell: UITableViewCell {
         return label
     }()
     
-    private var itemDescriptionLabel: UILabel = {
+    private let itemDescriptionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         label.textColor = .lightGray
@@ -81,7 +56,7 @@ class MenuItemTableViewCell: UITableViewCell {
         return label
     }()
     
-    private var itemPriceLabel: UILabel = {
+    private let itemPriceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.textColor = .black
@@ -100,11 +75,9 @@ class MenuItemTableViewCell: UITableViewCell {
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        
-        setupUI()
-        activateConstraints()
+        fatalError("init(coder:) has not been implemented")
     }
+    
 // MARK: - UI Configuration
 
     private func setupUI() {
@@ -136,5 +109,13 @@ class MenuItemTableViewCell: UITableViewCell {
         
         itemPriceLabel.setContentHuggingPriority(.required, for: .horizontal)
         itemPriceLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
+    }
+    
+    func update(imageName: String, itemName: String, itemDescription: String, itemPrice: Double) {
+        
+        itemImageView.image = UIImage(named: imageName)
+        itemNameLabel.text = itemName
+        itemDescriptionLabel.text = itemDescription
+        itemPriceLabel.text = String(format: "$%.02f", itemPrice)
     }
 }
