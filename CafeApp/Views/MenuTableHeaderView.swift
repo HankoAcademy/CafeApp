@@ -41,10 +41,7 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        
-        setupUI()
-        activateConstraints()
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func setupUI() {

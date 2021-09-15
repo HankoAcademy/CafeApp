@@ -46,10 +46,7 @@ class MenuHeaderView: UIView {
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        
-        setupUI()
-        activateConstraints()
+        fatalError("init(coder:) has not been implemented")
     }
     
 // MARK: - UI Setup Functions
