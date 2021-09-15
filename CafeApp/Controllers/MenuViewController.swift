@@ -15,23 +15,8 @@ class MenuViewController: UIViewController {
     
     // MARK: - UI Component Declarations
     
-    var menuHeaderView: MenuHeaderView = {
-        let headerView = MenuHeaderView()
-        headerView.translatesAutoresizingMaskIntoConstraints = false
-        return headerView
-    }()
-    
-    var menuTableView: UITableView = {
-        let tableView = UITableView()
-        tableView.backgroundColor = UIColor(named: "Cream")
-        tableView.layer.cornerRadius = 20
-        tableView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.allowsSelection = false
-        tableView.register(MenuItemTableViewCell.self, forCellReuseIdentifier: "DefaultItemCell")
-        tableView.register(MenuTableHeaderView.self, forHeaderFooterViewReuseIdentifier: "MenuTableHeaderView")
-        return tableView
-    }()
+    private var menuView: MenuView!
+    private var menuTableView: UITableView!
     
     // MARK: - Initializers
 
@@ -39,45 +24,21 @@ class MenuViewController: UIViewController {
         self.menu = menu
         
         super.init(nibName: nil, bundle: nil)
-        
-        setupUI()
-        activateConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - UI Setup Functions
-    
-     func setupUI() {
-        view.backgroundColor = .white
-        
-        menuTableView.dataSource = self
-        menuTableView.delegate = self
-
-        view.addSubview(menuHeaderView)
-        view.addSubview(menuTableView)
-    }
-    
-     func activateConstraints() {
-        NSLayoutConstraint.activate([
-            menuHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            menuHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 26),
-            menuHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -26),
-            
-            menuTableView.topAnchor.constraint(equalTo: menuHeaderView.bottomAnchor, constant: 24),
-            menuTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            menuTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            menuTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        ])
-    }
-    
     // MARK: - View Lifecycle
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    override func loadView() {
+        menuView = MenuView()
+        menuTableView = menuView.menuTableView
+        menuTableView.dataSource = self
+        menuTableView.delegate = self
+        
+        view = menuView
     }
 }
 
@@ -132,6 +93,7 @@ extension MenuViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 
 extension MenuViewController: UITableViewDelegate {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
