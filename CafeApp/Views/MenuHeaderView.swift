@@ -4,12 +4,11 @@
 //
 //  Created by Mayuko Inoue on 9/9/21.
 //
-
 import UIKit
 
 class MenuHeaderView: UIView {
 
-    // MARK: - UI Component Declarations
+// MARK: - UI Component Declarations
     
     let headerStackView: UIStackView = {
         let stackView = UIStackView()
@@ -36,8 +35,7 @@ class MenuHeaderView: UIView {
         return label
     }()
     
-    // MARK: - Initializers
-
+// MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -46,11 +44,13 @@ class MenuHeaderView: UIView {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        
+        setupUI()
+        activateConstraints()
     }
     
-    // MARK: - UI Setup Functions
-
+// MARK: - UI Setup Functions
     private func setupUI() {
         headerStackView.addArrangedSubview(coffeeImageView)
         headerStackView.addArrangedSubview(headerLabel)
@@ -60,12 +60,12 @@ class MenuHeaderView: UIView {
     private func activateConstraints() {
         NSLayoutConstraint.activate([
             headerStackView.topAnchor.constraint(equalTo: topAnchor),
-            headerStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             headerStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            headerStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             headerStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            
+
             coffeeImageView.widthAnchor.constraint(equalToConstant: 115),
-            coffeeImageView.heightAnchor.constraint(equalToConstant: 106)
+            coffeeImageView.heightAnchor.constraint(equalToConstant: 106),
         ])
     }
 }

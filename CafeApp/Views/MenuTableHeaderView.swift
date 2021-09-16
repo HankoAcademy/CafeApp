@@ -4,12 +4,9 @@
 //
 //  Created by Mayuko Inoue on 9/9/21.
 //
-
 import UIKit
 
 class MenuTableHeaderView: UITableViewHeaderFooterView {
-    
-    // MARK: - Class Properties
     
     var headerName: String = "" {
         didSet {
@@ -18,8 +15,6 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
             headerLabel.attributedText = attributedString
         }
     }
-    
-    // MARK: - UI Component Declarations
     
     private var headerLabel: UILabel = {
         let label = UILabel()
@@ -37,8 +32,6 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
         return line
     }()
     
-    // MARK: - Initializers
-    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
@@ -47,10 +40,11 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        
+        setupUI()
+        activateConstraints()
     }
-    
-    // MARK: - UI Setup Functions
     
     private func setupUI() {
         contentView.backgroundColor = UIColor(named: "Cream")
@@ -60,14 +54,14 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
     
     private func activateConstraints() {
         NSLayoutConstraint.activate([
-            headerLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
             headerLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-            headerLabel.bottomAnchor.constraint(equalTo: bottomLineView.topAnchor, constant: -12),
+            headerLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
+            headerLabel.bottomAnchor.constraint(equalTo: bottomLineView.topAnchor, constant: -16),
             
             bottomLineView.leadingAnchor.constraint(equalTo: headerLabel.leadingAnchor),
-            bottomLineView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             bottomLineView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            bottomLineView.heightAnchor.constraint(equalToConstant: 1)
+            bottomLineView.heightAnchor.constraint(equalToConstant: 1),
+            bottomLineView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
 }

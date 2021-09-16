@@ -4,36 +4,60 @@
 //
 //  Created by Mayuko Inoue on 9/9/21.
 //
-
 import UIKit
 
 class MenuItemTableViewCell: UITableViewCell {
     
-    // MARK: - UI Component Declarations
+// MARK: - Parameter Properties
+    var imageName: String = "" {
+        didSet {
+            itemImageView.image = UIImage(named: imageName)
+        }
+    }
+    
+    var itemName: String = "" {
+        didSet {
+            itemNameLabel.text = itemName
+        }
+    }
+    
+    var itemDescription: String = "" {
+        didSet {
+            itemDescriptionLabel.text = itemDescription
+        }
+    }
+    
+    var itemPrice: Double = 0 {
+        didSet {
+            itemPriceLabel.text = String(format: "$%.02f", itemPrice)
+        }
+    }
+    
+// MARK: - UI Component Declarations
     
     private let leftSideInfoStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.alignment = .leading
         stackView.distribution = .fillProportionally
         stackView.spacing = 12
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
     private let itemImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     private let textStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .leading
         stackView.distribution = .fillProportionally
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
@@ -58,15 +82,14 @@ class MenuItemTableViewCell: UITableViewCell {
     
     private let itemPriceLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.textColor = .black
         label.textAlignment = .right
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    // MARK: - Initializers
-
+// MARK: - Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -75,11 +98,12 @@ class MenuItemTableViewCell: UITableViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        
+        setupUI()
+        activateConstraints()
     }
-    
-    // MARK: - UI Setup Functions
-    
+// MARK: - UI Configuration
     private func setupUI() {
         contentView.backgroundColor = UIColor(named: "Cream")
         
@@ -96,10 +120,11 @@ class MenuItemTableViewCell: UITableViewCell {
     private func activateConstraints() {
         NSLayoutConstraint.activate([
             itemImageView.widthAnchor.constraint(equalToConstant: 30),
-                        
-            leftSideInfoStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            
             leftSideInfoStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
+            leftSideInfoStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             leftSideInfoStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
+            
             leftSideInfoStackView.trailingAnchor.constraint(equalTo: itemPriceLabel.leadingAnchor, constant: -8),
             
             itemPriceLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
@@ -108,13 +133,5 @@ class MenuItemTableViewCell: UITableViewCell {
         
         itemPriceLabel.setContentHuggingPriority(.required, for: .horizontal)
         itemPriceLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
-    }
-    
-    func update(imageName: String, itemName: String, itemDescription: String, itemPrice: Double) {
-        
-        itemImageView.image = UIImage(named: imageName)
-        itemNameLabel.text = itemName
-        itemDescriptionLabel.text = itemDescription
-        itemPriceLabel.text = String(format: "$%.02f", itemPrice)
     }
 }
