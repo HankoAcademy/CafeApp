@@ -4,7 +4,6 @@
 //
 //  Created by Hannie Kim on 7/18/21.
 //
-
 import UIKit
 
 class MenuViewController: UIViewController {
@@ -31,7 +30,6 @@ class MenuViewController: UIViewController {
     }()
     
 // MARK: - Initializers
-
     init(withMenu menu: Menu) {
         self.menu = menu
         
@@ -85,27 +83,34 @@ class MenuViewController: UIViewController {
 
 extension MenuViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(section == 0) {
-            return self.menu.drinks.count
-        } else if(section == 1) {
-            return self.menu.foods.count
-        } else if(section == 2) {
-            return self.menu.merchAndOthers.count
+        switch section {
+        case 0:
+            return menu.drinks.count
+        case 1:
+            return menu.foods.count
+        case 2:
+            return menu.merchAndOthers.count
+        default:
+            return 0
         }
-        
-        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultItemCell") as! MenuItemTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultItemCell") as? MenuItemTableViewCell else {
+            return UITableViewCell()
+        }
         
         var menuItem: MenuItem?
-        if(indexPath.section == 0) {
-            menuItem = self.menu.drinks[indexPath.row]
-        } else if(indexPath.section == 1) {
-            menuItem = self.menu.foods[indexPath.row]
-        } else if(indexPath.section == 2) {
-            menuItem = self.menu.merchAndOthers[indexPath.row]
+        
+        switch indexPath.section {
+        case 0:
+            menuItem = menu.drinks[indexPath.row]
+        case 1:
+            menuItem = menu.foods[indexPath.row]
+        case 2:
+            menuItem = menu.merchAndOthers[indexPath.row]
+        default:
+            break
         }
         
         if let menuItem = menuItem {
@@ -125,16 +130,21 @@ extension MenuViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MenuHeaderView") as! MenuTableHeaderView
-        if(section == 0) {
-            cell.headerName = "Drinks"
-        } else if(section == 1) {
-            cell.headerName = "Food"
-        } else if(section == 2) {
-            cell.headerName = "Merch • Other"
-        } else {
-            cell.headerName = "Other"
+        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MenuTableHeaderView") as? MenuTableHeaderView else {
+            return nil
         }
-        return cell
+        
+        switch section {
+        case 0:
+            headerView.headerName = "Drinks"
+        case 1:
+            headerView.headerName = "Food"
+        case 2:
+            headerView.headerName = "Merch • Other"
+        default:
+            headerView.headerName = "Other"
+        }
+        
+        return headerView
     }
 }

@@ -4,7 +4,6 @@
 //
 //  Created by Mayuko Inoue on 9/9/21.
 //
-
 import UIKit
 
 class MenuHeaderView: UIView {
@@ -37,7 +36,6 @@ class MenuHeaderView: UIView {
     }()
     
 // MARK: - Initializers
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -53,7 +51,6 @@ class MenuHeaderView: UIView {
     }
     
 // MARK: - UI Setup Functions
-
     private func setupUI() {
         headerStackView.addArrangedSubview(coffeeImageView)
         headerStackView.addArrangedSubview(headerLabel)

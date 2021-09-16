@@ -4,7 +4,6 @@
 //
 //  Created by Mayuko Inoue on 9/9/21.
 //
-
 import UIKit
 
 class MenuTableHeaderView: UITableViewHeaderFooterView {

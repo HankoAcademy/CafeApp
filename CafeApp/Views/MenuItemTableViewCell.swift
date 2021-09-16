@@ -4,7 +4,6 @@
 //
 //  Created by Mayuko Inoue on 9/9/21.
 //
-
 import UIKit
 
 class MenuItemTableViewCell: UITableViewCell {
@@ -36,7 +35,7 @@ class MenuItemTableViewCell: UITableViewCell {
     
 // MARK: - UI Component Declarations
     
-    private var leftSideInfoStackView: UIStackView = {
+    private let leftSideInfoStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .leading
@@ -46,14 +45,14 @@ class MenuItemTableViewCell: UITableViewCell {
         return stackView
     }()
     
-    private var itemImageView: UIImageView = {
+    private let itemImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
-    private var textStackView: UIStackView = {
+    private let textStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .leading
@@ -62,7 +61,7 @@ class MenuItemTableViewCell: UITableViewCell {
         return stackView
     }()
     
-    private var itemNameLabel: UILabel = {
+    private let itemNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         label.textColor = .black
@@ -71,7 +70,7 @@ class MenuItemTableViewCell: UITableViewCell {
         return label
     }()
     
-    private var itemDescriptionLabel: UILabel = {
+    private let itemDescriptionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         label.textColor = .lightGray
@@ -81,7 +80,7 @@ class MenuItemTableViewCell: UITableViewCell {
         return label
     }()
     
-    private var itemPriceLabel: UILabel = {
+    private let itemPriceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         label.textColor = .black
@@ -91,7 +90,6 @@ class MenuItemTableViewCell: UITableViewCell {
     }()
     
 // MARK: - Initializers
-
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -106,7 +104,6 @@ class MenuItemTableViewCell: UITableViewCell {
         activateConstraints()
     }
 // MARK: - UI Configuration
-
     private func setupUI() {
         contentView.backgroundColor = UIColor(named: "Cream")
         
