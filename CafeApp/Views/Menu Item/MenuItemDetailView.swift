@@ -31,6 +31,12 @@ class MenuItemDetailView: UIView {
         return ingredientsView
     }()
     
+    let pairingsView: PairingsView = {
+        let pairingsView = PairingsView()
+        pairingsView.translatesAutoresizingMaskIntoConstraints = false
+        return pairingsView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -49,7 +55,9 @@ class MenuItemDetailView: UIView {
         stackView.addArrangedSubview(ingredientsView)
         
         addSubview(stackView)
-//        addSubview(ingredientsView)
+        
+        addSubview(pairingsView)
+//        pairingsView.backgroundColor = .blue
         
         NSLayoutConstraint.activate([
             menuItemWithPriceView.heightAnchor.constraint(equalToConstant: 300),
@@ -60,8 +68,14 @@ class MenuItemDetailView: UIView {
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
             
             ingredientsView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 3/4, constant: 0),
-            ingredientsView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1/10, constant: 0)
+            ingredientsView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1/10, constant: 0),
 //            ingredientsView.topAnchor.constraint(equalTo: menuItemWithPriceView, constant: <#T##CGFloat#>)
+            
+            pairingsView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 20),
+            pairingsView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            pairingsView.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor, constant: -20),
+            pairingsView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+//            pairingsView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1/4, constant: 0)
         ])
     }
 }
