@@ -15,6 +15,10 @@
 		2C4E1A1126EAD1CE0085487A /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E1A1026EAD1CE0085487A /* Food.swift */; };
 		2C4E1A1326EAD1DA0085487A /* Merch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E1A1226EAD1DA0085487A /* Merch.swift */; };
 		2C4E1A1526EAD1E30085487A /* MiscItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E1A1426EAD1E30085487A /* MiscItem.swift */; };
+		33934C5426F5699B00BD4A09 /* MenuItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33934C5326F5699B00BD4A09 /* MenuItemDetailView.swift */; };
+		33934C5626F569AE00BD4A09 /* MenuItemWithPriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33934C5526F569AE00BD4A09 /* MenuItemWithPriceView.swift */; };
+		33934C5826F569C900BD4A09 /* PairingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33934C5726F569C900BD4A09 /* PairingsView.swift */; };
+		33934C5A26F569D500BD4A09 /* PairingOptionStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33934C5926F569D500BD4A09 /* PairingOptionStackView.swift */; };
 		F369D19026A4CC6A0099CE19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F369D18F26A4CC6A0099CE19 /* AppDelegate.swift */; };
 		F369D19226A4CC6A0099CE19 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F369D19126A4CC6A0099CE19 /* SceneDelegate.swift */; };
 		F369D19426A4CC6A0099CE19 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F369D19326A4CC6A0099CE19 /* MenuViewController.swift */; };
@@ -31,6 +35,10 @@
 		2C4E1A1026EAD1CE0085487A /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		2C4E1A1226EAD1DA0085487A /* Merch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Merch.swift; sourceTree = "<group>"; };
 		2C4E1A1426EAD1E30085487A /* MiscItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscItem.swift; sourceTree = "<group>"; };
+		33934C5326F5699B00BD4A09 /* MenuItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemDetailView.swift; sourceTree = "<group>"; };
+		33934C5526F569AE00BD4A09 /* MenuItemWithPriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemWithPriceView.swift; sourceTree = "<group>"; };
+		33934C5726F569C900BD4A09 /* PairingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingsView.swift; sourceTree = "<group>"; };
+		33934C5926F569D500BD4A09 /* PairingOptionStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingOptionStackView.swift; sourceTree = "<group>"; };
 		F369D18C26A4CC6A0099CE19 /* CafeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CafeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F369D18F26A4CC6A0099CE19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F369D19126A4CC6A0099CE19 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +65,10 @@
 				2C4E1A0826EAC0230085487A /* MenuHeaderView.swift */,
 				2C4E1A0A26EAC8B30085487A /* MenuItemTableViewCell.swift */,
 				2C4E1A0C26EAC8DF0085487A /* MenuTableHeaderView.swift */,
+				33934C5326F5699B00BD4A09 /* MenuItemDetailView.swift */,
+				33934C5526F569AE00BD4A09 /* MenuItemWithPriceView.swift */,
+				33934C5726F569C900BD4A09 /* PairingsView.swift */,
+				33934C5926F569D500BD4A09 /* PairingOptionStackView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -186,12 +198,16 @@
 				F369D19026A4CC6A0099CE19 /* AppDelegate.swift in Sources */,
 				2C4E1A1326EAD1DA0085487A /* Merch.swift in Sources */,
 				2C4E1A0926EAC0230085487A /* MenuHeaderView.swift in Sources */,
+				33934C5826F569C900BD4A09 /* PairingsView.swift in Sources */,
+				33934C5426F5699B00BD4A09 /* MenuItemDetailView.swift in Sources */,
 				2C4E1A0B26EAC8B30085487A /* MenuItemTableViewCell.swift in Sources */,
 				2C4E1A1526EAD1E30085487A /* MiscItem.swift in Sources */,
+				33934C5A26F569D500BD4A09 /* PairingOptionStackView.swift in Sources */,
 				2C4E1A1126EAD1CE0085487A /* Food.swift in Sources */,
 				2C4E1A0726EABFB90085487A /* Menu.swift in Sources */,
 				2C4E1A0F26EAD1C70085487A /* Drink.swift in Sources */,
 				F369D19226A4CC6A0099CE19 /* SceneDelegate.swift in Sources */,
+				33934C5626F569AE00BD4A09 /* MenuItemWithPriceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

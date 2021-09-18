@@ -55,8 +55,8 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
     private func activateConstraints() {
         NSLayoutConstraint.activate([
             headerLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-            headerLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
-            headerLabel.bottomAnchor.constraint(equalTo: bottomLineView.topAnchor, constant: -16),
+            headerLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+            headerLabel.bottomAnchor.constraint(equalTo: bottomLineView.topAnchor, constant: -12),
             
             bottomLineView.leadingAnchor.constraint(equalTo: headerLabel.leadingAnchor),
             bottomLineView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
