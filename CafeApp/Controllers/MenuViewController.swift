@@ -23,7 +23,6 @@ class MenuViewController: UIViewController {
         tableView.layer.cornerRadius = 20
         tableView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.allowsSelection = false
         tableView.register(MenuItemTableViewCell.self, forCellReuseIdentifier: "DefaultItemCell")
         tableView.register(MenuTableHeaderView.self, forHeaderFooterViewReuseIdentifier: "MenuHeaderView")
         return tableView
