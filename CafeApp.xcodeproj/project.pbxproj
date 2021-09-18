@@ -25,6 +25,7 @@
 		F369D19426A4CC6A0099CE19 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F369D19326A4CC6A0099CE19 /* MenuViewController.swift */; };
 		F369D19926A4CC6B0099CE19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F369D19826A4CC6B0099CE19 /* Assets.xcassets */; };
 		F369D19C26A4CC6B0099CE19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F369D19A26A4CC6B0099CE19 /* LaunchScreen.storyboard */; };
+		F3C8EEAD26F5A80F00F8ED7F /* IngredientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8EEAC26F5A80F00F8ED7F /* IngredientsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		F369D19826A4CC6B0099CE19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F369D19B26A4CC6B0099CE19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F369D19D26A4CC6B0099CE19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3C8EEAC26F5A80F00F8ED7F /* IngredientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,13 +66,8 @@
 		2C5817EB26EABDDC009A920C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2C4E1A0826EAC0230085487A /* MenuHeaderView.swift */,
-				2C4E1A0A26EAC8B30085487A /* MenuItemTableViewCell.swift */,
-				2C4E1A0C26EAC8DF0085487A /* MenuTableHeaderView.swift */,
-				33934C5326F5699B00BD4A09 /* MenuItemDetailView.swift */,
-				33934C5526F569AE00BD4A09 /* MenuItemWithPriceView.swift */,
-				33934C5726F569C900BD4A09 /* PairingsView.swift */,
-				33934C5926F569D500BD4A09 /* PairingOptionStackView.swift */,
+				F3C8EEAF26F5A82100F8ED7F /* Menu */,
+				F3C8EEB026F5A82800F8ED7F /* Menu Item */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -125,6 +122,28 @@
 				F369D19D26A4CC6B0099CE19 /* Info.plist */,
 			);
 			path = CafeApp;
+			sourceTree = "<group>";
+		};
+		F3C8EEAF26F5A82100F8ED7F /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				2C4E1A0826EAC0230085487A /* MenuHeaderView.swift */,
+				2C4E1A0A26EAC8B30085487A /* MenuItemTableViewCell.swift */,
+				2C4E1A0C26EAC8DF0085487A /* MenuTableHeaderView.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		F3C8EEB026F5A82800F8ED7F /* Menu Item */ = {
+			isa = PBXGroup;
+			children = (
+				33934C5326F5699B00BD4A09 /* MenuItemDetailView.swift */,
+				33934C5526F569AE00BD4A09 /* MenuItemWithPriceView.swift */,
+				33934C5726F569C900BD4A09 /* PairingsView.swift */,
+				33934C5926F569D500BD4A09 /* PairingOptionStackView.swift */,
+				F3C8EEAC26F5A80F00F8ED7F /* IngredientsView.swift */,
+			);
+			path = "Menu Item";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +219,7 @@
 				2C4E1A0D26EAC8DF0085487A /* MenuTableHeaderView.swift in Sources */,
 				F369D19026A4CC6A0099CE19 /* AppDelegate.swift in Sources */,
 				2C4E1A1326EAD1DA0085487A /* Merch.swift in Sources */,
+				F3C8EEAD26F5A80F00F8ED7F /* IngredientsView.swift in Sources */,
 				2C4E1A0926EAC0230085487A /* MenuHeaderView.swift in Sources */,
 				33934C5826F569C900BD4A09 /* PairingsView.swift in Sources */,
 				33934C5426F5699B00BD4A09 /* MenuItemDetailView.swift in Sources */,

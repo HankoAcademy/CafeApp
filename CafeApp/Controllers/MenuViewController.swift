@@ -148,6 +148,6 @@ extension MenuViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: <#T##Bool#>)
+        navigationController?.pushViewController(MenuItemViewController(), animated: true)
     }
 }
