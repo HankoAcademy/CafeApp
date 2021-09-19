@@ -57,7 +57,6 @@ class MenuItemDetailView: UIView {
         addSubview(stackView)
         
         addSubview(pairingsView)
-//        pairingsView.backgroundColor = .blue
         
         NSLayoutConstraint.activate([
             menuItemWithPriceView.heightAnchor.constraint(equalToConstant: 300),

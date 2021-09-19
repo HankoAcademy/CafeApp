@@ -10,6 +10,9 @@ import UIKit
 class MenuItemViewController: UIViewController {
 
     override func loadView() {
-        view = MenuItemDetailView()        
+        view = MenuItemDetailView()
+        
+        navigationItem.title = "Menu Item"
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 }

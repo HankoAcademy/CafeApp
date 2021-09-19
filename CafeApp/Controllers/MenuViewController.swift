@@ -74,9 +74,23 @@ class MenuViewController: UIViewController {
     
 // MARK: - View Lifecycle
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Hides the navigation bar
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Needed so the hiding of the navigation bar only affects this view controller
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 }
 
