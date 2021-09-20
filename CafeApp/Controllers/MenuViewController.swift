@@ -25,6 +25,9 @@ class MenuViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(MenuItemTableViewCell.self, forCellReuseIdentifier: "DefaultItemCell")
         tableView.register(MenuTableHeaderView.self, forHeaderFooterViewReuseIdentifier: "MenuHeaderView")
+        
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
+        tableView.estimatedSectionHeaderHeight = 100
         return tableView
     }()
     
@@ -150,6 +153,7 @@ extension MenuViewController: UITableViewDelegate {
         switch section {
         case 0:
             headerView.headerName = "Drinks"
+            headerView.hideFilterAndSort = false
         case 1:
             headerView.headerName = "Food"
         case 2:

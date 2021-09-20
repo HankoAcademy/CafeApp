@@ -16,6 +16,12 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
         }
     }
     
+    var hideFilterAndSort: Bool = true {
+        didSet {
+            stackView.isHidden = hideFilterAndSort
+        }
+    }
+    
     private var headerLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
@@ -31,6 +37,37 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
         line.translatesAutoresizingMaskIntoConstraints = false
         return line
     }()
+    
+    private let stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.distribution = .fillProportionally
+        stackView.isHidden = true
+        return stackView
+    }()
+    
+    private let emptyView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .red
+        return view
+    }()
+    
+    private let filterButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("filter", for: .normal)
+        return button
+    }()
+    
+    private let sortButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("sort", for: .normal)
+        return button
+    }()
+    
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -50,14 +87,24 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
         contentView.backgroundColor = UIColor(named: "Cream")
         contentView.addSubview(headerLabel)
         contentView.addSubview(bottomLineView)
+        stackView.addArrangedSubview(emptyView)
+        contentView.addSubview(stackView)
     }
     
     private func activateConstraints() {
         NSLayoutConstraint.activate([
-            headerLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-            headerLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
-            headerLabel.bottomAnchor.constraint(equalTo: bottomLineView.topAnchor, constant: -12),
+            emptyView.heightAnchor.constraint(equalToConstant: 50),
+            emptyView.widthAnchor.constraint(equalTo: stackView.widthAnchor),
             
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: headerLabel.topAnchor, constant: -8),
+            
+            headerLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
+            headerLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 8),
+            headerLabel.bottomAnchor.constraint(equalTo: bottomLineView.topAnchor, constant: -12),
+
             bottomLineView.leadingAnchor.constraint(equalTo: headerLabel.leadingAnchor),
             bottomLineView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             bottomLineView.heightAnchor.constraint(equalToConstant: 1),
