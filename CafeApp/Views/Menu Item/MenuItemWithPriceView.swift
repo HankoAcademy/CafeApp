@@ -9,18 +9,20 @@ import UIKit
 
 class MenuItemWithPriceView: UIView {
     
-    let imageView: UIImageView = {
+    let menuItem: MenuItem
+    
+    lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "drinks_coffee")
+        imageView.image = UIImage(named: menuItem.imageName)
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
-    let priceLabel: UILabel = {
+    lazy var priceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "$3.50"
+        label.text = String(format: "$%.02f", menuItem.price)
         label.backgroundColor = UIColor(named: "Cream")
         label.textAlignment = .center
         label.layer.cornerRadius = 20
@@ -28,8 +30,12 @@ class MenuItemWithPriceView: UIView {
         return label
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    
+    init(menuItem: MenuItem) {
+        
+        self.menuItem = menuItem
+        
+        super.init(frame: .zero)
         
         backgroundColor = UIColor(named: "MochaBrown")
         

@@ -9,10 +9,22 @@ import UIKit
 
 class MenuItemViewController: UIViewController {
 
-    override func loadView() {
-        view = MenuItemDetailView()
+    let menuItemSelected: MenuItem
+    
+    init(menuItemSelected: MenuItem) {
+        self.menuItemSelected = menuItemSelected
         
-        navigationItem.title = "Menu Item"
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func loadView() {
+        view = MenuItemDetailView(menuItem: menuItemSelected)
+                
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = menuItemSelected.name
     }
 }

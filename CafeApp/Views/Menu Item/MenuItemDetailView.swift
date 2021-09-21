@@ -9,7 +9,9 @@ import UIKit
 
 class MenuItemDetailView: UIView {
     
-    let stackView: UIStackView = {
+    private let menuItem: MenuItem
+    
+    private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -19,26 +21,28 @@ class MenuItemDetailView: UIView {
         return stackView
     }()
     
-    let menuItemWithPriceView: UIView = {
-        let menuItemWithPriceView = MenuItemWithPriceView()
+    private lazy var menuItemWithPriceView: UIView = {
+        let menuItemWithPriceView = MenuItemWithPriceView(menuItem: menuItem)
         menuItemWithPriceView.translatesAutoresizingMaskIntoConstraints = false
         return menuItemWithPriceView
     }()
     
-    let ingredientsView: IngredientsView = {
+    private let ingredientsView: IngredientsView = {
         let ingredientsView = IngredientsView()
         ingredientsView.translatesAutoresizingMaskIntoConstraints = false
         return ingredientsView
     }()
     
-    let pairingsView: PairingsView = {
+    private let pairingsView: PairingsView = {
         let pairingsView = PairingsView()
         pairingsView.translatesAutoresizingMaskIntoConstraints = false
         return pairingsView
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(menuItem: MenuItem) {
+        self.menuItem = menuItem
+        
+        super.init(frame: .zero)
         
         setUpViews()
     }
@@ -68,13 +72,11 @@ class MenuItemDetailView: UIView {
             
             ingredientsView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 3/4, constant: 0),
             ingredientsView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1/10, constant: 0),
-//            ingredientsView.topAnchor.constraint(equalTo: menuItemWithPriceView, constant: <#T##CGFloat#>)
             
             pairingsView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 20),
             pairingsView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             pairingsView.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor, constant: -20),
             pairingsView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-//            pairingsView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1/4, constant: 0)
         ])
     }
 }
