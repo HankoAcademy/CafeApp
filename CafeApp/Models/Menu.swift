@@ -12,10 +12,14 @@ protocol MenuItem {
     var name: String { get }
     var description: String { get }
     var price: Double { get }
+    var type: ProductType { get }
     
     init(withImageName imageName: String, withName name: String, withDescription description: String, withPrice price: Double)
 }
 
+enum ProductType {
+    case drinks, foods, merchAndOthers, misc
+}
 
 struct Menu {
     let drinks = [
@@ -57,6 +61,7 @@ struct Menu {
         Food(withImageName: "foods_chocolate", withName: "Chocolate",
              withDescription: "A bar of Ritter Sport", withPrice: 3.5),
     ]
+    
     let merchAndOthers: [MenuItem] = [
         Merch(withImageName: "merch_beans", withName: "Coffee Beans",
               withDescription: "In-house roasted beans, whole or ground", withPrice: 12.5),
@@ -69,4 +74,21 @@ struct Menu {
         MiscItem(withImageName: "other_newspaper", withName: "Newspaper",
               withDescription: "Daily newspaper", withPrice: 3.5),
     ]
+    
+    func generatePairings(forProductType productType: ProductType) -> [MenuItem] {
+        switch productType {
+        case .drinks:
+            var drinksToShuffle = drinks
+            drinksToShuffle.shuffle()
+            return [drinksToShuffle[0], drinksToShuffle[1], drinksToShuffle[2]]
+        case .foods:
+            var foodToShuffle = foods
+            foodToShuffle.shuffle()
+            return [foodToShuffle[0], foodToShuffle[1], foodToShuffle[2]]
+        case .merchAndOthers, .misc:
+            var merchToShuffle = merchAndOthers
+            merchToShuffle.shuffle()
+            return [merchAndOthers[0], merchAndOthers[1], merchAndOthers[2]]
+        }
+    }
 }

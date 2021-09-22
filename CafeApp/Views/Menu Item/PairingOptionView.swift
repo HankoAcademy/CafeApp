@@ -40,8 +40,7 @@ class PairingOptionView: UIView {
     }()
     
     override init(frame: CGRect) {
-        super.init(frame: frame)
-        
+        super.init(frame: frame)        
         backgroundColor = UIColor(named: "Cream")
         setUpViews()
     }

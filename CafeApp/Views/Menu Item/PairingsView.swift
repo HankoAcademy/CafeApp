@@ -8,7 +8,14 @@
 import UIKit
 
 class PairingsView: UIView {
-
+    
+//    var firstPairingMenuItem: MenuItem {
+////        let menu = Menu()
+////        menu.generatePairings(forProductType: .drinks)
+//    }
+    
+    let menuItem: MenuItem
+    
     let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -44,8 +51,10 @@ class PairingsView: UIView {
         return pairingOptionView
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(menuItem: MenuItem) {
+        self.menuItem = menuItem
+        
+        super.init(frame: .zero)
         
         backgroundColor = UIColor(named: "MochaBrown")
         

@@ -33,8 +33,8 @@ class MenuItemDetailView: UIView {
         return ingredientsView
     }()
     
-    private let pairingsView: PairingsView = {
-        let pairingsView = PairingsView()
+    private lazy var pairingsView: PairingsView = {
+        let pairingsView = PairingsView(menuItem: menuItem)
         pairingsView.translatesAutoresizingMaskIntoConstraints = false
         return pairingsView
     }()

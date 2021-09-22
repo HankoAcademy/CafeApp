@@ -12,6 +12,7 @@ struct Merch: MenuItem {
     var name: String
     var description: String
     var price: Double
+    var type: ProductType = .merchAndOthers
     
     init(withImageName imageName: String, withName name: String, withDescription description: String, withPrice price: Double) {
         self.imageName = imageName
