@@ -11,13 +11,15 @@ class MenuViewController: UIViewController {
     
     // You got this! Let us know if you have questions or want feedback about your code 🙂
     
-    override func loadView() {
-        
-    }
+    // MARK: - Properties
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    private var contentView: ContentView!
+    
+    // MARK: - Initializers
+    
+    override func loadView() {
+        contentView = ContentView()
         
+        view = contentView
     }
 }
