@@ -10,14 +10,33 @@ import UIKit
 
 class MenuItemDetailTableViewCell: UITableViewCell {
     
+    
     // MARK: - UI Properties
     
-    private var stackView: UIStackView = {
+    private var leftSideInfoStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.distribution = .fillProportionally
+        stackView.spacing = 10
+        
         return stackView
+    }()
+    
+    private var textStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .fillProportionally
+        stackView.alignment = .leading
+        stackView.spacing = 2.5
+        return stackView
+    }()
+    
+    private var itemImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
     private var menuItemTitleLabel: UILabel = {
@@ -25,6 +44,15 @@ class MenuItemDetailTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         label.textColor = .black
+        label.textAlignment = .left
+        return label
+    }()
+    
+    private var menuItemDescriptionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        label.textColor = .lightGray
         label.textAlignment = .left
         return label
     }()
@@ -56,23 +84,39 @@ class MenuItemDetailTableViewCell: UITableViewCell {
         
         contentView.backgroundColor = UIColor(named: "Cream")
         
-        stackView.addArrangedSubview(menuItemTitleLabel)
-        stackView.addArrangedSubview(menuItemPriceLabel)
+        textStackView.addArrangedSubview(menuItemTitleLabel)
+        textStackView.addArrangedSubview(menuItemDescriptionLabel)
         
-        contentView.addSubview(stackView)
+        leftSideInfoStackView.addArrangedSubview(itemImageView)
+        leftSideInfoStackView.addArrangedSubview(textStackView)
+        
+        contentView.addSubview(leftSideInfoStackView)
+        contentView.addSubview(menuItemPriceLabel)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
+            itemImageView.widthAnchor.constraint(equalToConstant: 25),
             
+            leftSideInfoStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
+            leftSideInfoStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            leftSideInfoStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
+            
+            leftSideInfoStackView.trailingAnchor.constraint(equalTo: menuItemPriceLabel.leadingAnchor, constant: -8),
+            
+            menuItemPriceLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),//sets in vert center of cell
+            menuItemPriceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
         ])
+        
+        menuItemPriceLabel.setContentHuggingPriority(.required, for: .horizontal)
+        menuItemPriceLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
+
+        
     }
     
-    func updateMenu(menuItemTitle: String, menuItemPrice: Double) {
+    func updateMenu(menuItemTitle: String, menuItemPrice: Double, menuItemImage: String, menuItemDescription: String) {
         menuItemTitleLabel.text = menuItemTitle
         menuItemPriceLabel.text = String(format: "%.02f", menuItemPrice)
+        itemImageView.image = UIImage(named: menuItemImage)
+        menuItemDescriptionLabel.text = menuItemDescription
     }
 }
 

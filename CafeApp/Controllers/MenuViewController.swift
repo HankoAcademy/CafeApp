@@ -16,7 +16,6 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     private var contentView: ContentView! //??? in SLACK - Why need '!', w/out says no initializers
     private var tableView: UITableView!
     
-    // MARK: - Initializaer
     
     // MARK: - Lifecycle Methods
     
@@ -101,10 +100,27 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         // if menuItem != nil, unwrap to make non-optional
         if let menuItem = menuItem {
-            cell.updateMenu(menuItemTitle: menuItem.name, menuItemPrice: menuItem.price)
+            cell.updateMenu(menuItemTitle: menuItem.name, menuItemPrice: menuItem.price, menuItemImage: menuItem.imageName, menuItemDescription: menuItem.description)
         }
         
         return cell
     }
+    
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MenuHeaderView") as? MenuTableHeaderView else {
+//            return nil
+//        }
+//    }
+//    
+//    switch section {
+//    case 0:
+//        headerView.headerName = "Drinks"
+//    case 1:
+//        headerView.headerName = "Food"
+//    case 2:
+//        headerView.headerName = "Merch + Other"
+//    default:
+//        headerView.headerName = "Other"
+//    }
     
 }

@@ -12,13 +12,18 @@ class ContentView: UIView {
     
     // MARK: - UI Properties
     
-    let tableView: UITableView = {
+//    var menuHeaderView: 
+    
+ 
+    
+    var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = UIColor(named: "Cream")
         tableView.register(MenuItemDetailTableViewCell.self, forCellReuseIdentifier: "MenuItemDetailTableViewCell")
         return tableView
     }()
+    
     
     // MARK: - Initializers
     
