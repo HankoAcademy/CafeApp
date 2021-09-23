@@ -24,6 +24,9 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
         }
     }
     
+    weak var sortableDelegate: Sortable?
+    weak var filterableDelegate: Filterable?
+    
 // MARK: - UI Component Declarations
     
     private var headerLabel: UILabel = {
@@ -128,9 +131,11 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
     
     @objc func sortButtonPressed() {
         print("Sort button pressed")
+        sortableDelegate?.sort()
     }
     
     @objc func filterButtonPressed() {
         print("Filter button pressed")
+        filterableDelegate?.filter()
     }
 }

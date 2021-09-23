@@ -6,6 +6,17 @@
 //
 import UIKit
 
+enum SortType {
+    case name, price
+}
+protocol Sortable: AnyObject {
+    func sort()
+}
+
+protocol Filterable: AnyObject {
+    func filter()
+}
+
 class MenuViewController: UIViewController {
     
     var menu: Menu
@@ -150,6 +161,9 @@ extension MenuViewController: UITableViewDelegate {
             return nil
         }
         
+        headerView.sortableDelegate = self
+        headerView.filterableDelegate = self
+        
         switch section {
         case 0:
             headerView.headerName = "Drinks"
@@ -177,5 +191,34 @@ extension MenuViewController: UITableViewDelegate {
         default:
             return
         }
+    }
+}
+
+extension MenuViewController: Sortable {
+    func sort() {
+        let alertController = UIAlertController(title: "", message: "Select Sort Type", preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Name", style: .default, handler: { _ in
+            print("sort name")
+        }))
+        alertController.addAction(UIAlertAction(title: "Price", style: .default, handler: { _ in
+            print("sort price")
+        }))
+        present(alertController, animated: true, completion: nil)
+    }        
+}
+
+extension MenuViewController: Filterable {
+    func filter() {
+        let alertController = UIAlertController(title: "", message: "Select Filter Type", preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Drinks", style: .default, handler: { [weak self] _ in
+            print("filter drinks")
+        }))
+        alertController.addAction(UIAlertAction(title: "Food", style: .default, handler: { _ in
+            print("filter food")
+        }))
+        alertController.addAction(UIAlertAction(title: "Merch", style: .default, handler: { _ in
+            print("filter merch")
+        }))
+        present(alertController, animated: true, completion: nil)
     }
 }
