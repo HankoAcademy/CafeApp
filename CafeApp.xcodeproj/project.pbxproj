@@ -13,6 +13,7 @@
 		2C4E1A1326EAD1DA0085487A /* Merch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E1A1226EAD1DA0085487A /* Merch.swift */; };
 		2C4E1A1526EAD1E30085487A /* MiscItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E1A1426EAD1E30085487A /* MiscItem.swift */; };
 		AAA566EA26FAE86100B17809 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA566E926FAE86100B17809 /* ContentView.swift */; };
+		AAA566EC26FC24A500B17809 /* CafeLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA566EB26FC24A500B17809 /* CafeLogoView.swift */; };
 		F369D19026A4CC6A0099CE19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F369D18F26A4CC6A0099CE19 /* AppDelegate.swift */; };
 		F369D19226A4CC6A0099CE19 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F369D19126A4CC6A0099CE19 /* SceneDelegate.swift */; };
 		F369D19926A4CC6B0099CE19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F369D19826A4CC6B0099CE19 /* Assets.xcassets */; };
@@ -27,6 +28,7 @@
 		2C4E1A1226EAD1DA0085487A /* Merch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Merch.swift; sourceTree = "<group>"; };
 		2C4E1A1426EAD1E30085487A /* MiscItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscItem.swift; sourceTree = "<group>"; };
 		AAA566E926FAE86100B17809 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = CafeApp/ContentView.swift; sourceTree = SOURCE_ROOT; };
+		AAA566EB26FC24A500B17809 /* CafeLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CafeLogoView.swift; path = CafeApp/CafeLogoView.swift; sourceTree = SOURCE_ROOT; };
 		F369D18C26A4CC6A0099CE19 /* CafeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CafeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F369D18F26A4CC6A0099CE19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F369D19126A4CC6A0099CE19 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				AAA566E926FAE86100B17809 /* ContentView.swift */,
+				AAA566EB26FC24A500B17809 /* CafeLogoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 			files = (
 				F369D19026A4CC6A0099CE19 /* AppDelegate.swift in Sources */,
 				2C4E1A1326EAD1DA0085487A /* Merch.swift in Sources */,
+				AAA566EC26FC24A500B17809 /* CafeLogoView.swift in Sources */,
 				F3A3738726EF072F00718F1D /* MenuViewController.swift in Sources */,
 				2C4E1A1526EAD1E30085487A /* MiscItem.swift in Sources */,
 				2C4E1A1126EAD1CE0085487A /* Food.swift in Sources */,

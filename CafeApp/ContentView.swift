@@ -19,6 +19,12 @@ class ContentView: UIView {
         return tableView
     }()
     
+    let cafeLogoView: CafeLogoView = {
+        let cafeLogoView = CafeLogoView()
+        cafeLogoView.translatesAutoresizingMaskIntoConstraints = false
+        return cafeLogoView
+    }()
+    
     // MARK: - Initializers
     
     override init(frame: CGRect) {
@@ -36,11 +42,28 @@ class ContentView: UIView {
     // MARK: - Set Up UI
     
     private func setUpUI() {
+        
+        addLogoStackView()
+        addTableView()
+    }
+    
+    private func addLogoStackView() {
+        addSubview(cafeLogoView)
+        
+        NSLayoutConstraint.activate([
+            cafeLogoView.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            cafeLogoView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            cafeLogoView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            cafeLogoView.heightAnchor.constraint(equalToConstant: 100)
+        ])
+    }
+    
+    private func addTableView() {
         addSubview(tableView)
         
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            tableView.heightAnchor.constraint(equalTo: heightAnchor),
+            tableView.topAnchor.constraint(equalTo: cafeLogoView.bottomAnchor, constant: 20),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
