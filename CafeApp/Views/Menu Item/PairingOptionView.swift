@@ -27,6 +27,9 @@ class PairingOptionView: UIView {
         }
     }
     
+    var menuItem: MenuItem?
+    weak var newMenuItemViewableDelegate: NewMenuItemViewable?
+    
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -51,8 +54,13 @@ class PairingOptionView: UIView {
         return label
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)        
+    init(newMenuItemViewableDelegate: NewMenuItemViewable?) {
+        
+//        self.menuItem = menuItem
+        self.newMenuItemViewableDelegate = newMenuItemViewableDelegate
+        
+        super.init(frame: .zero)
+        
         backgroundColor = UIColor(named: "Cream")
         setUpViews()
     }
@@ -81,5 +89,17 @@ class PairingOptionView: UIView {
             priceLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             priceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
         ])
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(pairingOptionViewTappedOn))
+        addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func pairingOptionViewTappedOn() {
+                
+        print("Pairing Option Tapped On: \(String(describing: title))")
+        
+        if let menuItem = menuItem {
+            newMenuItemViewableDelegate?.displayNewMenuItemDetails(menuItem)
+        }
     }
 }

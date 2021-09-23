@@ -10,6 +10,7 @@ import UIKit
 class MenuItemDetailView: UIView {
     
     private let menuItem: MenuItem
+    weak var newMenuItemViewableDelegate: NewMenuItemViewable?
     
     private let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -34,13 +35,14 @@ class MenuItemDetailView: UIView {
     }()
     
     private lazy var pairingsView: PairingsView = {
-        let pairingsView = PairingsView(menuItem: menuItem)
+        let pairingsView = PairingsView(menuItem: menuItem, newMenuItemViewableDelegate: newMenuItemViewableDelegate)
         pairingsView.translatesAutoresizingMaskIntoConstraints = false
         return pairingsView
     }()
     
-    init(menuItem: MenuItem) {
+    init(menuItem: MenuItem, newMenuItemViewable: NewMenuItemViewable? = nil) {
         self.menuItem = menuItem
+        self.newMenuItemViewableDelegate = newMenuItemViewable
         
         super.init(frame: .zero)
         

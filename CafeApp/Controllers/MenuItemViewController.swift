@@ -7,7 +7,11 @@
 
 import UIKit
 
-class MenuItemViewController: UIViewController {
+protocol NewMenuItemViewable: AnyObject {
+    func displayNewMenuItemDetails(_ menuItem: MenuItem)
+}
+
+class MenuItemViewController: UIViewController, NewMenuItemViewable {
 
     let menuItemSelected: MenuItem
     
@@ -22,9 +26,14 @@ class MenuItemViewController: UIViewController {
     }
     
     override func loadView() {
-        view = MenuItemDetailView(menuItem: menuItemSelected)
+        view = MenuItemDetailView(menuItem: menuItemSelected, newMenuItemViewable: self)
                 
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = menuItemSelected.name
+    }
+    
+    func displayNewMenuItemDetails(_ menuItem: MenuItem) {
+        
+        navigationController?.pushViewController(MenuItemViewController(menuItemSelected: menuItem), animated: true)
     }
 }

@@ -11,6 +11,7 @@ class PairingsView: UIView {
     
     let menu = Menu()
     let menuItem: MenuItem
+    weak var newMenuItemViewableDelegate: NewMenuItemViewable?
     
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -29,26 +30,27 @@ class PairingsView: UIView {
         return stackView
     }()
     
-    let firstPairingOption: PairingOptionView = {
-        let pairingOptionView = PairingOptionView()
+    lazy var firstPairingOption: PairingOptionView = {
+        let pairingOptionView = PairingOptionView(newMenuItemViewableDelegate: newMenuItemViewableDelegate)
         pairingOptionView.translatesAutoresizingMaskIntoConstraints = false
         return pairingOptionView
     }()
     
-    let secondPairingOption: PairingOptionView = {
-        let pairingOptionView = PairingOptionView()
+    lazy var secondPairingOption: PairingOptionView = {
+        let pairingOptionView = PairingOptionView(newMenuItemViewableDelegate: newMenuItemViewableDelegate)
         pairingOptionView.translatesAutoresizingMaskIntoConstraints = false
         return pairingOptionView
     }()
     
-    let thirdPairingOption: PairingOptionView = {
-        let pairingOptionView = PairingOptionView()
+    lazy var thirdPairingOption: PairingOptionView = {
+        let pairingOptionView = PairingOptionView(newMenuItemViewableDelegate: newMenuItemViewableDelegate)
         pairingOptionView.translatesAutoresizingMaskIntoConstraints = false
         return pairingOptionView
     }()
     
-    init(menuItem: MenuItem) {
+    init(menuItem: MenuItem, newMenuItemViewableDelegate: NewMenuItemViewable?) {
         self.menuItem = menuItem
+        self.newMenuItemViewableDelegate = newMenuItemViewableDelegate
         
         super.init(frame: .zero)
         
@@ -70,40 +72,49 @@ class PairingsView: UIView {
             firstPairingOption.price = pairings[0].price
             firstPairingOption.image = UIImage(named: pairings[0].imageName)
             firstPairingOption.title = pairings[0].name
+            firstPairingOption.menuItem = pairings[0]
             
             secondPairingOption.price = pairings[1].price
             secondPairingOption.image = UIImage(named: pairings[1].imageName)
             secondPairingOption.title = pairings[1].name
+            secondPairingOption.menuItem = pairings[1]
             
             thirdPairingOption.price = pairings[2].price
             thirdPairingOption.image = UIImage(named: pairings[2].imageName)
             thirdPairingOption.title = pairings[2].name
+            thirdPairingOption.menuItem = pairings[2]
         case .drinks:
             let pairings = menu.generatePairings(forProductType: .drinks)
             firstPairingOption.price = pairings[0].price
             firstPairingOption.image = UIImage(named: pairings[0].imageName)
             firstPairingOption.title = pairings[0].name
-                        
+            firstPairingOption.menuItem = pairings[0]
+            
             secondPairingOption.price = pairings[1].price
             secondPairingOption.image = UIImage(named: pairings[1].imageName)
             secondPairingOption.title = pairings[1].name
+            secondPairingOption.menuItem = pairings[1]
             
             thirdPairingOption.price = pairings[2].price
             thirdPairingOption.image = UIImage(named: pairings[2].imageName)
             thirdPairingOption.title = pairings[2].name
+            thirdPairingOption.menuItem = pairings[2]
         case .merchAndOthers, .misc:
             let pairings = menu.generatePairings(forProductType: .merchAndOthers)
             firstPairingOption.price = pairings[0].price
             firstPairingOption.image = UIImage(named: pairings[0].imageName)
             firstPairingOption.title = pairings[0].name
+            firstPairingOption.menuItem = pairings[0]
             
             secondPairingOption.price = pairings[1].price
             secondPairingOption.image = UIImage(named: pairings[1].imageName)
             secondPairingOption.title = pairings[1].name
+            secondPairingOption.menuItem = pairings[1]
             
             thirdPairingOption.price = pairings[2].price
             thirdPairingOption.image = UIImage(named: pairings[2].imageName)
             thirdPairingOption.title = pairings[2].name
+            thirdPairingOption.menuItem = pairings[2]
         }
     }
     
@@ -128,4 +139,9 @@ class PairingsView: UIView {
             pairingOptionsStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
         ])
     }
+    
+//    func displayNewMenuItem() {
+//
+//        newMenuItemViewableDelegate?.displayNewMenuItemDetails(menuItem)
+//    }
 }
