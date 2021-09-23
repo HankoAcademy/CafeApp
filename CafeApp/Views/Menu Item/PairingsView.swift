@@ -9,11 +9,7 @@ import UIKit
 
 class PairingsView: UIView {
     
-//    var firstPairingMenuItem: MenuItem {
-////        let menu = Menu()
-////        menu.generatePairings(forProductType: .drinks)
-//    }
-    
+    let menu = Menu()
     let menuItem: MenuItem
     
     let titleLabel: UILabel = {
@@ -58,11 +54,57 @@ class PairingsView: UIView {
         
         backgroundColor = UIColor(named: "MochaBrown")
         
+        configurePairingViews()
         setUpViews()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configurePairingViews() {
+        
+        switch menuItem.type {
+        case .foods:
+            let pairings = menu.generatePairings(forProductType: .foods)
+            firstPairingOption.price = pairings[0].price
+            firstPairingOption.image = UIImage(named: pairings[0].imageName)
+            firstPairingOption.title = pairings[0].name
+            
+            secondPairingOption.price = pairings[1].price
+            secondPairingOption.image = UIImage(named: pairings[1].imageName)
+            secondPairingOption.title = pairings[1].name
+            
+            thirdPairingOption.price = pairings[2].price
+            thirdPairingOption.image = UIImage(named: pairings[2].imageName)
+            thirdPairingOption.title = pairings[2].name
+        case .drinks:
+            let pairings = menu.generatePairings(forProductType: .drinks)
+            firstPairingOption.price = pairings[0].price
+            firstPairingOption.image = UIImage(named: pairings[0].imageName)
+            firstPairingOption.title = pairings[0].name
+                        
+            secondPairingOption.price = pairings[1].price
+            secondPairingOption.image = UIImage(named: pairings[1].imageName)
+            secondPairingOption.title = pairings[1].name
+            
+            thirdPairingOption.price = pairings[2].price
+            thirdPairingOption.image = UIImage(named: pairings[2].imageName)
+            thirdPairingOption.title = pairings[2].name
+        case .merchAndOthers, .misc:
+            let pairings = menu.generatePairings(forProductType: .merchAndOthers)
+            firstPairingOption.price = pairings[0].price
+            firstPairingOption.image = UIImage(named: pairings[0].imageName)
+            firstPairingOption.title = pairings[0].name
+            
+            secondPairingOption.price = pairings[1].price
+            secondPairingOption.image = UIImage(named: pairings[1].imageName)
+            secondPairingOption.title = pairings[1].name
+            
+            thirdPairingOption.price = pairings[2].price
+            thirdPairingOption.image = UIImage(named: pairings[2].imageName)
+            thirdPairingOption.title = pairings[2].name
+        }
     }
     
     private func setUpViews() {

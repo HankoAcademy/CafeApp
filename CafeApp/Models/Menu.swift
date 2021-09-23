@@ -78,17 +78,21 @@ struct Menu {
     func generatePairings(forProductType productType: ProductType) -> [MenuItem] {
         switch productType {
         case .drinks:
-            var drinksToShuffle = drinks
-            drinksToShuffle.shuffle()
-            return [drinksToShuffle[0], drinksToShuffle[1], drinksToShuffle[2]]
-        case .foods:
             var foodToShuffle = foods
             foodToShuffle.shuffle()
             return [foodToShuffle[0], foodToShuffle[1], foodToShuffle[2]]
+        case .foods:
+            var drinksToShuffle = drinks
+            drinksToShuffle.shuffle()
+            return [drinksToShuffle[0], drinksToShuffle[1], drinksToShuffle[2]]
         case .merchAndOthers, .misc:
-            var merchToShuffle = merchAndOthers
-            merchToShuffle.shuffle()
-            return [merchAndOthers[0], merchAndOthers[1], merchAndOthers[2]]
+            var foodToShuffle = foods
+            foodToShuffle.shuffle()
+            
+            var drinksToShuffle = drinks
+            drinksToShuffle.shuffle()
+            
+            return [drinksToShuffle[0], drinksToShuffle[1], foodToShuffle[2]]
         }
     }
 }

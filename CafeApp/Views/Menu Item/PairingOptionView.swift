@@ -15,6 +15,18 @@ class PairingOptionView: UIView {
         }
     }
     
+    var image: UIImage? {
+        didSet {
+            imageView.image = image
+        }
+    }
+    
+    var title: String? {
+        didSet {
+            titleLabel.text = title
+        }
+    }
+    
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
