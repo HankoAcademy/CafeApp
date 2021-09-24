@@ -6,9 +6,6 @@
 //
 import UIKit
 
-enum SortType {
-    case name, price
-}
 protocol Sortable: AnyObject {
     func sort()
 }
@@ -18,7 +15,8 @@ protocol Filterable: AnyObject {
 }
 
 class MenuViewController: UIViewController {
-    
+
+// MARK: - Class Properties
     var menu: Menu
     
     var hideDrinksSection = false
@@ -235,6 +233,8 @@ extension MenuViewController: UITableViewDelegate {
     }
 }
 
+// MARK: - Sortable Delegate Methods
+
 extension MenuViewController: Sortable {
     func sort() {
         let alertController = UIAlertController(title: "", message: "Select Sort Type", preferredStyle: .actionSheet)
@@ -256,29 +256,31 @@ extension MenuViewController: Sortable {
     }
 }
 
+// MARK: - Filterable Delegate Methods
+
 extension MenuViewController: Filterable {
     func filter() {
         let alertController = UIAlertController(title: "", message: "Select Filter Type", preferredStyle: .actionSheet)
-        alertController.addAction(UIAlertAction(title: "Drinks", style: .default, handler: { _ in
-            print("filter drinks")
-            self.hideDrinksSection = false
-            self.hideFoodSection = true
-            self.hideMerchSection = true
-            self.menuTableView.reloadData()
+        alertController.addAction(UIAlertAction(title: "Drinks", style: .default, handler: { [weak self] _ in
+            print("Filter by drinks")
+            self?.hideDrinksSection = false
+            self?.hideFoodSection = true
+            self?.hideMerchSection = true
+            self?.menuTableView.reloadData()
         }))
-        alertController.addAction(UIAlertAction(title: "Food", style: .default, handler: { _ in
-            print("filter food")
-            self.hideFoodSection = false
-            self.hideDrinksSection = true
-            self.hideMerchSection = true
-            self.menuTableView.reloadData()
+        alertController.addAction(UIAlertAction(title: "Food", style: .default, handler: { [weak self] _ in
+            print("Filter by food")
+            self?.hideFoodSection = false
+            self?.hideDrinksSection = true
+            self?.hideMerchSection = true
+            self?.menuTableView.reloadData()
         }))
-        alertController.addAction(UIAlertAction(title: "Merch", style: .default, handler: { _ in
-            print("filter merch")
-            self.hideMerchSection = false
-            self.hideFoodSection = true
-            self.hideDrinksSection = true
-            self.menuTableView.reloadData()
+        alertController.addAction(UIAlertAction(title: "Merch", style: .default, handler: { [weak self] _ in
+            print("Filter by merch")
+            self?.hideMerchSection = false
+            self?.hideFoodSection = true
+            self?.hideDrinksSection = true
+            self?.menuTableView.reloadData()
         }))
         present(alertController, animated: true, completion: nil)
     }

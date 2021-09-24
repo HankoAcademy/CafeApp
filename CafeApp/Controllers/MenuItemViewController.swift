@@ -12,9 +12,11 @@ protocol NewMenuItemViewable: AnyObject {
 }
 
 class MenuItemViewController: UIViewController, NewMenuItemViewable {
-
+    
+// MARK: - Class Properties
     let menuItemSelected: MenuItem
     
+// MARK: - Initializers
     init(menuItemSelected: MenuItem) {
         self.menuItemSelected = menuItemSelected
         
@@ -24,16 +26,17 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+// MARK: - View Lifecycle
     override func loadView() {
         view = MenuItemDetailView(menuItem: menuItemSelected, newMenuItemViewable: self)
                 
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = menuItemSelected.name
     }
-    
-    func displayNewMenuItemDetails(_ menuItem: MenuItem) {
-        
+
+// MARK: - NewMenuItemViewable Delegate Methods
+    func displayNewMenuItemDetails(_ menuItem: MenuItem) {        
         navigationController?.pushViewController(MenuItemViewController(menuItemSelected: menuItem), animated: true)
     }
 }
