@@ -28,8 +28,9 @@ class MenuItemDetailView: UIView {
         return menuItemWithPriceView
     }()
     
-    private let ingredientsView: IngredientsView = {
+    private lazy var ingredientsView: IngredientsView = {
         let ingredientsView = IngredientsView()
+        ingredientsView.descriptionLabel.text = menuItem.ingredients?.joined(separator: ", ")
         ingredientsView.translatesAutoresizingMaskIntoConstraints = false
         return ingredientsView
     }()

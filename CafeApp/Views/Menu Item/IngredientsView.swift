@@ -32,7 +32,6 @@ class IngredientsView: UIStackView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .lightGray
         label.textAlignment = .left
-        label.text = "coffee, water"
         return label
     }()
     

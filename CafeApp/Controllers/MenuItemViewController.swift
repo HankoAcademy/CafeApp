@@ -30,7 +30,7 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
 // MARK: - View Lifecycle
     override func loadView() {
         view = MenuItemDetailView(menuItem: menuItemSelected, newMenuItemViewable: self)
-                
+        
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = menuItemSelected.name
     }
