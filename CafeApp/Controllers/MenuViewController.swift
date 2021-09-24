@@ -197,20 +197,28 @@ extension MenuViewController: UITableViewDelegate {
 extension MenuViewController: Sortable {
     func sort() {
         let alertController = UIAlertController(title: "", message: "Select Sort Type", preferredStyle: .actionSheet)
-        alertController.addAction(UIAlertAction(title: "Name", style: .default, handler: { _ in
-            print("sort name")
+        alertController.addAction(UIAlertAction(title: "Name", style: .default, handler: { [weak self] _ in
+            print("Sorting the menu by name")
+            if let sortedMenu = self?.menu.sortMenu(bySortType: .name) {
+                self?.menu = sortedMenu
+                self?.menuTableView.reloadData()
+            }
         }))
-        alertController.addAction(UIAlertAction(title: "Price", style: .default, handler: { _ in
-            print("sort price")
+        alertController.addAction(UIAlertAction(title: "Price", style: .default, handler: { [weak self] _ in
+            print("Sorting the menu by price")
+            if let sortedMenu = self?.menu.sortMenu(bySortType: .price) {
+                self?.menu = sortedMenu
+                self?.menuTableView.reloadData()
+            }
         }))
         present(alertController, animated: true, completion: nil)
-    }        
+    }
 }
 
 extension MenuViewController: Filterable {
     func filter() {
         let alertController = UIAlertController(title: "", message: "Select Filter Type", preferredStyle: .actionSheet)
-        alertController.addAction(UIAlertAction(title: "Drinks", style: .default, handler: { [weak self] _ in
+        alertController.addAction(UIAlertAction(title: "Drinks", style: .default, handler: { _ in
             print("filter drinks")
         }))
         alertController.addAction(UIAlertAction(title: "Food", style: .default, handler: { _ in

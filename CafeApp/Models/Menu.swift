@@ -22,7 +22,7 @@ enum ProductType {
 }
 
 struct Menu {
-    let drinks = [
+    var drinks = [
         Drink(withImageName: "drinks_coffee", withName: "Drip Coffee",
               withDescription: "Our daily house drip coffee", withPrice: 2.0),
         Drink(withImageName: "drinks_coldbrew", withName: "Cold Brew",
@@ -43,7 +43,7 @@ struct Menu {
               withDescription: "A cup of a milk of your choice", withPrice: 2.0),
     ]
     
-    let foods = [
+    var foods = [
         Food(withImageName: "foods_croissant", withName: "Croissant",
              withDescription: "A crispy, buttery croissant", withPrice: 4.0),
         Food(withImageName: "foods_pie", withName: "Pie",
@@ -62,7 +62,7 @@ struct Menu {
              withDescription: "A bar of Ritter Sport", withPrice: 3.5),
     ]
     
-    let merchAndOthers: [MenuItem] = [
+    var merchAndOthers: [MenuItem] = [
         Merch(withImageName: "merch_beans", withName: "Coffee Beans",
               withDescription: "In-house roasted beans, whole or ground", withPrice: 12.5),
         Merch(withImageName: "merch_chemex", withName: "Chemex",
@@ -74,6 +74,36 @@ struct Menu {
         MiscItem(withImageName: "other_newspaper", withName: "Newspaper",
               withDescription: "Daily newspaper", withPrice: 3.5),
     ]
+    
+    
+    enum SortType {
+        case price, name
+    }
+    
+    func sortMenu(bySortType sortType: SortType) -> Menu {
+        switch sortType {
+        case .name:
+            let sortedDrinks = drinks.sorted { $0.name < $1.name }
+            let sortedFoods = foods.sorted { $0.name < $1.name }
+            let sortedMerch = merchAndOthers.sorted { $0.name < $1.name }
+            
+            var menu = Menu()
+            menu.drinks = sortedDrinks
+            menu.foods = sortedFoods
+            menu.merchAndOthers = sortedMerch
+            return menu
+        case .price:
+            let sortedDrinks = drinks.sorted { $0.price < $1.price }
+            let sortedFoods = foods.sorted { $0.price < $1.price}
+            let sortedMerch = merchAndOthers.sorted { $0.price < $1.price }
+            
+            var menu = Menu()
+            menu.drinks = sortedDrinks
+            menu.foods = sortedFoods
+            menu.merchAndOthers = sortedMerch
+            return menu
+        }
+    }
     
     func generatePairings(forProductType productType: ProductType) -> [MenuItem] {
         switch productType {
