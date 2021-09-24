@@ -16,6 +16,7 @@ class ContentView: UIView {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = UIColor(named: "cream")
+        tableView.register(ContentViewTableCell.self, forCellReuseIdentifier: "ContentViewTableCell")
         return tableView
     }()
     
