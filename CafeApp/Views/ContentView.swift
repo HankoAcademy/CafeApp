@@ -12,8 +12,11 @@ class ContentView: UIView {
     
     // MARK: - UI Properties
     
-//    var menuHeaderView: 
-    
+    var menuHeaderView: MenuHeaderView = {
+        let headerView = MenuHeaderView()
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+        return headerView
+    }()
  
     
     var tableView: UITableView = {
@@ -43,9 +46,10 @@ class ContentView: UIView {
     private func setUpViews(){
         
         addSubview(tableView)
+        addSubview(menuHeaderView)
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: topAnchor),
+            tableView.topAnchor.constraint(equalTo: topAnchor, constant: 160),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor)

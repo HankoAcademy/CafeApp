@@ -65,6 +65,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
@@ -106,21 +107,6 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MenuHeaderView") as? MenuTableHeaderView else {
-//            return nil
-//        }
-//    }
-//    
-//    switch section {
-//    case 0:
-//        headerView.headerName = "Drinks"
-//    case 1:
-//        headerView.headerName = "Food"
-//    case 2:
-//        headerView.headerName = "Merch + Other"
-//    default:
-//        headerView.headerName = "Other"
-//    }
+    
     
 }
