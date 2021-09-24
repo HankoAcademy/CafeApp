@@ -8,8 +8,12 @@
 import UIKit
 
 class MenuItemWithPriceView: UIView {
+  
+// MARK: - Class Properties
     
     let menuItem: MenuItem
+    
+// MARK: - UI Component Declarations
     
     lazy var imageView: UIImageView = {
         let imageView = UIImageView()
@@ -30,6 +34,7 @@ class MenuItemWithPriceView: UIView {
         return label
     }()
     
+// MARK: - Initializers
     
     init(menuItem: MenuItem) {
         
@@ -48,6 +53,8 @@ class MenuItemWithPriceView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+// MARK: - UI Setup Functions
     
     private func setUpViews() {
         

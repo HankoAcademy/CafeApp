@@ -9,6 +9,8 @@ import UIKit
 
 class PairingOptionView: UIView {
     
+// MARK: - Class Properties
+    
     var price: Double = 0 {
         didSet {
             priceLabel.text = String(format: "$%.02f", price)
@@ -29,6 +31,8 @@ class PairingOptionView: UIView {
     
     var menuItem: MenuItem?
     weak var newMenuItemViewableDelegate: NewMenuItemViewable?
+    
+// MARK: - UI Component Declarations
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -54,9 +58,10 @@ class PairingOptionView: UIView {
         return label
     }()
     
+// MARK: - Initializers
+    
     init(newMenuItemViewableDelegate: NewMenuItemViewable?) {
         
-//        self.menuItem = menuItem
         self.newMenuItemViewableDelegate = newMenuItemViewableDelegate
         
         super.init(frame: .zero)
@@ -68,6 +73,8 @@ class PairingOptionView: UIView {
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+// MARK: - UI Setup Functions
     
     private func setUpViews() {
         
@@ -93,6 +100,8 @@ class PairingOptionView: UIView {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(pairingOptionViewTappedOn))
         addGestureRecognizer(tapGesture)
     }
+    
+// MARK: - Actions
     
     @objc func pairingOptionViewTappedOn() {
                 

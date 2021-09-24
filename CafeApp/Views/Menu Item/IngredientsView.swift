@@ -9,6 +9,8 @@ import UIKit
 
 class IngredientsView: UIStackView {
     
+// MARK: - Class Properties
+    
     let descriptionContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -35,6 +37,8 @@ class IngredientsView: UIStackView {
         return label
     }()
     
+// MARK: - Initializers
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -52,6 +56,8 @@ class IngredientsView: UIStackView {
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+// MARK: - UI Setup Functions
     
     private func setUpViews() {
         

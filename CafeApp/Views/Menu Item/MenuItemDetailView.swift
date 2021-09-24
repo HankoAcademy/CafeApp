@@ -9,8 +9,12 @@ import UIKit
 
 class MenuItemDetailView: UIView {
     
+// MARK: - Class Properties
+    
     private let menuItem: MenuItem
     weak var newMenuItemViewableDelegate: NewMenuItemViewable?
+
+// MARK: - UI Component Declarations
     
     private let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -41,6 +45,8 @@ class MenuItemDetailView: UIView {
         return pairingsView
     }()
     
+// MARK: - Initializers
+    
     init(menuItem: MenuItem, newMenuItemViewable: NewMenuItemViewable? = nil) {
         self.menuItem = menuItem
         self.newMenuItemViewableDelegate = newMenuItemViewable
@@ -53,6 +59,8 @@ class MenuItemDetailView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+// MARK: - UI Setup Functions
     
     private func setUpViews() {
         

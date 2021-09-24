@@ -9,9 +9,13 @@ import UIKit
 
 class PairingsView: UIView {
     
+// MARK: - Class Properties
+    
     let menu = Menu()
     let menuItem: MenuItem
     weak var newMenuItemViewableDelegate: NewMenuItemViewable?
+    
+// MARK: - UI Component Declarations
     
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -48,6 +52,8 @@ class PairingsView: UIView {
         return pairingOptionView
     }()
     
+// MARK: - Initializers
+    
     init(menuItem: MenuItem, newMenuItemViewableDelegate: NewMenuItemViewable?) {
         self.menuItem = menuItem
         self.newMenuItemViewableDelegate = newMenuItemViewableDelegate
@@ -63,6 +69,8 @@ class PairingsView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+// MARK: - UI Setup Functions
     
     private func configurePairingViews() {
         
@@ -139,9 +147,4 @@ class PairingsView: UIView {
             pairingOptionsStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
         ])
     }
-    
-//    func displayNewMenuItem() {
-//
-//        newMenuItemViewableDelegate?.displayNewMenuItemDetails(menuItem)
-//    }
 }

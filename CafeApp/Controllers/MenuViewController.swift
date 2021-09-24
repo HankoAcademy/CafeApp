@@ -17,6 +17,7 @@ protocol Filterable: AnyObject {
 class MenuViewController: UIViewController {
 
 // MARK: - Class Properties
+    
     var menu: Menu
     
     var hideDrinksSection = false
@@ -24,6 +25,7 @@ class MenuViewController: UIViewController {
     var hideMerchSection = false
     
 // MARK: - UI Component Declarations
+    
     var menuHeaderView: MenuHeaderView = {
         let headerView = MenuHeaderView()
         headerView.translatesAutoresizingMaskIntoConstraints = false
@@ -45,6 +47,7 @@ class MenuViewController: UIViewController {
     }()
     
 // MARK: - Initializers
+    
     init(withMenu menu: Menu) {
         self.menu = menu
         

@@ -14,9 +14,11 @@ protocol NewMenuItemViewable: AnyObject {
 class MenuItemViewController: UIViewController, NewMenuItemViewable {
     
 // MARK: - Class Properties
+    
     let menuItemSelected: MenuItem
     
 // MARK: - Initializers
+    
     init(menuItemSelected: MenuItem) {
         self.menuItemSelected = menuItemSelected
         
@@ -28,6 +30,7 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
     }
 
 // MARK: - View Lifecycle
+    
     override func loadView() {
         view = MenuItemDetailView(menuItem: menuItemSelected, newMenuItemViewable: self)
         
@@ -36,6 +39,7 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
     }
 
 // MARK: - NewMenuItemViewable Delegate Methods
+    
     func displayNewMenuItemDetails(_ menuItem: MenuItem) {        
         navigationController?.pushViewController(MenuItemViewController(menuItemSelected: menuItem), animated: true)
     }

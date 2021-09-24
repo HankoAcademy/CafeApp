@@ -9,6 +9,7 @@ import UIKit
 class MenuItemTableViewCell: UITableViewCell {
     
 // MARK: - Parameter Properties
+    
     var imageName: String = "" {
         didSet {
             itemImageView.image = UIImage(named: imageName)
@@ -90,6 +91,7 @@ class MenuItemTableViewCell: UITableViewCell {
     }()
     
 // MARK: - Initializers
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -104,6 +106,7 @@ class MenuItemTableViewCell: UITableViewCell {
         activateConstraints()
     }
 // MARK: - UI Configuration
+    
     private func setupUI() {
         contentView.backgroundColor = UIColor(named: "Cream")
         
