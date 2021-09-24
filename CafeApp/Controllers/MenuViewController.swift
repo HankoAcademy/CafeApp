@@ -21,6 +21,10 @@ class MenuViewController: UIViewController {
     
     var menu: Menu
     
+    var hideDrinksSection = false
+    var hideFoodSection = false
+    var hideMerchSection = false
+    
 // MARK: - UI Component Declarations
     var menuHeaderView: MenuHeaderView = {
         let headerView = MenuHeaderView()
@@ -112,10 +116,19 @@ extension MenuViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
+            if hideDrinksSection {
+                return 0
+            }
             return menu.drinks.count
         case 1:
+            if hideFoodSection {
+                return 0
+            }
             return menu.foods.count
         case 2:
+            if hideMerchSection {
+                return 0
+            }
             return menu.merchAndOthers.count
         default:
             return 0
@@ -154,6 +167,34 @@ extension MenuViewController: UITableViewDataSource {
 extension MenuViewController: UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 0:
+            if hideDrinksSection {
+                return 0
+            }
+            else {
+                return UITableView.automaticDimension
+            }
+        case 1:
+            if hideFoodSection {
+                return 0
+            }
+            else {
+                return UITableView.automaticDimension
+            }
+        case 2:
+            if hideMerchSection {
+                return 0
+            }
+            else {
+                return UITableView.automaticDimension
+            }
+        default:
+            return UITableView.automaticDimension
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -220,12 +261,24 @@ extension MenuViewController: Filterable {
         let alertController = UIAlertController(title: "", message: "Select Filter Type", preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: "Drinks", style: .default, handler: { _ in
             print("filter drinks")
+            self.hideDrinksSection = false
+            self.hideFoodSection = true
+            self.hideMerchSection = true
+            self.menuTableView.reloadData()
         }))
         alertController.addAction(UIAlertAction(title: "Food", style: .default, handler: { _ in
             print("filter food")
+            self.hideFoodSection = false
+            self.hideDrinksSection = true
+            self.hideMerchSection = true
+            self.menuTableView.reloadData()
         }))
         alertController.addAction(UIAlertAction(title: "Merch", style: .default, handler: { _ in
             print("filter merch")
+            self.hideMerchSection = false
+            self.hideFoodSection = true
+            self.hideDrinksSection = true
+            self.menuTableView.reloadData()
         }))
         present(alertController, animated: true, completion: nil)
     }
