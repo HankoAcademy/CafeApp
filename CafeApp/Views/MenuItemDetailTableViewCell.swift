@@ -13,6 +13,7 @@ class MenuItemDetailTableViewCell: UITableViewCell {
     
     // MARK: - UI Properties
     
+    
     private var leftSideInfoStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -36,6 +37,7 @@ class MenuItemDetailTableViewCell: UITableViewCell {
     private var itemImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit 
         return imageView
     }()
     
@@ -72,6 +74,7 @@ class MenuItemDetailTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setUpUI()
+  
     }
     
     required init?(coder: NSCoder) {
@@ -82,7 +85,7 @@ class MenuItemDetailTableViewCell: UITableViewCell {
     
     private func setUpUI() {
         
-        contentView.backgroundColor = UIColor(named: "Cream")
+        contentView.backgroundColor = .white
         
         textStackView.addArrangedSubview(menuItemTitleLabel)
         textStackView.addArrangedSubview(menuItemDescriptionLabel)

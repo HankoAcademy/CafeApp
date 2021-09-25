@@ -17,13 +17,14 @@ class ContentView: UIView {
         headerView.translatesAutoresizingMaskIntoConstraints = false
         return headerView
     }()
- 
     
     var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = UIColor(named: "Cream")
+        tableView.backgroundColor = UIColor(named: "cream")
         tableView.register(MenuItemDetailTableViewCell.self, forCellReuseIdentifier: "MenuItemDetailTableViewCell")
+        tableView.register(MenuTableHeaderView.self, forHeaderFooterViewReuseIdentifier: "MenuHeaderView")
+        tableView.layer.cornerRadius = 20
         return tableView
     }()
     
@@ -49,10 +50,17 @@ class ContentView: UIView {
         addSubview(menuHeaderView)
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: topAnchor, constant: 160),
+            
+            menuHeaderView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            menuHeaderView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            menuHeaderView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            
+            tableView.topAnchor.constraint(equalTo: menuHeaderView.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            
         ])
     }
 }

@@ -13,7 +13,8 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     // MARK: - UI Properties
     
-    private var contentView: ContentView! //??? in SLACK - Why need '!', w/out says no initializers
+    // == var contentView = ContentView()
+    private var contentView: ContentView!
     private var tableView: UITableView!
     
     
@@ -49,18 +50,24 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     // MARK: UITableViewDataSource
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
-            return "Drinks"
-        case 1:
-            return "Food"
-        case 2:
-            return "Merch and Other Stuff"
-        default:
-            return nil
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+            guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MenuHeaderView") as? MenuTableHeaderView else {
+                return nil
+            }
+
+            switch section {
+            case 0:
+                headerView.headerName = "Drinks"
+            case 1:
+                headerView.headerName = "Food"
+            case 2:
+                headerView.headerName = "Merch • Other"
+            default:
+                headerView.headerName = "Other"
+            }
+
+            return headerView
         }
-    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3

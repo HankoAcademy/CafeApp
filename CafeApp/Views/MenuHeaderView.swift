@@ -32,7 +32,7 @@ class MenuHeaderView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 35, weight: .bold)
         label.textAlignment = .center
-        label.text = "Hanko Cafe"
+        label.text = "Café Amigo"
         label.lineBreakMode = .byWordWrapping
         return label
     }()
@@ -57,9 +57,9 @@ class MenuHeaderView: UIView {
         
         NSLayoutConstraint.activate([
             headerStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            headerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
-            headerStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 350),
-            headerStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            headerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 35),
+            headerStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            headerStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15),
             
             headerImageView.widthAnchor.constraint(equalToConstant: 100),
             headerImageView.heightAnchor.constraint(equalToConstant: 100)
