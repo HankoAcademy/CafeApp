@@ -17,6 +17,7 @@ class ContentView: UIView {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = UIColor(named: "cream")
         tableView.register(ContentViewTableCell.self, forCellReuseIdentifier: "ContentViewTableCell")
+        tableView.register(MenuTableHeaderView.self, forHeaderFooterViewReuseIdentifier: "MenuTableHeaderView")
         return tableView
     }()
     

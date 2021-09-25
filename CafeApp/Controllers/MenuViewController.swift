@@ -33,6 +33,10 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // MARK - UITableView Delegate
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ContentViewTableCell", for: indexPath) as? ContentViewTableCell else {
             return UITableViewCell()
@@ -52,7 +56,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         if let menuItem = menuItem {
-            cell.update(menuItemImage: menuItem.imageName, menuItemPrice: menuItem.price)
+            cell.update(menuItemImage: menuItem.imageName, menuItemName: menuItem.name, menuItemDescription: menuItem.description, menuItemPrice: menuItem.price)
         }
         
         return cell
@@ -66,10 +70,45 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
             return menu.drinks.count
         case 1:
             return menu.foods.count
-        case 3:
+        case 2:
             return menu.merchAndOthers.count
         default:
             return 1
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            let drink = menu.drinks[indexPath.row]
+            print("Selected a \(drink.name) that costs \(drink.price)")
+        case 1:
+            let food = menu.foods[indexPath.row]
+            print("Selected a \(food.name) that costs \(food.price)")
+        case 2:
+            let merch = menu.merchAndOthers[indexPath.row]
+            print("Selected a \(merch.name) that costs \(merch.price)")
+        default:
+            return
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MenuTableHeaderView") as? MenuTableHeaderView else {
+            return nil
+        }
+        
+        switch section {
+        case 0:
+            headerView.headerTitle = "Drinks"
+        case 1:
+            headerView.headerTitle = "Food"
+        case 2:
+            headerView.headerTitle = "Merch • Other"
+        default:
+            return nil
+        }
+        
+        return headerView
     }
 }

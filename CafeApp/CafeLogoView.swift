@@ -59,7 +59,7 @@ class CafeLogoView: UIStackView {
         addArrangedSubview(headerImageView)
         
         NSLayoutConstraint.activate([
-            headerImageView.heightAnchor.constraint(equalToConstant: 150),
+            headerImageView.heightAnchor.constraint(equalToConstant: 90),
             headerImageView.widthAnchor.constraint(equalTo: headerImageView.heightAnchor)
         ])
     }

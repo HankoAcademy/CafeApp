@@ -12,7 +12,7 @@ class ContentViewTableCell: UITableViewCell {
     
     // MARK: - Properties
     
-    private let stackView: UIStackView = {
+    private let cellStackView: UIStackView = {
        let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
@@ -39,6 +39,31 @@ class ContentViewTableCell: UITableViewCell {
         return label
     }()
     
+    private let itemNameWithDescriptionStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .fillProportionally
+        stackView.backgroundColor = UIColor(named: "cream")
+        return stackView
+    }()
+    
+    private let itemNameLabel: UILabel = {
+       let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+        label.textAlignment = .left
+        return label
+    }()
+    
+    private let itemDescriptionLabel: UILabel = {
+       let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 8, weight: .regular)
+        label.textAlignment = .left
+        return label
+    }()
+    
     // MARK: - Initializers
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -47,28 +72,44 @@ class ContentViewTableCell: UITableViewCell {
         setUpUI()
     }
     
-    private func setUpUI() {
-        contentView.backgroundColor = UIColor(named: "cream")
-        
-        stackView.addArrangedSubview(itemImage)
-        stackView.addArrangedSubview(itemPrice)
-        
-        contentView.addSubview(stackView)
-        
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
-        ])
-    }
-    
     required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
     
-    func update(menuItemImage: String, menuItemPrice: Double) {
+    
+    private func setUpUI() {
+        contentView.backgroundColor = UIColor(named: "cream")
+        
+        addStackView()
+    }
+    
+    private func setUpNameWithDescriptionView() {
+        itemNameWithDescriptionStackView.addArrangedSubview(itemNameLabel)
+        itemNameWithDescriptionStackView.addArrangedSubview(itemDescriptionLabel)
+                
+    }
+    
+    private func addStackView() {
+        setUpNameWithDescriptionView()
+        
+        cellStackView.addArrangedSubview(itemImage)
+        cellStackView.addArrangedSubview(itemNameWithDescriptionStackView)
+        cellStackView.addArrangedSubview(itemPrice)
+        
+        contentView.addSubview(cellStackView)
+        
+        NSLayoutConstraint.activate([
+            cellStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            cellStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
+            cellStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
+            cellStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
+        ])
+    }
+    
+    func update(menuItemImage: String, menuItemName: String, menuItemDescription: String, menuItemPrice: Double) {
         itemImage.image = UIImage(named: menuItemImage)
+        itemNameLabel.text = menuItemName
+        itemDescriptionLabel.text = menuItemDescription
         itemPrice.text = String(format: "$%.02f", menuItemPrice)
     }
     
