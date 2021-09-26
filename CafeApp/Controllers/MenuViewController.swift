@@ -11,15 +11,14 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // You got this! Let us know if you have questions or want feedback about your code 🙂
     
-    private let menu = Menu()
-    
     // MARK: - Properties
+    private let menu = Menu()
     
     private var contentView: ContentView!
     
     private var tableView: UITableView!
     
-    // MARK: - Initializers
+    // MARK: - View Lifecyle
     
     override func loadView() {
         contentView = ContentView()
@@ -30,9 +29,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.delegate = self
         tableView.dataSource = self
     }
-    
-    // MARK - UITableView Delegate
-    
+        
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
@@ -56,14 +53,15 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         if let menuItem = menuItem {
-            cell.update(menuItemImage: menuItem.imageName, menuItemName: menuItem.name, menuItemDescription: menuItem.description, menuItemPrice: menuItem.price)
+            cell.imageName = menuItem.imageName
+            cell.price = menuItem.price
+            cell.itemName = menuItem.name
+            cell.itemDescription = menuItem.description
         }
         
         return cell
     }
-    
-    // MARK - UITableView Data Source
-    
+        
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:

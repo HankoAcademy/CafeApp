@@ -10,6 +10,32 @@ import UIKit
 
 class ContentViewTableCell: UITableViewCell {
     
+    // MARK: - Variables
+    
+    var imageName: String = "" {
+        didSet {
+            itemImage.image = UIImage(named: imageName)
+        }
+    }
+    
+    var price: Double = 0.0 {
+        didSet {
+            itemPrice.text = String(format: "$%.02f", price)
+        }
+    }
+    
+    var itemName: String = "" {
+        didSet {
+            itemNameLabel.text = itemName
+        }
+    }
+    
+    var itemDescription: String = "" {
+        didSet {
+            itemDescriptionLabel.text = itemDescription
+        }
+    }
+    
     // MARK: - Properties
     
     private let cellStackView: UIStackView = {
@@ -78,6 +104,8 @@ class ContentViewTableCell: UITableViewCell {
         }
     
     
+    // MARK: Set Up UI
+    
     private func setUpUI() {
         contentView.backgroundColor = UIColor(named: "cream")
         
@@ -110,12 +138,4 @@ class ContentViewTableCell: UITableViewCell {
             itemPrice.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
         ])
     }
-    
-    func update(menuItemImage: String, menuItemName: String, menuItemDescription: String, menuItemPrice: Double) {
-        itemImage.image = UIImage(named: menuItemImage)
-        itemNameLabel.text = menuItemName
-        itemDescriptionLabel.text = menuItemDescription
-        itemPrice.text = String(format: "$%.02f", menuItemPrice)
-    }
-    
 }

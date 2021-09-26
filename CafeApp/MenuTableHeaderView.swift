@@ -47,6 +47,8 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Set Up UI
+    
     private func setUpUI() {
         contentView.backgroundColor = UIColor(named: "cream")
         
@@ -54,8 +56,8 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
         contentView.addSubview(menuHeaderBorder)
                 
         NSLayoutConstraint.activate([
-            menuHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
-            menuHeaderLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
+            menuHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            menuHeaderLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             menuHeaderLabel.bottomAnchor.constraint(equalTo: menuHeaderBorder.topAnchor, constant: -16),
             
             menuHeaderBorder.leadingAnchor.constraint(equalTo: menuHeaderLabel.leadingAnchor),

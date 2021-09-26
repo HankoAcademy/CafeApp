@@ -18,6 +18,7 @@ class ContentView: UIView {
         tableView.backgroundColor = UIColor(named: "cream")
         tableView.register(ContentViewTableCell.self, forCellReuseIdentifier: "ContentViewTableCell")
         tableView.register(MenuTableHeaderView.self, forHeaderFooterViewReuseIdentifier: "MenuTableHeaderView")
+        tableView.layer.cornerRadius = 25
         return tableView
     }()
     
@@ -56,7 +57,6 @@ class ContentView: UIView {
             cafeLogoView.topAnchor.constraint(equalTo: topAnchor, constant: 20),
             cafeLogoView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             cafeLogoView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            cafeLogoView.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
     

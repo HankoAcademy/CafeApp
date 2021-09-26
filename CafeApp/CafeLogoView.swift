@@ -25,7 +25,7 @@ class CafeLogoView: UIStackView {
     let headerLabelView: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 30, weight: .light)
         label.textColor = .darkGray
         label.textAlignment = .center
         label.text = "Hanko Cafe"
@@ -45,6 +45,8 @@ class CafeLogoView: UIStackView {
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: Set Up UI
     
     private func setUpUI() {
         axis = .horizontal
