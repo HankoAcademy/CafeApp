@@ -16,6 +16,7 @@ class ContentViewTableCell: UITableViewCell {
        let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
+        stackView.spacing = 10
         stackView.distribution = .fillProportionally
         stackView.backgroundColor = UIColor(named: "cream")
         return stackView
@@ -94,15 +95,19 @@ class ContentViewTableCell: UITableViewCell {
         
         cellStackView.addArrangedSubview(itemImage)
         cellStackView.addArrangedSubview(itemNameWithDescriptionStackView)
-        cellStackView.addArrangedSubview(itemPrice)
         
         contentView.addSubview(cellStackView)
+        contentView.addSubview(itemPrice)
         
         NSLayoutConstraint.activate([
+            itemImage.widthAnchor.constraint(equalToConstant: 40),
+            
             cellStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             cellStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
             cellStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
-            cellStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
+            
+            itemPrice.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+            itemPrice.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
         ])
     }
     
