@@ -70,6 +70,4 @@ class ContentView: UIView {
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
-    
-    
 }

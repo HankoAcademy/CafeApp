@@ -16,8 +16,14 @@ protocol MenuItem {
     init(withImageName imageName: String, withName name: String, withDescription description: String, withPrice price: Double)
 }
 
+enum MenuItems: Int, CaseIterable {
+    case drinks
+    case food
+    case merchAndOthers
+}
+
 struct Menu {
-    let drinks = [
+    var drinks = [
         Drink(withImageName: "drinks_coffee", withName: "Drip Coffee",
               withDescription: "Our daily house drip coffee", withPrice: 2.0),
         Drink(withImageName: "drinks_coldbrew", withName: "Cold Brew",
@@ -38,7 +44,7 @@ struct Menu {
               withDescription: "A cup of a milk of your choice", withPrice: 2.0),
     ]
     
-    let foods = [
+    var foods = [
         Food(withImageName: "foods_croissant", withName: "Croissant",
              withDescription: "A crispy, buttery croissant", withPrice: 4.0),
         Food(withImageName: "foods_pie", withName: "Pie",
@@ -56,7 +62,7 @@ struct Menu {
         Food(withImageName: "foods_chocolate", withName: "Chocolate",
              withDescription: "A bar of Ritter Sport", withPrice: 3.5),
     ]
-    let merchAndOthers: [MenuItem] = [
+    var merchAndOthers: [MenuItem] = [
         Merch(withImageName: "merch_beans", withName: "Coffee Beans",
               withDescription: "In-house roasted beans, whole or ground", withPrice: 12.5),
         Merch(withImageName: "merch_chemex", withName: "Chemex",
@@ -68,4 +74,28 @@ struct Menu {
         MiscItem(withImageName: "other_newspaper", withName: "Newspaper",
               withDescription: "Daily newspaper", withPrice: 3.5),
     ]
+    
+    func sortDrinksByName() -> [Drink] {
+        return drinks.sorted { $0.name < $1.name }
+    }
+    
+    func sortDrinksByPrice() -> [Drink] {
+        return drinks.sorted { $0.price < $1.price }
+    }
+    
+    func sortFoodsByName() -> [Food] {
+        return foods.sorted { $0.name < $1.name }
+    }
+    
+    func sortFoodsByPrice() -> [Food] {
+        return foods.sorted { $0.price < $1.price }
+    }
+    
+    func sortMerchByName() -> [MenuItem] {
+        return merchAndOthers.sorted { $0.name < $1.name }
+    }
+    
+    func sortMerchByPrice() -> [MenuItem] {
+        return merchAndOthers.sorted { $0.price < $1.price }
+    }
 }

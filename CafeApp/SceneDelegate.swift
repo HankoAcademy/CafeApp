@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 
         let window = UIWindow(windowScene: windowScene)
         window.makeKeyAndVisible()
-        window.rootViewController = MenuViewController()
+        window.rootViewController = MenuViewController(withMenu: Menu())
         self.window = window
     }
 

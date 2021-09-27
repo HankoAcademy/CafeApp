@@ -35,6 +35,16 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
         return view
     }()
     
+    private let sortButton: UIButton = {
+       let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Sort", for: .normal)
+        button.backgroundColor = UIColor(named: "cream")
+        button.setTitleColor(.lightGray, for: .normal)
+        button.addTarget(MenuViewController.self, action: #selector(MenuViewController.sortButtonPressed), for: .touchUpInside)
+        return button
+    }()
+    
     // MARK: - Initializers
 
     override init(reuseIdentifier: String?) {
@@ -53,12 +63,19 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
         contentView.backgroundColor = UIColor(named: "cream")
         
         contentView.addSubview(menuHeaderLabel)
+        contentView.addSubview(sortButton)
         contentView.addSubview(menuHeaderBorder)
                 
         NSLayoutConstraint.activate([
             menuHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             menuHeaderLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             menuHeaderLabel.bottomAnchor.constraint(equalTo: menuHeaderBorder.topAnchor, constant: -16),
+            
+            //sortButton.leadingAnchor.constraint(equalTo: menuHeaderLabel.trailingAnchor),
+            //sortButton.bottomAnchor.constraint(equalTo: menuHeaderLabel.bottomAnchor),
+            sortButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            sortButton.centerYAnchor.constraint(equalTo: menuHeaderLabel.centerYAnchor),
+            //sortButton.heightAnchor.constraint(equalToConstant: 8),
             
             menuHeaderBorder.leadingAnchor.constraint(equalTo: menuHeaderLabel.leadingAnchor),
             menuHeaderBorder.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),

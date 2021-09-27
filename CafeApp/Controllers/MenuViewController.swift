@@ -12,22 +12,84 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     // You got this! Let us know if you have questions or want feedback about your code 🙂
     
     // MARK: - Properties
-    private let menu = Menu()
     
-    private var contentView: ContentView!
+    private var menu: Menu
+    private var menuItems: [MenuItems] = MenuItems.allCases
+        
+    let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = UIColor(named: "cream")
+        tableView.register(ContentViewTableCell.self, forCellReuseIdentifier: "ContentViewTableCell")
+        tableView.register(MenuTableHeaderView.self, forHeaderFooterViewReuseIdentifier: "MenuTableHeaderView")
+        tableView.layer.cornerRadius = 25
+        return tableView
+    }()
     
-    private var tableView: UITableView!
+    let cafeLogoView: CafeLogoView = {
+        let cafeLogoView = CafeLogoView()
+        cafeLogoView.translatesAutoresizingMaskIntoConstraints = false
+        return cafeLogoView
+    }()
+    
     
     // MARK: - View Lifecyle
     
     override func loadView() {
-        contentView = ContentView()
+        super.loadView()
         
-        view = contentView
+        view.backgroundColor = .white
         
-        tableView = contentView.tableView
         tableView.delegate = self
         tableView.dataSource = self
+        
+        setUpUI()
+    }
+    
+    init(withMenu menu: Menu) {
+            self.menu = menu
+            
+            super.init(nibName: nil, bundle: nil)
+            
+            setUpUI()
+        }
+        
+        required init?(coder: NSCoder) {
+            self.menu = Menu() //default menu
+            
+            super.init(coder: coder)
+            
+            setUpUI()
+            
+        }
+    
+    // MARK: - Set Up UI
+    
+    func setUpUI() {
+        
+        addLogoStackView()
+        addTableView()
+    }
+    
+    private func addLogoStackView() {
+        view.addSubview(cafeLogoView)
+        
+        NSLayoutConstraint.activate([
+            cafeLogoView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+            cafeLogoView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            cafeLogoView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+        ])
+    }
+    
+    private func addTableView() {
+        view.addSubview(tableView)
+        
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.topAnchor.constraint(equalTo: cafeLogoView.bottomAnchor, constant: 20),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
     }
         
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -108,5 +170,24 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         return headerView
+    }
+    
+    @objc func sortButtonPressed() {
+        print("Sort Button Pressed")
+        
+        let alertController = UIAlertController(title: "", message: "Sort by:", preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Name", style: .default, handler: { _ in
+           self.menu.drinks = self.menu.sortDrinksByName()
+           self.menu.foods = self.menu.sortFoodsByName()
+           self.menu.merchAndOthers = self.menu.sortMerchByName()
+           self.tableView.reloadData()
+        }))
+        alertController.addAction(UIAlertAction(title: "Price", style: .default, handler: { _ in
+           self.menu.drinks = self.menu.sortDrinksByPrice()
+           self.menu.foods = self.menu.sortFoodsByPrice()
+           self.menu.merchAndOthers = self.menu.sortMerchByPrice()
+           self.tableView.reloadData()
+        }))
+        present(alertController, animated: true, completion: nil)
     }
 }
