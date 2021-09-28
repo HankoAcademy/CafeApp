@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D9F561927011C74002994F3 /* TableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9F561827011C74002994F3 /* TableHeaderView.swift */; };
+		1DD0BB0E26F7DE8F00B1ADF9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0BB0D26F7DE8F00B1ADF9 /* ContentView.swift */; };
+		1DD0BB1026F7E25800B1ADF9 /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0BB0F26F7E25800B1ADF9 /* MenuItemView.swift */; };
 		2C4E1A0726EABFB90085487A /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E1A0626EABFB90085487A /* Menu.swift */; };
 		2C4E1A0F26EAD1C70085487A /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E1A0E26EAD1C70085487A /* Drink.swift */; };
 		2C4E1A1126EAD1CE0085487A /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E1A1026EAD1CE0085487A /* Food.swift */; };
@@ -20,6 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D9F561827011C74002994F3 /* TableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeaderView.swift; sourceTree = SOURCE_ROOT; };
+		1DD0BB0D26F7DE8F00B1ADF9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = SOURCE_ROOT; };
+		1DD0BB0F26F7E25800B1ADF9 /* MenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = SOURCE_ROOT; };
 		2C4E1A0626EABFB90085487A /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		2C4E1A0E26EAD1C70085487A /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
 		2C4E1A1026EAD1CE0085487A /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
@@ -45,9 +51,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1DD0BB0A26F68E5A00B1ADF9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F369D18F26A4CC6A0099CE19 /* AppDelegate.swift */,
+				F369D19126A4CC6A0099CE19 /* SceneDelegate.swift */,
+				F369D19826A4CC6B0099CE19 /* Assets.xcassets */,
+				F369D19A26A4CC6B0099CE19 /* LaunchScreen.storyboard */,
+				F369D19D26A4CC6B0099CE19 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		2C5817EB26EABDDC009A920C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1DD0BB0D26F7DE8F00B1ADF9 /* ContentView.swift */,
+				1DD0BB0F26F7E25800B1ADF9 /* MenuItemView.swift */,
+				1D9F561827011C74002994F3 /* TableHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -94,11 +115,7 @@
 				2C5817EC26EABDE2009A920C /* Models */,
 				2C5817EB26EABDDC009A920C /* Views */,
 				2C5817ED26EABDE7009A920C /* Controllers */,
-				F369D18F26A4CC6A0099CE19 /* AppDelegate.swift */,
-				F369D19126A4CC6A0099CE19 /* SceneDelegate.swift */,
-				F369D19826A4CC6B0099CE19 /* Assets.xcassets */,
-				F369D19A26A4CC6B0099CE19 /* LaunchScreen.storyboard */,
-				F369D19D26A4CC6B0099CE19 /* Info.plist */,
+				1DD0BB0A26F68E5A00B1ADF9 /* Supporting Files */,
 			);
 			path = CafeApp;
 			sourceTree = "<group>";
@@ -177,8 +194,11 @@
 				F3A3738726EF072F00718F1D /* MenuViewController.swift in Sources */,
 				2C4E1A1526EAD1E30085487A /* MiscItem.swift in Sources */,
 				2C4E1A1126EAD1CE0085487A /* Food.swift in Sources */,
+				1D9F561927011C74002994F3 /* TableHeaderView.swift in Sources */,
+				1DD0BB0E26F7DE8F00B1ADF9 /* ContentView.swift in Sources */,
 				2C4E1A0726EABFB90085487A /* Menu.swift in Sources */,
 				2C4E1A0F26EAD1C70085487A /* Drink.swift in Sources */,
+				1DD0BB1026F7E25800B1ADF9 /* MenuItemView.swift in Sources */,
 				F369D19226A4CC6A0099CE19 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,7 +338,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7BYH4HTJ4D;
 				INFOPLIST_FILE = CafeApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -326,6 +348,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hankoacademy.CafeApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -336,7 +359,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7BYH4HTJ4D;
 				INFOPLIST_FILE = CafeApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -344,6 +369,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hankoacademy.CafeApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
