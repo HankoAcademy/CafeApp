@@ -59,6 +59,8 @@ class TableHeaderView: UITableViewHeaderFooterView {
         setUpUI()
     }
     
+    // MARK: - UI Setup
+    
     private func setUpUI(){
         
         contentView.addSubview(headerLabel)

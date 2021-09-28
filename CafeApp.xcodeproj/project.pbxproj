@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D21CCC42703AEE8002F9E21 /* ContentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D21CCC32703AEE8002F9E21 /* ContentHeader.swift */; };
 		1D9F561927011C74002994F3 /* TableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9F561827011C74002994F3 /* TableHeaderView.swift */; };
 		1DD0BB0E26F7DE8F00B1ADF9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0BB0D26F7DE8F00B1ADF9 /* ContentView.swift */; };
 		1DD0BB1026F7E25800B1ADF9 /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD0BB0F26F7E25800B1ADF9 /* MenuItemView.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D21CCC32703AEE8002F9E21 /* ContentHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentHeader.swift; sourceTree = SOURCE_ROOT; };
 		1D9F561827011C74002994F3 /* TableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeaderView.swift; sourceTree = SOURCE_ROOT; };
 		1DD0BB0D26F7DE8F00B1ADF9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = SOURCE_ROOT; };
 		1DD0BB0F26F7E25800B1ADF9 /* MenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = SOURCE_ROOT; };
@@ -67,8 +69,9 @@
 			isa = PBXGroup;
 			children = (
 				1DD0BB0D26F7DE8F00B1ADF9 /* ContentView.swift */,
-				1DD0BB0F26F7E25800B1ADF9 /* MenuItemView.swift */,
+				1D21CCC32703AEE8002F9E21 /* ContentHeader.swift */,
 				1D9F561827011C74002994F3 /* TableHeaderView.swift */,
+				1DD0BB0F26F7E25800B1ADF9 /* MenuItemView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 				2C4E1A0726EABFB90085487A /* Menu.swift in Sources */,
 				2C4E1A0F26EAD1C70085487A /* Drink.swift in Sources */,
 				1DD0BB1026F7E25800B1ADF9 /* MenuItemView.swift in Sources */,
+				1D21CCC42703AEE8002F9E21 /* ContentHeader.swift in Sources */,
 				F369D19226A4CC6A0099CE19 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
