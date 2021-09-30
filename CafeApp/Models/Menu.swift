@@ -17,7 +17,7 @@ protocol MenuItem {
 }
 
 struct Menu {
-    let drinks = [
+    var drinks = [
         Drink(withImageName: "drinks_coffee", withName: "Drip Coffee",
               withDescription: "Our daily house drip coffee", withPrice: 2.0),
         Drink(withImageName: "drinks_coldbrew", withName: "Cold Brew",
@@ -35,10 +35,10 @@ struct Menu {
         Drink(withImageName: "drinks_tea", withName: "Tea",
               withDescription: "Tazo tea, hot or iced", withPrice: 2.5),
         Drink(withImageName: "drinks_milk", withName: "Milk",
-              withDescription: "A cup of a milk of your choice", withPrice: 2.0),
+              withDescription: "A cup of a milk of your choice", withPrice: 2.0)
     ]
     
-    let foods = [
+    var foods = [
         Food(withImageName: "foods_croissant", withName: "Croissant",
              withDescription: "A crispy, buttery croissant", withPrice: 4.0),
         Food(withImageName: "foods_pie", withName: "Pie",
@@ -56,7 +56,7 @@ struct Menu {
         Food(withImageName: "foods_chocolate", withName: "Chocolate",
              withDescription: "A bar of Ritter Sport", withPrice: 3.5),
     ]
-    let merchAndOthers: [MenuItem] = [
+    var merchAndOthers: [MenuItem] = [
         Merch(withImageName: "merch_beans", withName: "Coffee Beans",
               withDescription: "In-house roasted beans, whole or ground", withPrice: 12.5),
         Merch(withImageName: "merch_chemex", withName: "Chemex",
@@ -68,4 +68,87 @@ struct Menu {
         MiscItem(withImageName: "other_newspaper", withName: "Newspaper",
               withDescription: "Daily newspaper", withPrice: 3.5),
     ]
+    
+    func sortSectionByPrice(section:Int)->[MenuItem]{
+        switch section{
+        case 0: return drinks.sorted{ $0.price < $1.price
+        }
+        case 1:return foods.sorted{ $0.price < $1.price
+        }
+        case 2:return merchAndOthers.sorted{ $0.price < $1.price
+        }
+        default:return drinks.sorted{ $0.price < $1.price
+        }
+            
+        }
+    }
+    func sortSectionByName(section:Int)->[MenuItem]{
+        switch section{
+        case 0: return drinks.sorted{ $0.name < $1.name
+            
+        }
+        case 1:return foods.sorted{ $0.name < $1.name
+        }
+        case 2:return merchAndOthers.sorted{ $0.name < $1.name
+        }
+        default:return drinks.sorted{ $0.name < $1.name
+        }
+            
+        }
+    }
+    func getPairings(item:MenuItem)->[MenuItem]{
+        var pairingList = [MenuItem]()
+        if let anItem = item as? Drink{
+            var foodList = self.foods
+            if foodList != nil, foodList.count > 0{
+                for i in 0...2{
+                    let endIndex = foodList.count - 1
+                    let randomIndex = Int.random(in:0...endIndex)
+                    let paringItem = foodList[randomIndex]
+                    pairingList.append(paringItem)
+                    foodList.remove(at: randomIndex)
+                }
+            }
+            print("food List \(pairingList.map{$0.name})")
+            //get random 3 unique food items
+            print("this is a drink")
+        } else if let anItem = item as? Food{
+            var drinkList = self.drinks
+            if drinkList != nil, drinkList.count > 0{
+                for i in 0...2{
+                    let endIndex = drinkList.count - 1
+                    let randomIndex = Int.random(in:0...endIndex)
+                    let paringItem = drinkList[randomIndex]
+                    pairingList.append(paringItem)
+                    drinkList.remove(at: randomIndex)
+                }
+            }
+            print("drink List \(pairingList.map{$0.name})")
+            //get random 3 unique food items
+            print("this is a drink")
+        } else {
+            //get random 2 unique drinks and 1 food
+            var drinkList = self.drinks
+            if drinkList != nil, drinkList.count > 0{
+                for i in 0...1{
+                    let endIndex = drinkList.count - 1
+                    let randomIndex = Int.random(in:0...endIndex)
+                    let paringItem = drinkList[randomIndex]
+                    pairingList.append(paringItem)
+                    drinkList.remove(at: randomIndex)
+                }
+            }
+            var foodList = self.foods
+            if foodList != nil, foodList.count > 1{
+                let endIndex = foodList.count - 1
+                let randomIndex = Int.random(in:0...endIndex)
+                let paringItem = foodList[randomIndex]
+                pairingList.append(paringItem)
+            }
+            print("Mixed List \(pairingList.map{$0.name})")
+            print("this is other")
+        }
+      return pairingList
+    }
+    
 }
