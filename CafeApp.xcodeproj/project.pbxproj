@@ -12,6 +12,9 @@
 		2C4E1A1126EAD1CE0085487A /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E1A1026EAD1CE0085487A /* Food.swift */; };
 		2C4E1A1326EAD1DA0085487A /* Merch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E1A1226EAD1DA0085487A /* Merch.swift */; };
 		2C4E1A1526EAD1E30085487A /* MiscItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E1A1426EAD1E30085487A /* MiscItem.swift */; };
+		B9A509D126F95D8C00DD1FE3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A509D026F95D8C00DD1FE3 /* ContentView.swift */; };
+		B9A509D426F9638700DD1FE3 /* ProductDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A509D326F9638700DD1FE3 /* ProductDetailTableViewCell.swift */; };
+		B9A509DB26FA6A1E00DD1FE3 /* MyCustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A509DA26FA6A1E00DD1FE3 /* MyCustomHeader.swift */; };
 		F369D19026A4CC6A0099CE19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F369D18F26A4CC6A0099CE19 /* AppDelegate.swift */; };
 		F369D19226A4CC6A0099CE19 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F369D19126A4CC6A0099CE19 /* SceneDelegate.swift */; };
 		F369D19926A4CC6B0099CE19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F369D19826A4CC6B0099CE19 /* Assets.xcassets */; };
@@ -25,6 +28,9 @@
 		2C4E1A1026EAD1CE0085487A /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		2C4E1A1226EAD1DA0085487A /* Merch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Merch.swift; sourceTree = "<group>"; };
 		2C4E1A1426EAD1E30085487A /* MiscItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscItem.swift; sourceTree = "<group>"; };
+		B9A509D026F95D8C00DD1FE3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = SOURCE_ROOT; };
+		B9A509D326F9638700DD1FE3 /* ProductDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		B9A509DA26FA6A1E00DD1FE3 /* MyCustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomHeader.swift; sourceTree = SOURCE_ROOT; };
 		F369D18C26A4CC6A0099CE19 /* CafeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CafeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F369D18F26A4CC6A0099CE19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F369D19126A4CC6A0099CE19 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,6 +54,9 @@
 		2C5817EB26EABDDC009A920C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B9A509D026F95D8C00DD1FE3 /* ContentView.swift */,
+				B9A509D326F9638700DD1FE3 /* ProductDetailTableViewCell.swift */,
+				B9A509DA26FA6A1E00DD1FE3 /* MyCustomHeader.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -176,9 +185,12 @@
 				2C4E1A1326EAD1DA0085487A /* Merch.swift in Sources */,
 				F3A3738726EF072F00718F1D /* MenuViewController.swift in Sources */,
 				2C4E1A1526EAD1E30085487A /* MiscItem.swift in Sources */,
+				B9A509DB26FA6A1E00DD1FE3 /* MyCustomHeader.swift in Sources */,
 				2C4E1A1126EAD1CE0085487A /* Food.swift in Sources */,
+				B9A509D126F95D8C00DD1FE3 /* ContentView.swift in Sources */,
 				2C4E1A0726EABFB90085487A /* Menu.swift in Sources */,
 				2C4E1A0F26EAD1C70085487A /* Drink.swift in Sources */,
+				B9A509D426F9638700DD1FE3 /* ProductDetailTableViewCell.swift in Sources */,
 				F369D19226A4CC6A0099CE19 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,6 +332,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = CafeApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -338,6 +351,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = CafeApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
