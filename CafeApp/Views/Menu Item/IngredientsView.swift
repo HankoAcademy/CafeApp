@@ -8,8 +8,8 @@
 import UIKit
 
 class IngredientsView: UIStackView {
-    
-// MARK: - Class Properties
+        
+// MARK: - UI Component Declarations
     
     let descriptionContainer: UIView = {
         let view = UIView()
@@ -65,7 +65,7 @@ class IngredientsView: UIStackView {
         addArrangedSubview(titleLabel)
         addArrangedSubview(descriptionContainer)
         
-        // FIXME: Redo subviews or constraints to be closer to design 
+        // FIXME: Redo subviews or constraints to be closer to design
         
         NSLayoutConstraint.activate([
             

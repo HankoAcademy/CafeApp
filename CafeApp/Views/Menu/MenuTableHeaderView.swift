@@ -130,7 +130,7 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
 // MARK: - Actions
     
     @objc func sortButtonPressed() {
-        print("Sort button pressed")
+        print("Sort button pressed")        
         sortableDelegate?.sort()
     }
     

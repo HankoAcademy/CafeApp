@@ -112,9 +112,9 @@
 		F369D18E26A4CC6A0099CE19 /* CafeApp */ = {
 			isa = PBXGroup;
 			children = (
+				2C5817EC26EABDE2009A920C /* Models */,
 				2C5817EB26EABDDC009A920C /* Views */,
 				2C5817ED26EABDE7009A920C /* Controllers */,
-				2C5817EC26EABDE2009A920C /* Models */,
 				F369D18F26A4CC6A0099CE19 /* AppDelegate.swift */,
 				F369D19126A4CC6A0099CE19 /* SceneDelegate.swift */,
 				F369D19826A4CC6B0099CE19 /* Assets.xcassets */,

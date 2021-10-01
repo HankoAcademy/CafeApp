@@ -113,6 +113,8 @@ class MenuViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDataSource Methods
+
 extension MenuViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
@@ -164,6 +166,8 @@ extension MenuViewController: UITableViewDataSource {
         return cell
     }
 }
+
+// MARK: - UITableViewDelegate Methods
 
 extension MenuViewController: UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {

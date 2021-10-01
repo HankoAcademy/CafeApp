@@ -123,7 +123,7 @@ struct Menu {
             var drinksToShuffle = drinks
             drinksToShuffle.shuffle()
             
-            return [drinksToShuffle[0], drinksToShuffle[1], foodToShuffle[2]]
+            return [drinksToShuffle[0], drinksToShuffle[1], foodToShuffle[0]]
         }
     }
 }
