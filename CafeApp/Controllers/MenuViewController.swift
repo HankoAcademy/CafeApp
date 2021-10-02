@@ -10,7 +10,7 @@ import UIKit
 class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     private let menu = Menu()
-    
+
     // MARK: - UI Properties
     
     // == var contentView = ContentView()
@@ -39,15 +39,15 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case 0:
             let drink = menu.drinks[indexPath.row]
             print("Selected a \(drink.name) that costs \(drink.price)")
-            navigationController?.pushViewController(MenuItemViewController(), animated: true)
+            navigationController?.pushViewController(MenuItemViewController(menuItemSelected: menu.drinks[indexPath.row]), animated: true)
         case 1:
             let food = menu.foods[indexPath.row]
             print("Selected a \(food.name) that costs \(food.price)")
-            navigationController?.pushViewController(MenuItemViewController(), animated: true)
+            navigationController?.pushViewController(MenuItemViewController(menuItemSelected: menu.foods[indexPath.row]), animated: true)
         case 2:
             let miscItem = menu.merchAndOthers[indexPath.row]
             print("Selected a \(miscItem.name) that costs \(miscItem.price)")
-            navigationController?.pushViewController(MenuItemViewController(), animated: true)
+            navigationController?.pushViewController(MenuItemViewController(menuItemSelected: menu.merchAndOthers[indexPath.row]), animated: true)
         default:
             return        }
     }
@@ -76,6 +76,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
+    
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -8,18 +8,32 @@
 import Foundation
 import UIKit
 
-class MenuItemViewController: UIViewController {
+protocol NewMenuItemViewable: AnyObject {
+    func displayNewMenuItemDetail(menuItem: MenuItem)
+}
+
+class MenuItemViewController: UIViewController, NewMenuItemViewable {
+    
+    // MARK: - Class Properties
+    
+    let menuItemSelected: MenuItem
+    
+    // MARK: - Initializers
+    
+    init(menuItemSelected: MenuItem) {
+        self.menuItemSelected = menuItemSelected
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - UI Properties
     
-
-//    //property observers: didSet
-//
-//    var score = 0 {
-//        didSet {
-//            scoreLabel.text = "Score: /(score)"
-//        }
-//    }
+    
+    // item icon & price
     
     private var itemIconCircleView: UIView = {
         let circleView = UIView()
@@ -29,14 +43,14 @@ class MenuItemViewController: UIViewController {
         return circleView
     }()
     
-    private var itemImage: UIImageView = {
-        
-        let image = UIImageView(image: UIImage(named: "drinks_espresso"))
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.contentMode = .scaleAspectFit
-        return image
+    private var itemImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        return imageView
     }()
     
+
     private var priceLabelView: UIView = {
         let priceLabelView = UIView()
         priceLabelView.translatesAutoresizingMaskIntoConstraints = false
@@ -45,13 +59,14 @@ class MenuItemViewController: UIViewController {
         return priceLabelView
     }()
     
-    private var priceLabel: UILabel = {
+    private var menuItemPriceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "$Price"
         label.textAlignment = .center
         return label
     }()
+    
+    // ingredients
     
     private var ingredientsBackgroundView: UIView = {
         let view = UIView()
@@ -81,10 +96,11 @@ class MenuItemViewController: UIViewController {
     private var ingredientsContents: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "list of ingredients goes here"
         label.textColor = .lightGray
         return label
     }()
+    
+    //pairings
     
     private var pairingsBackgroundView: UIView = {
         let view = UIView()
@@ -115,7 +131,8 @@ class MenuItemViewController: UIViewController {
     private var testContents: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "test test test test"
+        label.text = "test test test"
+        label.textAlignment = .center
         return label
     }()
 
@@ -156,14 +173,16 @@ class MenuItemViewController: UIViewController {
 //    }()
     
     // MARK - Lifecycle
+
     
     override func loadView() {
         super.loadView()
-        
+       
         setUpUI()
+        activateConstraints()
+        updateMenuItemSelected()
         
-        navigationItem.title = "Menu Item Detail"        
-        
+    
     }
     
     // MARK: - Set up UI
@@ -174,9 +193,9 @@ class MenuItemViewController: UIViewController {
         // item icon and price view
         
         view.addSubview(itemIconCircleView)
-        view.addSubview(itemImage)
+        view.addSubview(itemImageView)
         view.addSubview(priceLabelView)
-        view.addSubview(priceLabel)
+        view.addSubview(menuItemPriceLabel)
         
         // ingredients view
         
@@ -196,6 +215,9 @@ class MenuItemViewController: UIViewController {
 
         view.addSubview(pairingsAreaStackView)
         
+    }
+    
+    private func activateConstraints() {
         NSLayoutConstraint.activate([
             
             itemIconCircleView.widthAnchor.constraint(equalToConstant: 250),
@@ -203,18 +225,18 @@ class MenuItemViewController: UIViewController {
             itemIconCircleView.topAnchor.constraint(equalTo: view.topAnchor, constant: 125),
             itemIconCircleView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            itemImage.widthAnchor.constraint(equalToConstant: 100),
-            itemImage.heightAnchor.constraint(equalToConstant: 100),
-            itemImage.centerXAnchor.constraint(equalTo: itemIconCircleView.centerXAnchor),
-            itemImage.centerYAnchor.constraint(equalTo: itemIconCircleView.centerYAnchor),
+            itemImageView.widthAnchor.constraint(equalToConstant: 100),
+            itemImageView.heightAnchor.constraint(equalToConstant: 100),
+            itemImageView.centerXAnchor.constraint(equalTo: itemIconCircleView.centerXAnchor),
+            itemImageView.centerYAnchor.constraint(equalTo: itemIconCircleView.centerYAnchor),
             
             priceLabelView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             priceLabelView.heightAnchor.constraint(equalToConstant: 50),
             priceLabelView.widthAnchor.constraint(equalToConstant: 100),
             priceLabelView.topAnchor.constraint(equalTo: itemIconCircleView.bottomAnchor, constant: -40),
             
-            priceLabel.centerXAnchor.constraint(equalTo: priceLabelView.centerXAnchor),
-            priceLabel.centerYAnchor.constraint(equalTo: priceLabelView.centerYAnchor),
+            menuItemPriceLabel.centerXAnchor.constraint(equalTo: priceLabelView.centerXAnchor),
+            menuItemPriceLabel.centerYAnchor.constraint(equalTo: priceLabelView.centerYAnchor),
             
             // INGREDIENTS CONSTRAINTS
             
@@ -244,13 +266,25 @@ class MenuItemViewController: UIViewController {
         ])
 
     
-        
     }
-    
     // MARK: - Actions
     
-    @objc func buttonPressed() {
-        navigationController?.popViewController(animated: true)
+//    @objc func buttonPressed() {
+//        navigationController?.popViewController(animated: true)
+//    }
+    
+    func displayNewMenuItemDetail(menuItem: MenuItem) {
+        navigationController?.pushViewController(MenuItemViewController(menuItemSelected: menuItem), animated: true)
     }
     
+    func updateMenuItemSelected(){
+        navigationItem.title = menuItemSelected.name
+        
+        //FIX ME: Change from description to ingredients
+        ingredientsContents.text = menuItemSelected.description
+        
+        menuItemPriceLabel.text = String(format: "%.02f", menuItemSelected.price)
+        itemImageView.image = UIImage(named: menuItemSelected.imageName)
+    }
+
 }
