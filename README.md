@@ -5,9 +5,9 @@
 
 ## Description
 
-This project is to better understand the protocols you adopt to use UITableViews, as well as any other protocols you decide to implement, building UITableViews programmatically with customized UITableViewCells.  
+This project helped me better understand the protocols used when adopting UITableViews, additional protocols as needed, and building UITableViews programmatically with customized UITableViewCells.  
 
-## What you'll learn
+## What I learned
 
 * Protocol-Oriented Programming
 * Delegation pattern
@@ -15,6 +15,6 @@ This project is to better understand the protocols you adopt to use UITableViews
 * Customizing UITableViewCells
 * Adding Headers to UITableViews 
 
-## What you'll be building
+## What I built
 
-Imagine this app to compliment the Cafe business you own. This app shows all the products you sell from the wide variety of drinks, food items, and merch! Instead of customers having to use QR codes or grabbing a menu that thousands of others have touched, they can conveniently access your menu at any time through the app. Each item has its name, short description, an image, as well as its price.
+A companion app to compliment <a href="https://www.facebook.com/cafeamigotam/">Café Amigo</a>, a coffee shop in Matamoros, Tamaulipas, Mexico. This app shows a prototype of potential products they might sell from a wide variety of drinks, food items, and merch! Instead of customers having to use QR codes or grabbing a menu that thousands of others have touched, they can conveniently access the menu at any time through the app. Each item has its name, short description, an image, as well as its price.
