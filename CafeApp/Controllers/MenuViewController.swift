@@ -7,7 +7,15 @@
 
 import UIKit
 
-class MenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ActionButtons {
+protocol Sortable: AnyObject {
+    func sort()
+}
+
+protocol Filterable: AnyObject {
+    func filter()
+}
+
+class MenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // You got this! Let us know if you have questions or want feedback about your code 🙂
     
@@ -59,9 +67,9 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
             tableView.delegate = self
             tableView.dataSource = self
         
-            view = MenuItemView()
+            //view = MenuItemView()
         
-            //setUpUI()
+            setUpUI()
         }
         
         required init?(coder: NSCoder) {
@@ -175,6 +183,9 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
             return nil
         }
         
+        headerView.sortableDelegate = self
+        headerView.filterableDelegate = self
+        
         switch section {
         case 0:
             headerView.headerTitle = "Drinks"
@@ -188,24 +199,28 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         return headerView
     }
+}
     
-    func sort() {
-        let alertController = UIAlertController(title: "", message: "Sort by:", preferredStyle: .actionSheet)
-        alertController.addAction(UIAlertAction(title: "Name", style: .default, handler: { _ in
-           self.menu.drinks = self.menu.sortDrinksByName()
-           self.menu.foods = self.menu.sortFoodsByName()
-           self.menu.merchAndOthers = self.menu.sortMerchByName()
-           self.tableView.reloadData()
-        }))
-        alertController.addAction(UIAlertAction(title: "Price", style: .default, handler: { _ in
-           self.menu.drinks = self.menu.sortDrinksByPrice()
-           self.menu.foods = self.menu.sortFoodsByPrice()
-           self.menu.merchAndOthers = self.menu.sortMerchByPrice()
-           self.tableView.reloadData()
-        }))
-        present(alertController, animated: true, completion: nil)
+    extension MenuViewController: Sortable {
+        func sort() {
+            let alertController = UIAlertController(title: "", message: "Sort by:", preferredStyle: .actionSheet)
+            alertController.addAction(UIAlertAction(title: "Name", style: .default, handler: { _ in
+               self.menu.drinks = self.menu.sortDrinksByName()
+               self.menu.foods = self.menu.sortFoodsByName()
+               self.menu.merchAndOthers = self.menu.sortMerchByName()
+               self.tableView.reloadData()
+            }))
+            alertController.addAction(UIAlertAction(title: "Price", style: .default, handler: { _ in
+               self.menu.drinks = self.menu.sortDrinksByPrice()
+               self.menu.foods = self.menu.sortFoodsByPrice()
+               self.menu.merchAndOthers = self.menu.sortMerchByPrice()
+               self.tableView.reloadData()
+            }))
+            present(alertController, animated: true, completion: nil)
+        }
     }
-    
+
+extension MenuViewController: Filterable {
     func filter() {
         print("Filter button Pressed")
     }

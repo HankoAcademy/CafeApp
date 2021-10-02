@@ -7,14 +7,11 @@
 
 import UIKit
 
-protocol ActionButtons: AnyObject {
-    func sort()
-    func filter()
-}
-
 class MenuTableHeaderView: UITableViewHeaderFooterView {
     
-    weak var actionButtons: ActionButtons?
+    weak var sortableDelegate: Sortable?
+    weak var filterableDelegate: Filterable?
+
     
     var headerTitle: String = "" {
         didSet {
@@ -53,17 +50,6 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
     }()
     
     // MARK: - Initializers
-
-//    init(actionButtons: ActionButtons?, reuseIdentifier: String?) {
-//        self.actionButtons = actionButtons
-//
-//        super.init(reuseIdentifier: reuseIdentifier)
-//
-//
-//
-//        setUpUI()
-//    }
-    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
@@ -105,7 +91,7 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
     
     @objc func sortButtonPressed() {
         print("Sort Button Pressed")
-        actionButtons?.sort()
+        sortableDelegate?.sort()
     }
 
 }
