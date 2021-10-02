@@ -28,6 +28,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView = contentView.tableView
         tableView.delegate = self
         tableView.dataSource = self
+        
     }
     
     // MARK: - UITableViewDelegate
@@ -38,12 +39,15 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case 0:
             let drink = menu.drinks[indexPath.row]
             print("Selected a \(drink.name) that costs \(drink.price)")
+            navigationController?.pushViewController(MenuItemViewController(), animated: true)
         case 1:
             let food = menu.foods[indexPath.row]
             print("Selected a \(food.name) that costs \(food.price)")
+            navigationController?.pushViewController(MenuItemViewController(), animated: true)
         case 2:
             let miscItem = menu.merchAndOthers[indexPath.row]
             print("Selected a \(miscItem.name) that costs \(miscItem.price)")
+            navigationController?.pushViewController(MenuItemViewController(), animated: true)
         default:
             return        }
     }

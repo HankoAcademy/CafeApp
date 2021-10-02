@@ -12,6 +12,8 @@
 		2C4E1A1126EAD1CE0085487A /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E1A1026EAD1CE0085487A /* Food.swift */; };
 		2C4E1A1326EAD1DA0085487A /* Merch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E1A1226EAD1DA0085487A /* Merch.swift */; };
 		2C4E1A1526EAD1E30085487A /* MiscItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E1A1426EAD1E30085487A /* MiscItem.swift */; };
+		D81188252706359900E77483 /* MenuItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81188242706359900E77483 /* MenuItemViewController.swift */; };
+		D81188292706899A00E77483 /* MenuItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81188282706899A00E77483 /* MenuItemDetailView.swift */; };
 		D8601D5E26FD0E0400C539AE /* MenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8601D5D26FD0E0400C539AE /* MenuHeaderView.swift */; };
 		D8601D6026FE8BD500C539AE /* MenuTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8601D5F26FE8BD500C539AE /* MenuTableHeaderView.swift */; };
 		D8D1A53B26F1735800763A91 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D1A53A26F1735800763A91 /* ContentView.swift */; };
@@ -29,6 +31,8 @@
 		2C4E1A1026EAD1CE0085487A /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		2C4E1A1226EAD1DA0085487A /* Merch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Merch.swift; sourceTree = "<group>"; };
 		2C4E1A1426EAD1E30085487A /* MiscItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscItem.swift; sourceTree = "<group>"; };
+		D81188242706359900E77483 /* MenuItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemViewController.swift; sourceTree = "<group>"; };
+		D81188282706899A00E77483 /* MenuItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemDetailView.swift; sourceTree = "<group>"; };
 		D8601D5D26FD0E0400C539AE /* MenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuHeaderView.swift; sourceTree = "<group>"; };
 		D8601D5F26FE8BD500C539AE /* MenuTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableHeaderView.swift; sourceTree = "<group>"; };
 		D8D1A53A26F1735800763A91 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,10 +60,8 @@
 		2C5817EB26EABDDC009A920C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D8D1A53A26F1735800763A91 /* ContentView.swift */,
-				D8D1A53C26F1798C00763A91 /* MenuItemDetailTableViewCell.swift */,
-				D8601D5D26FD0E0400C539AE /* MenuHeaderView.swift */,
-				D8601D5F26FE8BD500C539AE /* MenuTableHeaderView.swift */,
+				D8118827270683BD00E77483 /* MenuItem */,
+				D8118826270683A600E77483 /* Menu */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -80,8 +82,28 @@
 			isa = PBXGroup;
 			children = (
 				F3A3738626EF072F00718F1D /* MenuViewController.swift */,
+				D81188242706359900E77483 /* MenuItemViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D8118826270683A600E77483 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				D8D1A53A26F1735800763A91 /* ContentView.swift */,
+				D8D1A53C26F1798C00763A91 /* MenuItemDetailTableViewCell.swift */,
+				D8601D5D26FD0E0400C539AE /* MenuHeaderView.swift */,
+				D8601D5F26FE8BD500C539AE /* MenuTableHeaderView.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		D8118827270683BD00E77483 /* MenuItem */ = {
+			isa = PBXGroup;
+			children = (
+				D81188282706899A00E77483 /* MenuItemDetailView.swift */,
+			);
+			path = MenuItem;
 			sourceTree = "<group>";
 		};
 		F369D18326A4CC6A0099CE19 = {
@@ -185,11 +207,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F369D19026A4CC6A0099CE19 /* AppDelegate.swift in Sources */,
+				D81188252706359900E77483 /* MenuItemViewController.swift in Sources */,
 				2C4E1A1326EAD1DA0085487A /* Merch.swift in Sources */,
 				F3A3738726EF072F00718F1D /* MenuViewController.swift in Sources */,
 				2C4E1A1526EAD1E30085487A /* MiscItem.swift in Sources */,
 				D8D1A53D26F1798C00763A91 /* MenuItemDetailTableViewCell.swift in Sources */,
 				D8601D6026FE8BD500C539AE /* MenuTableHeaderView.swift in Sources */,
+				D81188292706899A00E77483 /* MenuItemDetailView.swift in Sources */,
 				2C4E1A1126EAD1CE0085487A /* Food.swift in Sources */,
 				D8D1A53B26F1735800763A91 /* ContentView.swift in Sources */,
 				2C4E1A0726EABFB90085487A /* Menu.swift in Sources */,
