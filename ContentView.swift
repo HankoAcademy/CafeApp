@@ -13,6 +13,12 @@ class ContentView: UIView {
 
     // MARK: - UI Properties
     
+    var menuHeaderView: MenuHeaderView = {
+           let menuHeaderView = MenuHeaderView()
+           menuHeaderView.translatesAutoresizingMaskIntoConstraints = false
+           return menuHeaderView
+       }()
+    
     var productTableHeaderView: ProductTableHeaderView = {
            let headerView = ProductTableHeaderView()
            headerView.translatesAutoresizingMaskIntoConstraints = false
@@ -47,16 +53,18 @@ class ContentView: UIView {
     
     private func setUpViews() {
         
+        addSubview(menuHeaderView)
         addSubview(tableView)
-        addSubview(productTableHeaderView)
+        // addSubview(productTableHeaderView)
         
         NSLayoutConstraint.activate([
             
-            productTableHeaderView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            productTableHeaderView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            productTableHeaderView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            menuHeaderView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            menuHeaderView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            menuHeaderView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            tableView.topAnchor.constraint(equalTo: topAnchor),
+            tableView.topAnchor.constraint(equalTo: menuHeaderView.bottomAnchor, constant: 10
+            ),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor)

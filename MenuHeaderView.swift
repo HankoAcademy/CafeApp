@@ -30,7 +30,7 @@ class MenuHeaderView: UIView {
     let headerLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 35, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 40, weight: .bold)
         label.textAlignment = .center
         label.text = "Soto Cafe"
         label.lineBreakMode = .byWordWrapping

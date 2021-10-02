@@ -17,7 +17,9 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
        
        // MARK: - UI Properties
        
+    
        private var contentView: ContentView!
+       private var menuHeaderView: MenuHeaderView!
        private var tableView: UITableView!
        
        // MARK: - Lifecycle
@@ -26,7 +28,8 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
            
            contentView = ContentView()
            view = contentView
-           
+        
+           menuHeaderView = contentView.menuHeaderView
            tableView = contentView.tableView
            tableView.delegate = self
            tableView.dataSource = self
@@ -37,14 +40,14 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
            switch indexPath.section {
            case 0:
-               let drink = menu.drinks[indexPath.row]
-               print("Selected a \(drink.name) that costs \(drink.price)")
+               let drinks = menu.drinks[indexPath.row]
+               print("Selected a \(drinks.name) that costs \(drinks.price)")
            case 1:
-               let food = menu.foods[indexPath.row]
-               print("Selected a \(food.name) that costs \(food.price)")
+               let foods = menu.foods[indexPath.row]
+               print("Selected a \(foods.name) that costs \(foods.price)")
            case 2:
-            let miscItem = menu.merchAndOthers[indexPath.row]
-               print("Selected a \(miscItem.name) that costs \(miscItem.price)")
+            let miscItems = menu.merchAndOthers[indexPath.row]
+               print("Selected a \(miscItems.name) that costs \(miscItems.price)")
            default:
                return
            }
