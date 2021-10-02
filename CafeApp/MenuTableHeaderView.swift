@@ -7,7 +7,14 @@
 
 import UIKit
 
+protocol ActionButtons: AnyObject {
+    func sort()
+    func filter()
+}
+
 class MenuTableHeaderView: UITableViewHeaderFooterView {
+    
+    weak var actionButtons: ActionButtons?
     
     var headerTitle: String = "" {
         didSet {
@@ -41,17 +48,28 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
         button.setTitle("Sort", for: .normal)
         button.backgroundColor = UIColor(named: "cream")
         button.setTitleColor(.lightGray, for: .normal)
-        button.addTarget(MenuViewController.self, action: #selector(MenuViewController.sortButtonPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(sortButtonPressed), for: .touchUpInside)
         return button
     }()
     
     // MARK: - Initializers
 
+//    init(actionButtons: ActionButtons?, reuseIdentifier: String?) {
+//        self.actionButtons = actionButtons
+//
+//        super.init(reuseIdentifier: reuseIdentifier)
+//
+//
+//
+//        setUpUI()
+//    }
+    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
         setUpUI()
     }
+
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -60,7 +78,7 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
     // MARK: - Set Up UI
     
     private func setUpUI() {
-        contentView.backgroundColor = UIColor(named: "cream")
+        // contentView.backgroundColor = UIColor(named: "cream")
         
         contentView.addSubview(menuHeaderLabel)
         contentView.addSubview(sortButton)
@@ -74,7 +92,8 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
             //sortButton.leadingAnchor.constraint(equalTo: menuHeaderLabel.trailingAnchor),
             //sortButton.bottomAnchor.constraint(equalTo: menuHeaderLabel.bottomAnchor),
             sortButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            sortButton.centerYAnchor.constraint(equalTo: menuHeaderLabel.centerYAnchor),
+            sortButton.topAnchor.constraint(equalTo: contentView.topAnchor),
+            //sortButton.centerYAnchor.constraint(equalTo: menuHeaderLabel.centerYAnchor),
             //sortButton.heightAnchor.constraint(equalToConstant: 8),
             
             menuHeaderBorder.leadingAnchor.constraint(equalTo: menuHeaderLabel.leadingAnchor),
@@ -82,6 +101,11 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
             menuHeaderBorder.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             menuHeaderBorder.heightAnchor.constraint(equalToConstant: 1)
         ])
+    }
+    
+    @objc func sortButtonPressed() {
+        print("Sort Button Pressed")
+        actionButtons?.sort()
     }
 
 }

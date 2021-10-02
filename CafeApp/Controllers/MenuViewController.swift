@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ActionButtons {
     
     // You got this! Let us know if you have questions or want feedback about your code 🙂
     
@@ -32,32 +32,49 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cafeLogoView
     }()
     
+    var menuTableHeaderView: MenuTableHeaderView!
+    
     
     // MARK: - View Lifecyle
     
-    override func loadView() {
-        super.loadView()
-        
-        view.backgroundColor = .white
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        setUpUI()
-    }
+//    override func loadView() {
+//        //super.loadView()
+//
+//
+//
+//
+//
+//        setUpUI()
+//    }
     
     init(withMenu menu: Menu) {
             self.menu = menu
             
             super.init(nibName: nil, bundle: nil)
-            
-            setUpUI()
+        
+            // menuTableHeaderView = MenuTableHeaderView(actionButtons: self, reuseIdentifier: "MenuTableHeaderView")
+        
+            view.backgroundColor = .white
+        
+            tableView.delegate = self
+            tableView.dataSource = self
+        
+            view = MenuItemView()
+        
+            //setUpUI()
         }
         
         required init?(coder: NSCoder) {
             self.menu = Menu() //default menu
             
             super.init(coder: coder)
+            
+            // menuTableHeaderView = MenuTableHeaderView(actionButtons: self, reuseIdentifier: "MenuTableHeaderView")
+        
+            view.backgroundColor = .white
+        
+            tableView.delegate = self
+            tableView.dataSource = self
             
             setUpUI()
             
@@ -88,7 +105,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.topAnchor.constraint(equalTo: cafeLogoView.bottomAnchor, constant: 20),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
     }
         
@@ -172,9 +189,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         return headerView
     }
     
-    @objc func sortButtonPressed() {
-        print("Sort Button Pressed")
-        
+    func sort() {
         let alertController = UIAlertController(title: "", message: "Sort by:", preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: "Name", style: .default, handler: { _ in
            self.menu.drinks = self.menu.sortDrinksByName()
@@ -189,5 +204,9 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
            self.tableView.reloadData()
         }))
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func filter() {
+        print("Filter button Pressed")
     }
 }
