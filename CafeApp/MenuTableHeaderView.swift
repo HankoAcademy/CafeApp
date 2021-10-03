@@ -21,6 +21,12 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
         }
     }
     
+    var hideActions: Bool = true {
+        didSet {
+            actionsStackView.isHidden = hideActions
+        }
+    }
+    
     // MARK: - Properties
     
     private let menuHeaderLabel: UILabel = {
@@ -39,13 +45,33 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
         return view
     }()
     
+    private let actionsStackView: UIStackView = {
+       let view = UIStackView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.axis = .horizontal
+        view.distribution = .fillEqually
+        view.spacing = 5
+        view.isHidden = true
+        return view
+    }()
+    
     private let sortButton: UIButton = {
        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Sort", for: .normal)
+        button.setTitle("sort", for: .normal)
         button.backgroundColor = UIColor(named: "cream")
-        button.setTitleColor(.lightGray, for: .normal)
+        button.setTitleColor(.darkGray, for: .normal)
         button.addTarget(self, action: #selector(sortButtonPressed), for: .touchUpInside)
+        return button
+    }()
+    
+    private let filterButton: UIButton = {
+       let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("filter", for: .normal)
+        button.backgroundColor = UIColor(named: "cream")
+        button.setTitleColor(.darkGray, for: .normal)
+        button.addTarget(self, action: #selector(filterButtonPressed), for: .touchUpInside)
         return button
     }()
     
@@ -66,21 +92,21 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
     private func setUpUI() {
         // contentView.backgroundColor = UIColor(named: "cream")
         
+        actionsStackView.addArrangedSubview(sortButton)
+        actionsStackView.addArrangedSubview(filterButton)
+        
+        contentView.addSubview(actionsStackView)
         contentView.addSubview(menuHeaderLabel)
-        contentView.addSubview(sortButton)
         contentView.addSubview(menuHeaderBorder)
                 
         NSLayoutConstraint.activate([
-            menuHeaderLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            actionsStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            actionsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            actionsStackView.heightAnchor.constraint(equalToConstant: 20),
+            
+            menuHeaderLabel.topAnchor.constraint(equalTo: actionsStackView.bottomAnchor, constant: 16),
             menuHeaderLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             menuHeaderLabel.bottomAnchor.constraint(equalTo: menuHeaderBorder.topAnchor, constant: -16),
-            
-            //sortButton.leadingAnchor.constraint(equalTo: menuHeaderLabel.trailingAnchor),
-            //sortButton.bottomAnchor.constraint(equalTo: menuHeaderLabel.bottomAnchor),
-            sortButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            sortButton.topAnchor.constraint(equalTo: contentView.topAnchor),
-            //sortButton.centerYAnchor.constraint(equalTo: menuHeaderLabel.centerYAnchor),
-            //sortButton.heightAnchor.constraint(equalToConstant: 8),
             
             menuHeaderBorder.leadingAnchor.constraint(equalTo: menuHeaderLabel.leadingAnchor),
             menuHeaderBorder.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
@@ -92,6 +118,11 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
     @objc func sortButtonPressed() {
         print("Sort Button Pressed")
         sortableDelegate?.sort()
+    }
+    
+    @objc func filterButtonPressed() {
+        print("Filter Button Pressed")
+        filterableDelegate?.filter()
     }
 
 }

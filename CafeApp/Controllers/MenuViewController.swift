@@ -23,6 +23,10 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     private var menu: Menu
     private var menuItems: [MenuItems] = MenuItems.allCases
+    
+    var hideDrinks = false
+    var hideFood = false
+    var hideMerch = false
         
     let tableView: UITableView = {
         let tableView = UITableView()
@@ -45,29 +49,15 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // MARK: - View Lifecyle
     
-//    override func loadView() {
-//        //super.loadView()
-//
-//
-//
-//
-//
-//        setUpUI()
-//    }
-    
     init(withMenu menu: Menu) {
             self.menu = menu
             
             super.init(nibName: nil, bundle: nil)
-        
-            // menuTableHeaderView = MenuTableHeaderView(actionButtons: self, reuseIdentifier: "MenuTableHeaderView")
-        
+                
             view.backgroundColor = .white
         
             tableView.delegate = self
             tableView.dataSource = self
-        
-            //view = MenuItemView()
         
             setUpUI()
         }
@@ -76,9 +66,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.menu = Menu() //default menu
             
             super.init(coder: coder)
-            
-            // menuTableHeaderView = MenuTableHeaderView(actionButtons: self, reuseIdentifier: "MenuTableHeaderView")
-        
+                    
             view.backgroundColor = .white
         
             tableView.delegate = self
@@ -152,10 +140,19 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
+            if hideDrinks {
+                return 0
+            }
             return menu.drinks.count
         case 1:
+            if hideFood {
+                return 0
+            }
             return menu.foods.count
         case 2:
+            if hideMerch {
+                return 0
+            }
             return menu.merchAndOthers.count
         default:
             return 1
@@ -188,16 +185,47 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         switch section {
         case 0:
+            headerView.hideActions = false
             headerView.headerTitle = "Drinks"
         case 1:
+            headerView.hideActions = true
             headerView.headerTitle = "Food"
         case 2:
+            headerView.hideActions = true
             headerView.headerTitle = "Merch • Other"
         default:
             return nil
         }
         
         return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 0:
+            if hideDrinks {
+                return 0
+            }
+            else {
+                return UITableView.automaticDimension
+            }
+        case 1:
+            if hideFood {
+                return 0
+            }
+            else {
+                return UITableView.automaticDimension
+            }
+        case 2:
+            if hideMerch {
+                return 0
+            }
+            else {
+                return UITableView.automaticDimension
+            }
+        default:
+            return UITableView.automaticDimension
+        }
     }
 }
     
@@ -222,6 +250,25 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
 
 extension MenuViewController: Filterable {
     func filter() {
-        print("Filter button Pressed")
+        let alertController = UIAlertController(title: "", message: "Filter", preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Drinks", style: .default, handler: { _ in
+            self.hideDrinks = false
+            self.hideFood = true
+            self.hideMerch = true
+           self.tableView.reloadData()
+        }))
+        alertController.addAction(UIAlertAction(title: "Food", style: .default, handler: { _ in
+            self.hideFood = false
+            self.hideDrinks = true
+            self.hideMerch = true
+            self.tableView.reloadData()
+        }))
+        alertController.addAction(UIAlertAction(title: "Merch • Other", style: .default, handler: { _ in
+            self.hideMerch = false
+            self.hideDrinks = true
+            self.hideFood = true
+            self.tableView.reloadData()
+        }))
+        present(alertController, animated: true, completion: nil)
     }
 }
