@@ -127,7 +127,7 @@ class MenuItemView: UIView {
         addSubview(itemPricingView)
         
         ingredientsTitle = "ingredients"
-        ingredientsText = "coffee, water"
+        ingredientsText = menuItem.ingredients?.joined(separator: ", ") ?? ""
         
         ingredientsView.addSubview(ingredientsTitleLabel)
         ingredientsView.addSubview(ingredients)
