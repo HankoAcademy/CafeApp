@@ -74,7 +74,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 3 //FIX ME- hard coded
     }
     
 
@@ -114,6 +114,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // if menuItem != nil, unwrap to make non-optional
         if let menuItem = menuItem {
             cell.updateMenu(menuItemTitle: menuItem.name, menuItemPrice: menuItem.price, menuItemImage: menuItem.imageName, menuItemDescription: menuItem.description)
+            
         }
         
         return cell

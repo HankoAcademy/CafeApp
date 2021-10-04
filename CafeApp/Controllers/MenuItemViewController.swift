@@ -18,6 +18,7 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
     
     let menuItemSelected: MenuItem
     
+    
     // MARK: - Initializers
     
     init(menuItemSelected: MenuItem) {
@@ -100,7 +101,7 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
         return label
     }()
     
-    //pairings
+    //pairings setup
     
     private var pairingsBackgroundView: UIView = {
         let view = UIView()
@@ -110,33 +111,16 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
         return view
     }()
     
-    private var pairingsAreaStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.spacing = 15
-        stackView.distribution = .fillProportionally
-        return stackView
-    }()
-
     private var pairingsTitle: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "pairings"
+        label.text = "Recommended Pairings"
         label.textAlignment = .center
-        return label
-    }()
-    
-    // FIX ME -- TURN THIS INTO HORIZONTAL STACK VIEW W/BUTTONS
-    private var testContents: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "test test test"
-        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         return label
     }()
 
-    private var ItemPairingsStackView: UIStackView = {
+    private var itemPairingsHStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
@@ -144,40 +128,145 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
         stackView.distribution = .fillProportionally
         return stackView
     }()
-//
-//    private var pairingItemButton1: UIButton = {
-//        let button = UIButton()
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        button.setTitle("Pairing Item Name \n $Price", for: .normal)
-//        button.backgroundColor = .white
-//        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-//        return button
-//    }()
-//
-//    private var pairingItemButton2: UIButton = {
-//        let button = UIButton()
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        button.setTitle("Pairing Item Name \n $Price", for: .normal)
-//        button.backgroundColor = .white
-//        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-//        return button
-//    }()
-//
-//    private var pairingItemButton3: UIButton = {
-//        let button = UIButton()
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        button.setTitle("Pairing Item Name \n $Price", for: .normal)
-//        button.backgroundColor = .white
-//        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-//        return button
-//    }()
     
+    // pairings items background views
+    
+    private var pairingView1: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 15
+        return view
+    }()
+    
+    private var pairingView2: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .red
+        view.layer.cornerRadius = 15
+        return view
+    }()
+    
+    private var pairingView3: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .green
+        view.layer.cornerRadius = 15
+        return view
+    }()
+    
+    // pairings items, name, price
+    
+    // pairing item 1
+    
+    private var pairing1VStack: UIStackView = {
+        let vstack = UIStackView()
+        vstack.translatesAutoresizingMaskIntoConstraints = false
+        vstack.axis = .vertical
+        vstack.distribution = .fillProportionally
+        vstack.spacing = 10
+        return vstack
+    }()
+    
+    private var pairing1Image: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "drinks_espresso"))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
+    private var pairing1MenuItemLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.text = "pairing 1"
+        return label
+    }()
+    
+    private var pairing1PriceLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.text = "price"
+        return label
+    }()
+    
+    // pairing item 2
+    
+    private var pairing2VStack: UIStackView = {
+        let vstack = UIStackView()
+        vstack.translatesAutoresizingMaskIntoConstraints = false
+        vstack.axis = .vertical
+        vstack.distribution = .fillProportionally
+        vstack.spacing = 10
+        return vstack
+    }()
+    
+    private var pairing2Image: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "drinks_espresso"))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
+    private var pairing2MenuItemLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.text = "pairing 2"
+        return label
+    }()
+    
+    private var pairing2PriceLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.text = "price"
+        return label
+    }()
+    
+    // pairing item 3
+    
+    private var pairing3VStack: UIStackView = {
+        let vstack = UIStackView()
+        vstack.translatesAutoresizingMaskIntoConstraints = false
+        vstack.axis = .vertical
+        vstack.distribution = .fillProportionally
+        vstack.spacing = 10
+        return vstack
+    }()
+    
+    private var pairing3Image: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "drinks_espresso"))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
+    private var pairing3MenuItemLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.text = "pairing 3"
+        return label
+    }()
+    
+    private var pairing3PriceLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.text = "price"
+        return label
+    }()
+    
+
     // MARK - Lifecycle
 
     
     override func loadView() {
         super.loadView()
        
+        // SETUP PAIRINGS OPTIONS PROPERTY DETAILS HERE // CREATE FUNC
         setUpUI()
         activateConstraints()
         updateMenuItemSelected()
@@ -209,11 +298,38 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
         // pairings views
         
         view.addSubview(pairingsBackgroundView)
+        
+        view.addSubview(pairingsTitle)
 
-        pairingsAreaStackView.addArrangedSubview(pairingsTitle)
-        pairingsAreaStackView.addArrangedSubview(testContents)
-
-        view.addSubview(pairingsAreaStackView)
+        itemPairingsHStackView.addArrangedSubview(pairingView1)
+        itemPairingsHStackView.addArrangedSubview(pairingView2)
+        itemPairingsHStackView.addArrangedSubview(pairingView3)
+        
+        view.addSubview(itemPairingsHStackView)
+        
+        // pairing1 vstack
+        
+        pairing1VStack.addArrangedSubview(pairing1Image)
+        pairing1VStack.addArrangedSubview(pairing1MenuItemLabel)
+        pairing1VStack.addArrangedSubview(pairing1PriceLabel)
+        
+        view.addSubview(pairing1VStack)
+        
+        // pairing2 vstack
+        
+        pairing2VStack.addArrangedSubview(pairing2Image)
+        pairing2VStack.addArrangedSubview(pairing2MenuItemLabel)
+        pairing2VStack.addArrangedSubview(pairing2PriceLabel)
+        
+        view.addSubview(pairing2VStack)
+        
+        // pairing3 vstack
+        
+        pairing3VStack.addArrangedSubview(pairing3Image)
+        pairing3VStack.addArrangedSubview(pairing3MenuItemLabel)
+        pairing3VStack.addArrangedSubview(pairing3PriceLabel)
+        
+        view.addSubview(pairing3VStack)
         
     }
     
@@ -254,14 +370,32 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
             
             pairingsBackgroundView.topAnchor.constraint(equalTo: ingredientsBackgroundView.bottomAnchor, constant: 25),
             pairingsBackgroundView.widthAnchor.constraint(equalToConstant: 300),
-            pairingsBackgroundView.heightAnchor.constraint(equalToConstant: 150),
+            pairingsBackgroundView.heightAnchor.constraint(equalToConstant: 250),
             pairingsBackgroundView.centerXAnchor.constraint(equalTo: itemIconCircleView.centerXAnchor),
             
             pairingsTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-
-            pairingsAreaStackView.topAnchor.constraint(equalTo: pairingsBackgroundView.topAnchor, constant: 15),
-            pairingsAreaStackView.leadingAnchor.constraint(equalTo: pairingsBackgroundView.leadingAnchor, constant: 15)
+            pairingsTitle.topAnchor.constraint(equalTo: pairingsBackgroundView.topAnchor, constant: 10),
             
+            itemPairingsHStackView.topAnchor.constraint(equalTo: pairingsTitle.bottomAnchor, constant: 15),
+            itemPairingsHStackView.leadingAnchor.constraint(equalTo: pairingsBackgroundView.leadingAnchor, constant: 15),
+            itemPairingsHStackView.trailingAnchor.constraint(equalTo: pairingsBackgroundView.trailingAnchor, constant: -15),
+            itemPairingsHStackView.bottomAnchor.constraint(equalTo: pairingsBackgroundView.bottomAnchor, constant: -30),
+            
+            // Pairing1 Vstack
+            
+            pairing1VStack.centerYAnchor.constraint(equalTo: pairingsBackgroundView.centerYAnchor),
+            pairing1VStack.centerXAnchor.constraint(equalTo: pairingView1.centerXAnchor),
+
+            
+            // Pairing2 Vstack
+
+            pairing2VStack.centerYAnchor.constraint(equalTo: pairingsBackgroundView.centerYAnchor),
+            pairing2VStack.centerXAnchor.constraint(equalTo: pairingView2.centerXAnchor),
+
+            // Pairing3 Vstack
+
+            pairing3VStack.centerYAnchor.constraint(equalTo: pairingsBackgroundView.centerYAnchor),
+            pairing3VStack.centerXAnchor.constraint(equalTo: pairingView3.centerXAnchor),
 
         ])
 
@@ -279,12 +413,66 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
     
     func updateMenuItemSelected(){
         navigationItem.title = menuItemSelected.name
-        
-        //FIX ME: Change from description to ingredients
-        ingredientsContents.text = menuItemSelected.description
-        
+        ingredientsContents.text = menuItemSelected.ingredients?.joined(separator: ", ")
         menuItemPriceLabel.text = String(format: "%.02f", menuItemSelected.price)
         itemImageView.image = UIImage(named: menuItemSelected.imageName)
     }
 
+//    private func configurePairingViews() {
+//
+//            switch menuItemSelected.type {
+//            case .foods:
+//                let pairings = menu.generatePairings(forProductType: .foods)
+//                firstPairingOption.price = pairings[0].price
+//                firstPairingOption.image = UIImage(named: pairings[0].imageName)
+//                firstPairingOption.title = pairings[0].name
+//                firstPairingOption.menuItem = pairings[0]
+//
+//                secondPairingOption.price = pairings[1].price
+//                secondPairingOption.image = UIImage(named: pairings[1].imageName)
+//                secondPairingOption.title = pairings[1].name
+//                secondPairingOption.menuItem = pairings[1]
+//
+//                thirdPairingOption.price = pairings[2].price
+//                thirdPairingOption.image = UIImage(named: pairings[2].imageName)
+//                thirdPairingOption.title = pairings[2].name
+//                thirdPairingOption.menuItem = pairings[2]
+//            case .drinks:
+//                let pairings = menu.generatePairings(forProductType: .drinks)
+//                firstPairingOption.price = pairings[0].price
+//                firstPairingOption.image = UIImage(named: pairings[0].imageName)
+//                firstPairingOption.title = pairings[0].name
+//                firstPairingOption.menuItem = pairings[0]
+//
+//                secondPairingOption.price = pairings[1].price
+//                secondPairingOption.image = UIImage(named: pairings[1].imageName)
+//                secondPairingOption.title = pairings[1].name
+//                secondPairingOption.menuItem = pairings[1]
+//
+//                thirdPairingOption.price = pairings[2].price
+//                thirdPairingOption.image = UIImage(named: pairings[2].imageName)
+//                thirdPairingOption.title = pairings[2].name
+//                thirdPairingOption.menuItem = pairings[2]
+//            case .merchAndOthers, .misc:
+//                let pairings = menu.generatePairings(forProductType: .merchAndOthers)
+//                firstPairingOption.price = pairings[0].price
+//                firstPairingOption.image = UIImage(named: pairings[0].imageName)
+//                firstPairingOption.title = pairings[0].name
+//                firstPairingOption.menuItem = pairings[0]
+//
+//                secondPairingOption.price = pairings[1].price
+//                secondPairingOption.image = UIImage(named: pairings[1].imageName)
+//                secondPairingOption.title = pairings[1].name
+//                secondPairingOption.menuItem = pairings[1]
+//
+//                thirdPairingOption.price = pairings[2].price
+//                thirdPairingOption.image = UIImage(named: pairings[2].imageName)
+//                thirdPairingOption.title = pairings[2].name
+//                thirdPairingOption.menuItem = pairings[2]
+//            }
+//        }
+//
+    
+    
 }
+
