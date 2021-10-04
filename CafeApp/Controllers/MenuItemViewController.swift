@@ -8,7 +8,11 @@
 import Foundation
 import UIKit
 
-class MenuItemViewController: UIViewController {
+protocol NewMenuItem: AnyObject {
+    func displayNewMenuItemView(_ menuItem: MenuItem)
+}
+
+class MenuItemViewController: UIViewController, NewMenuItem {
     
     private var menuItem: MenuItem
     
@@ -25,9 +29,13 @@ class MenuItemViewController: UIViewController {
         }
     
     override func loadView() {
-        view = MenuItemView(withMenuItem: menuItem)
+        view = MenuItemView(withMenuItem: menuItem, newMenuItem: self)
         navigationItem.title = menuItem.name
         navigationController?.navigationBar.barTintColor = UIColor(named: "cream")
         navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    func displayNewMenuItemView(_ menuItem: MenuItem) {
+        navigationController?.pushViewController(MenuItemViewController(withMenuItem: menuItem), animated: true)
     }
 }

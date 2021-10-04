@@ -10,6 +10,9 @@ import UIKit
 
 class PairingItem: UIView {
     
+    weak var newMenuItemDelegate: NewMenuItem?
+    var menuItem: MenuItem?
+    
     var pairingImageName: String = "" {
         didSet {
             pairingIcon.image = UIImage(named: pairingImageName)
@@ -53,8 +56,8 @@ class PairingItem: UIView {
         return label
     }()
     
-    
-    override init(frame: CGRect) {
+    init(newMenuItemDelegate: NewMenuItem) {
+        self.newMenuItemDelegate = newMenuItemDelegate
         super.init(frame: .zero)
         
         backgroundColor = UIColor(named: "cream")
@@ -72,6 +75,9 @@ class PairingItem: UIView {
         addSubview(pairingPrice)
         
         setUpConstraints()
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(pairingItemTapped))
+        addGestureRecognizer(tapGesture)
     }
     
     private func setUpConstraints() {
@@ -88,5 +94,12 @@ class PairingItem: UIView {
             pairingPrice.centerXAnchor.constraint(equalTo: pairingName.centerXAnchor),
             pairingPrice.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
         ])
+    }
+    
+    @objc func pairingItemTapped() {
+        print("Pairing Item Tapped")
+        if let menuItem = menuItem {
+            newMenuItemDelegate?.displayNewMenuItemView(menuItem)
+        }
     }
 }

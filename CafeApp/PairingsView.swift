@@ -12,6 +12,7 @@ class PairingsView: UIView {
     
     let menu = Menu()
     private var menuItem: MenuItem
+    weak var newMenuItemDelegate: NewMenuItem?
     
     var pairingsTitle: String = "" {
         didSet {
@@ -40,29 +41,30 @@ class PairingsView: UIView {
     }()
     
     lazy var leftPairingItem: PairingItem = {
-       let item = PairingItem()
+        let item = PairingItem(newMenuItemDelegate: newMenuItemDelegate!)
         item.translatesAutoresizingMaskIntoConstraints = false
         item.layer.cornerRadius = 15
         return item
     }()
     
     lazy var middlePairingItem: PairingItem = {
-       let item = PairingItem()
+       let item = PairingItem(newMenuItemDelegate: newMenuItemDelegate!)
         item.translatesAutoresizingMaskIntoConstraints = false
         item.layer.cornerRadius = 15
         return item
     }()
     
     lazy var rightPairingItem: PairingItem = {
-       let item = PairingItem()
+       let item = PairingItem(newMenuItemDelegate: newMenuItemDelegate!)
         item.translatesAutoresizingMaskIntoConstraints = false
         item.layer.cornerRadius = 15
         return item
     }()
     
-    init(menuItem: MenuItem) {
+    init(menuItem: MenuItem, newMenuItemDelegate: NewMenuItem?) {
 
         self.menuItem = menuItem
+        self.newMenuItemDelegate = newMenuItemDelegate
         
         super.init(frame: .zero)
         
@@ -113,13 +115,16 @@ class PairingsView: UIView {
         leftPairingItem.pairingImageName = pairings[0].imageName
         leftPairingItem.pairingNameText = pairings[0].name
         leftPairingItem.pairingPriceText = String(format: "$%.02f", pairings[0].price)
+        leftPairingItem.menuItem = pairings[0]
         
         middlePairingItem.pairingImageName = pairings[1].imageName
         middlePairingItem.pairingNameText = pairings[1].name
         middlePairingItem.pairingPriceText = String(format: "$%.02f", pairings[1].price)
+        middlePairingItem.menuItem = pairings[1]
         
         rightPairingItem.pairingImageName = pairings[2].imageName
         rightPairingItem.pairingNameText =  pairings[2].name
         rightPairingItem.pairingPriceText = String(format: "$%.02f", pairings[2].price)
+        rightPairingItem.menuItem = pairings[2]
     }
 }

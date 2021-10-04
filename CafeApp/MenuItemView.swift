@@ -11,6 +11,7 @@ import UIKit
 class MenuItemView: UIView {
     
     private let menuItem: MenuItem
+    weak var newMenuItemDelegate: NewMenuItem?
     
     var itemImage: String = "" {
         didSet {
@@ -95,15 +96,16 @@ class MenuItemView: UIView {
     }()
     
     private lazy var pairingsView: PairingsView = {
-        let view = PairingsView(menuItem: menuItem)
+        let view = PairingsView(menuItem: menuItem, newMenuItemDelegate: newMenuItemDelegate)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 20
         return view
     }()
 
     
-    init(withMenuItem menuItem: MenuItem) {
+    init(withMenuItem menuItem: MenuItem, newMenuItem: NewMenuItem? = nil) {
         self.menuItem = menuItem
+        self.newMenuItemDelegate = newMenuItem
         
         super.init(frame: .zero)
         
