@@ -12,6 +12,7 @@ struct Drink: MenuItem {
     var name: String
     var description: String
     var price: Double
+    var type: MenuItems = .drinks
     
     init(withImageName imageName: String, withName name: String, withDescription description: String, withPrice price: Double) {
         self.imageName = imageName

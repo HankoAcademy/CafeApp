@@ -10,6 +10,9 @@ import UIKit
 
 class PairingsView: UIView {
     
+    let menu = Menu()
+    private var menuItem: MenuItem
+    
     var pairingsTitle: String = "" {
         didSet {
             let attributedString = NSMutableAttributedString(string: pairingsTitle)
@@ -36,28 +39,31 @@ class PairingsView: UIView {
         return stackView
     }()
     
-    let leftPairingItem: PairingItem = {
+    lazy var leftPairingItem: PairingItem = {
        let item = PairingItem()
         item.translatesAutoresizingMaskIntoConstraints = false
         item.layer.cornerRadius = 15
         return item
     }()
     
-    let middlePairingItem: PairingItem = {
+    lazy var middlePairingItem: PairingItem = {
        let item = PairingItem()
         item.translatesAutoresizingMaskIntoConstraints = false
         item.layer.cornerRadius = 15
         return item
     }()
     
-    let rightPairingItem: PairingItem = {
+    lazy var rightPairingItem: PairingItem = {
        let item = PairingItem()
         item.translatesAutoresizingMaskIntoConstraints = false
         item.layer.cornerRadius = 15
         return item
     }()
     
-    override init(frame: CGRect) {
+    init(menuItem: MenuItem) {
+
+        self.menuItem = menuItem
+        
         super.init(frame: .zero)
         
         backgroundColor = .brown
@@ -74,17 +80,7 @@ class PairingsView: UIView {
         pairingsTitle = "pairings"
         addSubview(pairingsLabel)
         
-        leftPairingItem.pairingImageName = "foods_pie"
-        leftPairingItem.pairingNameText = "Pie slice"
-        leftPairingItem.pairingPriceText = "$4.50"
-        
-        middlePairingItem.pairingImageName = "foods_donut"
-        middlePairingItem.pairingNameText = "Donut"
-        middlePairingItem.pairingPriceText = "$3.50"
-        
-        rightPairingItem.pairingImageName = "foods_croissant"
-        rightPairingItem.pairingNameText = "Croissant"
-        rightPairingItem.pairingPriceText = "$4.00"
+        fillOutPairings()
         
         pairingsStackView.backgroundColor = .brown
         
@@ -109,5 +105,21 @@ class PairingsView: UIView {
             pairingsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             pairingsStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
         ])
+    }
+    
+    private func fillOutPairings() {
+        let pairings = menu.addPairings(forMenuItem: menuItem.type)
+       
+        leftPairingItem.pairingImageName = pairings[0].imageName
+        leftPairingItem.pairingNameText = pairings[0].name
+        leftPairingItem.pairingPriceText = String(format: "$%.02f", pairings[0].price)
+        
+        middlePairingItem.pairingImageName = pairings[1].imageName
+        middlePairingItem.pairingNameText = pairings[1].name
+        middlePairingItem.pairingPriceText = String(format: "$%.02f", pairings[1].price)
+        
+        rightPairingItem.pairingImageName = pairings[2].imageName
+        rightPairingItem.pairingNameText =  pairings[2].name
+        rightPairingItem.pairingPriceText = String(format: "$%.02f", pairings[2].price)
     }
 }

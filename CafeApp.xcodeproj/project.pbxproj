@@ -12,6 +12,7 @@
 		2C4E1A1126EAD1CE0085487A /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E1A1026EAD1CE0085487A /* Food.swift */; };
 		2C4E1A1326EAD1DA0085487A /* Merch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E1A1226EAD1DA0085487A /* Merch.swift */; };
 		2C4E1A1526EAD1E30085487A /* MiscItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4E1A1426EAD1E30085487A /* MiscItem.swift */; };
+		AA39BD05270976D200FD8787 /* MenuItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA39BD04270976D200FD8787 /* MenuItemViewController.swift */; };
 		AA59CB0E2703E171007DAFEB /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA59CB0D2703E171007DAFEB /* MenuItemView.swift */; };
 		AA59CB102706B828007DAFEB /* PairingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA59CB0F2706B828007DAFEB /* PairingsView.swift */; };
 		AA59CB122708AE78007DAFEB /* PairingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA59CB112708AE78007DAFEB /* PairingView.swift */; };
@@ -32,6 +33,7 @@
 		2C4E1A1026EAD1CE0085487A /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		2C4E1A1226EAD1DA0085487A /* Merch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Merch.swift; sourceTree = "<group>"; };
 		2C4E1A1426EAD1E30085487A /* MiscItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscItem.swift; sourceTree = "<group>"; };
+		AA39BD04270976D200FD8787 /* MenuItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemViewController.swift; sourceTree = "<group>"; };
 		AA59CB0D2703E171007DAFEB /* MenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuItemView.swift; path = CafeApp/MenuItemView.swift; sourceTree = SOURCE_ROOT; };
 		AA59CB0F2706B828007DAFEB /* PairingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PairingsView.swift; path = CafeApp/PairingsView.swift; sourceTree = SOURCE_ROOT; };
 		AA59CB112708AE78007DAFEB /* PairingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PairingView.swift; path = CafeApp/PairingView.swift; sourceTree = SOURCE_ROOT; };
@@ -89,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				F3A3738626EF072F00718F1D /* MenuViewController.swift */,
+				AA39BD04270976D200FD8787 /* MenuItemViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 				AAA566EE26FD485D00B17809 /* ContentViewTableCell.swift in Sources */,
 				AAFDFF3526FF9B73001D1029 /* MenuTableHeaderView.swift in Sources */,
 				2C4E1A1526EAD1E30085487A /* MiscItem.swift in Sources */,
+				AA39BD05270976D200FD8787 /* MenuItemViewController.swift in Sources */,
 				2C4E1A1126EAD1CE0085487A /* Food.swift in Sources */,
 				AAA566EA26FAE86100B17809 /* ContentView.swift in Sources */,
 				2C4E1A0726EABFB90085487A /* Menu.swift in Sources */,

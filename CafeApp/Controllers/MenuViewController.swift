@@ -49,6 +49,13 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // MARK: - View Lifecyle
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        navigationController?.navigationBar.tintColor = UIColor(named: "cream")
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
     init(withMenu menu: Menu) {
             self.menu = menu
             
@@ -73,7 +80,6 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
             tableView.dataSource = self
             
             setUpUI()
-            
         }
     
     // MARK: - Set Up UI
@@ -163,12 +169,15 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         switch indexPath.section {
         case 0:
             let drink = menu.drinks[indexPath.row]
+            navigationController?.pushViewController(MenuItemViewController(withMenuItem: drink), animated: true)
             print("Selected a \(drink.name) that costs \(drink.price)")
         case 1:
             let food = menu.foods[indexPath.row]
+            navigationController?.pushViewController(MenuItemViewController(withMenuItem: food), animated: true)
             print("Selected a \(food.name) that costs \(food.price)")
         case 2:
             let merch = menu.merchAndOthers[indexPath.row]
+            navigationController?.pushViewController(MenuItemViewController(withMenuItem: merch), animated: true)
             print("Selected a \(merch.name) that costs \(merch.price)")
         default:
             return

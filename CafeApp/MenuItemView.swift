@@ -10,6 +10,8 @@ import UIKit
 
 class MenuItemView: UIView {
     
+    private let menuItem: MenuItem
+    
     var itemImage: String = "" {
         didSet {
             menuItemIcon.image = UIImage(named: itemImage)
@@ -92,33 +94,35 @@ class MenuItemView: UIView {
         return label
     }()
     
-    let pairingsView: PairingsView = {
-        let view = PairingsView()
+    private lazy var pairingsView: PairingsView = {
+        let view = PairingsView(menuItem: menuItem)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 20
         return view
     }()
 
     
-    override init(frame: CGRect) {
+    init(withMenuItem menuItem: MenuItem) {
+        self.menuItem = menuItem
+        
         super.init(frame: .zero)
         
         backgroundColor = .white
         
         setUpUI()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     private func setUpUI() {
-        menuItemIcon.image = UIImage(named: "drinks_espresso")
+        menuItemIcon.image = UIImage(named: menuItem.imageName)
         circularView.addSubview(menuItemIcon)
         addSubview(circularView)
         
         itemPricingView.backgroundColor = .lightGray
-        itemPriceText = "$3.50"
+        itemPriceText = String(format: "$%.02f", menuItem.price)
         itemPricingView.addSubview(itemPricing)
         addSubview(itemPricingView)
         

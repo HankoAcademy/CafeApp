@@ -12,6 +12,7 @@ protocol MenuItem {
     var name: String { get set }
     var description: String { get set }
     var price: Double { get set }
+    var type: MenuItems { get }
     
     init(withImageName imageName: String, withName name: String, withDescription description: String, withPrice price: Double)
 }
@@ -97,5 +98,20 @@ struct Menu {
     
     func sortMerchByPrice() -> [MenuItem] {
         return merchAndOthers.sorted { $0.price < $1.price }
+    }
+    
+    func addPairings(forMenuItem menuItem: MenuItems) -> [MenuItem] {
+        switch menuItem {
+        case .drinks:
+            let randomizedFoods = foods.shuffled()
+            return [randomizedFoods[0], randomizedFoods[1], randomizedFoods[2]]
+        case .food:
+            let randomizedDrinks = drinks.shuffled()
+            return [randomizedDrinks[0], randomizedDrinks[1], randomizedDrinks[2]]
+        case .merchAndOthers:
+            let randomizedFoods = foods.shuffled()
+            let randomizedDrinks = drinks.shuffled()
+            return [randomizedFoods[0], randomizedDrinks[0], randomizedDrinks[1]]
+        }
     }
 }
