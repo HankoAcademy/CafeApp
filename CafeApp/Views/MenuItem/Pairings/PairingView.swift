@@ -10,6 +10,8 @@ import UIKit
 
 class PairingItem: UIView {
     
+    // MARK: - Properties
+    
     weak var newMenuItemDelegate: NewMenuItem?
     var menuItem: MenuItem?
     
@@ -56,6 +58,8 @@ class PairingItem: UIView {
         return label
     }()
     
+    // MARK: - Lifecyle Methods
+    
     init(newMenuItemDelegate: NewMenuItem) {
         self.newMenuItemDelegate = newMenuItemDelegate
         super.init(frame: .zero)
@@ -69,6 +73,8 @@ class PairingItem: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Set Up UI
+    
     private func setUpUI() {
         addSubview(pairingIcon)
         addSubview(pairingName)
@@ -79,6 +85,8 @@ class PairingItem: UIView {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(pairingItemTapped))
         addGestureRecognizer(tapGesture)
     }
+    
+    // MARK: - Set Up Constraints
     
     private func setUpConstraints() {
         NSLayoutConstraint.activate([
@@ -95,6 +103,8 @@ class PairingItem: UIView {
             pairingPrice.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
         ])
     }
+    
+    // MARK: - Delegate Method
     
     @objc func pairingItemTapped() {
         print("Pairing Item Tapped")

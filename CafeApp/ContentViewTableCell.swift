@@ -127,6 +127,12 @@ class ContentViewTableCell: UITableViewCell {
         contentView.addSubview(cellStackView)
         contentView.addSubview(itemPrice)
         
+        setUpConstraints()
+    }
+    
+    // MARK: Set Up Constraints
+    
+    private func setUpConstraints() {
         NSLayoutConstraint.activate([
             itemImage.widthAnchor.constraint(equalToConstant: 40),
             

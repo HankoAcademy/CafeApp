@@ -10,6 +10,8 @@ import UIKit
 
 class PairingsView: UIView {
     
+    // MARK: - Properties
+    
     let menu = Menu()
     private var menuItem: MenuItem
     weak var newMenuItemDelegate: NewMenuItem?
@@ -61,6 +63,8 @@ class PairingsView: UIView {
         return item
     }()
     
+    // MARK: - Lifecyle Methods
+    
     init(menuItem: MenuItem, newMenuItemDelegate: NewMenuItem?) {
 
         self.menuItem = menuItem
@@ -76,6 +80,8 @@ class PairingsView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Set Up UI
     
     private func setUpUI() {
         backgroundColor = .brown
@@ -97,6 +103,8 @@ class PairingsView: UIView {
         setUpConstraints()
     }
     
+    // MARK: - Set Up Constraints
+    
     private func setUpConstraints() {
         NSLayoutConstraint.activate([
             pairingsLabel.topAnchor.constraint(equalTo: topAnchor, constant: 5),
@@ -108,6 +116,8 @@ class PairingsView: UIView {
             pairingsStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
         ])
     }
+    
+    // MARK: - Fill Out Pairings
     
     private func fillOutPairings() {
         let pairings = menu.addPairings(forMenuItem: menuItem.type)

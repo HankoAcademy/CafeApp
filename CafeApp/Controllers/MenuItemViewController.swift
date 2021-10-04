@@ -14,7 +14,11 @@ protocol NewMenuItem: AnyObject {
 
 class MenuItemViewController: UIViewController, NewMenuItem {
     
+    // MARK: - Properties
+    
     private var menuItem: MenuItem
+    
+    // MARK: - View Lifecyle
     
     init(withMenuItem menuItem: MenuItem) {
             self.menuItem = menuItem
@@ -34,6 +38,8 @@ class MenuItemViewController: UIViewController, NewMenuItem {
         navigationController?.navigationBar.barTintColor = UIColor(named: "cream")
         navigationController?.navigationBar.prefersLargeTitles = true
     }
+    
+    // MARK: - Delegate Method
     
     func displayNewMenuItemView(_ menuItem: MenuItem) {
         navigationController?.pushViewController(MenuItemViewController(withMenuItem: menuItem), animated: true)

@@ -10,6 +10,8 @@ import UIKit
 
 class MenuItemView: UIView {
     
+    // MARK: - Properties
+    
     private let menuItem: MenuItem
     weak var newMenuItemDelegate: NewMenuItem?
     
@@ -102,6 +104,7 @@ class MenuItemView: UIView {
         return view
     }()
 
+    // MARK: - Lifecycle Methods
     
     init(withMenuItem menuItem: MenuItem, newMenuItem: NewMenuItem? = nil) {
         self.menuItem = menuItem
@@ -117,6 +120,8 @@ class MenuItemView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Set Up UI
     
     private func setUpUI() {
         menuItemIcon.image = UIImage(named: menuItem.imageName)
@@ -136,6 +141,12 @@ class MenuItemView: UIView {
         addSubview(ingredientsView)
         addSubview(pairingsView)
         
+        setUpConstraints()
+    }
+    
+    // MARK: - Set Up Constraints
+    
+    private func setUpConstraints() {
         NSLayoutConstraint.activate([
             circularView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 75),
             circularView.centerXAnchor.constraint(equalTo: centerXAnchor),

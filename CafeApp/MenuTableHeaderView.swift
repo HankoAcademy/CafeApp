@@ -12,6 +12,7 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
     weak var sortableDelegate: Sortable?
     weak var filterableDelegate: Filterable?
 
+    // MARK: - Properties
     
     var headerTitle: String = "" {
         didSet {
@@ -26,8 +27,6 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
             actionsStackView.isHidden = hideActions
         }
     }
-    
-    // MARK: - Properties
     
     private let menuHeaderLabel: UILabel = {
        let label = UILabel()
@@ -76,6 +75,7 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
     }()
     
     // MARK: - Initializers
+    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
@@ -90,15 +90,19 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
     // MARK: - Set Up UI
     
     private func setUpUI() {
-        // contentView.backgroundColor = UIColor(named: "cream")
-        
         actionsStackView.addArrangedSubview(sortButton)
         actionsStackView.addArrangedSubview(filterButton)
         
         contentView.addSubview(actionsStackView)
         contentView.addSubview(menuHeaderLabel)
         contentView.addSubview(menuHeaderBorder)
-                
+        
+        setUpConstraints()
+    }
+    
+    // MARK: - Set Up Constraints
+    
+    private func setUpConstraints() {
         NSLayoutConstraint.activate([
             actionsStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             actionsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
@@ -114,6 +118,8 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
             menuHeaderBorder.heightAnchor.constraint(equalToConstant: 1)
         ])
     }
+    
+    // MARK: - Delegate Methods
     
     @objc func sortButtonPressed() {
         print("Sort Button Pressed")
