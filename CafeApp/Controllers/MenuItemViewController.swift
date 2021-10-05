@@ -74,7 +74,7 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
     private var ingredientsBackgroundView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "cream")
         view.layer.cornerRadius = 25
         return view
     }()
@@ -88,10 +88,16 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
         return stackView
     }()
     
+
     private var ingredientsTitle: UILabel = {
         let label = UILabel()
+        let attributedString = NSMutableAttributedString(string: "ingredients")
+        attributedString.addAttribute(NSAttributedString.Key.kern, value: 14, range: NSRange(location: 0, length: attributedString.length))
+        attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 12, weight: .regular), range: NSRange(location: 0, length: attributedString.length))
+        label.attributedText = attributedString
+        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "ingredients"
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.textAlignment = .center
         return label
     }()
@@ -115,10 +121,16 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
     
     private var pairingsTitle: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Recommended Pairings"
+        
+        let attributedString = NSMutableAttributedString(string: "ingredients")
+        attributedString.addAttribute(NSAttributedString.Key.kern, value: 14, range: NSRange(location: 0, length: attributedString.length))
+        attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.systemFont(ofSize: 12, weight: .regular), range: NSRange(location: 0, length: attributedString.length))
+        label.attributedText = attributedString
         label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        label.textAlignment = .center
+        label.textColor = .white
         return label
     }()
 
@@ -126,7 +138,7 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.spacing = 15
+        stackView.spacing = 10
         stackView.distribution = .fillProportionally
         return stackView
     }()
@@ -181,7 +193,8 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.text = "pairing 1"
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.numberOfLines = 0
         return label
     }()
     
@@ -189,7 +202,6 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.text = "price"
         return label
     }()
     
@@ -200,12 +212,12 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
         vstack.translatesAutoresizingMaskIntoConstraints = false
         vstack.axis = .vertical
         vstack.distribution = .fillProportionally
-        vstack.spacing = 10
+        vstack.spacing = 5
         return vstack
     }()
     
     private var pairing2Image: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "drinks_espresso"))
+        let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -215,7 +227,8 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.text = "pairing 2"
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.numberOfLines = 0
         return label
     }()
     
@@ -223,7 +236,6 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.text = "price"
         return label
     }()
     
@@ -249,6 +261,8 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.numberOfLines = 0
         return label
     }()
     
@@ -266,19 +280,30 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
     override func loadView() {
         super.loadView()
        
-        // SETUP PAIRINGS OPTIONS PROPERTY DETAILS HERE // CREATE FUNC
+        
+//        navigationController?.navigationBar.barTintColor = .green
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        // FIX ME: - Current workaround for barTintColor (above) not displaying appropriately - iOS15 bug?
+        // this workaround causing scroll bug when navigating back to menuviewcontroller but displays color appropriately in menuitemviewcontroller
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor(named: "cream")
+        navigationController?.navigationBar.standardAppearance = appearance;
+        navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
+
         setUpUI()
         activateConstraints()
         updateMenuItemSelected()
         configurePairingViews()
-        
     
     }
     
     // MARK: - Set up UI
     
     private func setUpUI(){
-        view.backgroundColor = UIColor(named: "cream")
+        view.backgroundColor = .white
         
         // item icon and price view
         
@@ -336,10 +361,10 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
     
     private func activateConstraints() {
         NSLayoutConstraint.activate([
-            
+                    
             itemIconCircleView.widthAnchor.constraint(equalToConstant: 250),
             itemIconCircleView.heightAnchor.constraint(equalToConstant: 250),
-            itemIconCircleView.topAnchor.constraint(equalTo: view.topAnchor, constant: 125),
+            itemIconCircleView.topAnchor.constraint(equalTo: view.topAnchor, constant: 175),
             itemIconCircleView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             itemImageView.widthAnchor.constraint(equalToConstant: 100),
@@ -370,8 +395,9 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
             // PAIRINGS AREA CONSTRAINTS
             
             pairingsBackgroundView.topAnchor.constraint(equalTo: ingredientsBackgroundView.bottomAnchor, constant: 25),
-            pairingsBackgroundView.widthAnchor.constraint(equalToConstant: 300),
-            pairingsBackgroundView.heightAnchor.constraint(equalToConstant: 250),
+            pairingsBackgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            pairingsBackgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            pairingsBackgroundView.heightAnchor.constraint(equalToConstant: 225),
             pairingsBackgroundView.centerXAnchor.constraint(equalTo: itemIconCircleView.centerXAnchor),
             
             pairingsTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -386,30 +412,33 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
             
             pairing1VStack.centerYAnchor.constraint(equalTo: pairingsBackgroundView.centerYAnchor),
             pairing1VStack.centerXAnchor.constraint(equalTo: pairingView1.centerXAnchor),
-
+            pairing1VStack.widthAnchor.constraint(equalTo: pairingView1.widthAnchor),
             
+
             // Pairing2 Vstack
 
             pairing2VStack.centerYAnchor.constraint(equalTo: pairingsBackgroundView.centerYAnchor),
             pairing2VStack.centerXAnchor.constraint(equalTo: pairingView2.centerXAnchor),
-
+            pairing2VStack.widthAnchor.constraint(equalTo: pairingView2.widthAnchor),
+            
             // Pairing3 Vstack
 
             pairing3VStack.centerYAnchor.constraint(equalTo: pairingsBackgroundView.centerYAnchor),
             pairing3VStack.centerXAnchor.constraint(equalTo: pairingView3.centerXAnchor),
-
+            pairing3VStack.widthAnchor.constraint(equalTo: pairingView3.widthAnchor)
+            
         ])
-
-    
     }
+    
     // MARK: - Actions
     
-//    @objc func buttonPressed() {
+//    @objc func pairingSelected() {
 //        navigationController?.popViewController(animated: true)
 //    }
-    
+//
     func displayNewMenuItemDetail(menuItem: MenuItem) {
         navigationController?.pushViewController(MenuItemViewController(menuItemSelected: menuItem), animated: true)
+        
     }
     
     func updateMenuItemSelected(){
@@ -418,11 +447,6 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
         menuItemPriceLabel.text = String(format: "%.02f", menuItemSelected.price)
         itemImageView.image = UIImage(named: menuItemSelected.imageName)
     }
-
-//    protocol NewMenuItemViewable: AnyObject {
-//        func displayNewMenuItemDetail(menuItem: MenuItem)
-//    }
-//String(format: "%.1f", a)
     
     private func configurePairingViews() {
 
@@ -470,8 +494,6 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
                 pairing3MenuItemLabel.text = pairings[2].name
             }
         }
-
-    
     
 }
 
