@@ -17,6 +17,7 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
     // MARK: - Class Properties
     
     let menuItemSelected: MenuItem
+    let menu = Menu()
     
     
     // MARK: - Initializers
@@ -25,6 +26,7 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
         self.menuItemSelected = menuItemSelected
         
         super.init(nibName: nil, bundle: nil)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -142,7 +144,7 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
     private var pairingView2: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .red
+        view.backgroundColor = .white
         view.layer.cornerRadius = 15
         return view
     }()
@@ -150,7 +152,7 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
     private var pairingView3: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .green
+        view.backgroundColor = .white
         view.layer.cornerRadius = 15
         return view
     }()
@@ -237,7 +239,7 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
     }()
     
     private var pairing3Image: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "drinks_espresso"))
+        let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -247,7 +249,6 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.text = "pairing 3"
         return label
     }()
     
@@ -255,7 +256,6 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.text = "price"
         return label
     }()
     
@@ -270,6 +270,7 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
         setUpUI()
         activateConstraints()
         updateMenuItemSelected()
+        configurePairingViews()
         
     
     }
@@ -418,60 +419,58 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
         itemImageView.image = UIImage(named: menuItemSelected.imageName)
     }
 
-//    private func configurePairingViews() {
-//
-//            switch menuItemSelected.type {
-//            case .foods:
-//                let pairings = menu.generatePairings(forProductType: .foods)
-//                firstPairingOption.price = pairings[0].price
-//                firstPairingOption.image = UIImage(named: pairings[0].imageName)
-//                firstPairingOption.title = pairings[0].name
-//                firstPairingOption.menuItem = pairings[0]
-//
-//                secondPairingOption.price = pairings[1].price
-//                secondPairingOption.image = UIImage(named: pairings[1].imageName)
-//                secondPairingOption.title = pairings[1].name
-//                secondPairingOption.menuItem = pairings[1]
-//
-//                thirdPairingOption.price = pairings[2].price
-//                thirdPairingOption.image = UIImage(named: pairings[2].imageName)
-//                thirdPairingOption.title = pairings[2].name
-//                thirdPairingOption.menuItem = pairings[2]
-//            case .drinks:
-//                let pairings = menu.generatePairings(forProductType: .drinks)
-//                firstPairingOption.price = pairings[0].price
-//                firstPairingOption.image = UIImage(named: pairings[0].imageName)
-//                firstPairingOption.title = pairings[0].name
-//                firstPairingOption.menuItem = pairings[0]
-//
-//                secondPairingOption.price = pairings[1].price
-//                secondPairingOption.image = UIImage(named: pairings[1].imageName)
-//                secondPairingOption.title = pairings[1].name
-//                secondPairingOption.menuItem = pairings[1]
-//
-//                thirdPairingOption.price = pairings[2].price
-//                thirdPairingOption.image = UIImage(named: pairings[2].imageName)
-//                thirdPairingOption.title = pairings[2].name
-//                thirdPairingOption.menuItem = pairings[2]
-//            case .merchAndOthers, .misc:
-//                let pairings = menu.generatePairings(forProductType: .merchAndOthers)
-//                firstPairingOption.price = pairings[0].price
-//                firstPairingOption.image = UIImage(named: pairings[0].imageName)
-//                firstPairingOption.title = pairings[0].name
-//                firstPairingOption.menuItem = pairings[0]
-//
-//                secondPairingOption.price = pairings[1].price
-//                secondPairingOption.image = UIImage(named: pairings[1].imageName)
-//                secondPairingOption.title = pairings[1].name
-//                secondPairingOption.menuItem = pairings[1]
-//
-//                thirdPairingOption.price = pairings[2].price
-//                thirdPairingOption.image = UIImage(named: pairings[2].imageName)
-//                thirdPairingOption.title = pairings[2].name
-//                thirdPairingOption.menuItem = pairings[2]
-//            }
-//        }
-//
+//    protocol NewMenuItemViewable: AnyObject {
+//        func displayNewMenuItemDetail(menuItem: MenuItem)
+//    }
+//String(format: "%.1f", a)
+    
+    private func configurePairingViews() {
+
+            switch menuItemSelected.type {
+            case .foods:
+                let pairings = menu.generatePairings(forProductType: .foods)
+                pairing1PriceLabel.text = String(format: "%.2f", pairings[0].price)
+                pairing1Image.image = UIImage(named: pairings[0].imageName)
+                pairing1MenuItemLabel.text = pairings[0].name
+
+                pairing2PriceLabel.text = String(format: "%.2f", pairings[1].price)
+                pairing2Image.image = UIImage(named: pairings[1].imageName)
+                pairing2MenuItemLabel.text = pairings[1].name
+
+                pairing3PriceLabel.text = String(format: "%.2f", pairings[2].price)
+                pairing3Image.image = UIImage(named: pairings[2].imageName)
+                pairing3MenuItemLabel.text = pairings[2].name
+                
+            case .drinks:
+                let pairings = menu.generatePairings(forProductType: .drinks)
+                pairing1PriceLabel.text = String(format: "%.2f", pairings[0].price)
+                pairing1Image.image = UIImage(named: pairings[0].imageName)
+                pairing1MenuItemLabel.text = pairings[0].name
+
+                pairing2PriceLabel.text = String(format: "%.2f", pairings[1].price)
+                pairing2Image.image = UIImage(named: pairings[1].imageName)
+                pairing2MenuItemLabel.text = pairings[1].name
+
+                pairing3PriceLabel.text = String(format: "%.2f", pairings[2].price)
+                pairing3Image.image = UIImage(named: pairings[2].imageName)
+                pairing3MenuItemLabel.text = pairings[2].name
+                
+            case .merchAndOthers, .misc:
+                let pairings = menu.generatePairings(forProductType: .merchAndOthers)
+                pairing1PriceLabel.text = String(format: "%.2f", pairings[0].price)
+                pairing1Image.image = UIImage(named: pairings[0].imageName)
+                pairing1MenuItemLabel.text = pairings[0].name
+
+                pairing2PriceLabel.text = String(format: "%.2f", pairings[1].price)
+                pairing2Image.image = UIImage(named: pairings[1].imageName)
+                pairing2MenuItemLabel.text = pairings[1].name
+
+                pairing3PriceLabel.text = String(format: "%.2f", pairings[2].price)
+                pairing3Image.image = UIImage(named: pairings[2].imageName)
+                pairing3MenuItemLabel.text = pairings[2].name
+            }
+        }
+
     
     
 }
