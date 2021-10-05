@@ -9,7 +9,7 @@ import UIKit
 
 class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    private let menu = Menu()
+    private var menu = Menu()
 
     // MARK: - UI Properties
     
@@ -29,6 +29,16 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.delegate = self
         tableView.dataSource = self
         
+        let sortButton = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(sortButtonPressed))
+        let filterButton = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterButtonPressed))
+        
+        navigationItem.rightBarButtonItems = [
+            sortButton,
+            filterButton
+        ]
+        
+//        view.superview?.bringSubviewToFront(view)
+
     }
     
     // MARK: - UITableViewDelegate
@@ -76,9 +86,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3 //FIX ME- hard coded
     }
-    
 
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
@@ -120,6 +128,36 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
     
+    // MARK:- ACTIONS
+    
+    @objc func sortButtonPressed(){
+        print("Sort button pressed")
+        
+        let alertController = UIAlertController(title: "", message: "Select Sort Type", preferredStyle: .actionSheet)
+                alertController.addAction(UIAlertAction(title: "Name", style: .default, handler: { [weak self] _ in
+                    print("Sorting the menu by name")
+                    if let sortedMenu = self?.menu.sortMenu(bySortType: .name) {
+                        self?.menu = sortedMenu
+                        self?.tableView.reloadData()
+                    }
+                }))
+                alertController.addAction(UIAlertAction(title: "Price", style: .default, handler: { [weak self] _ in
+                    print("Sorting the menu by price")
+                    if let sortedMenu = self?.menu.sortMenu(bySortType: .price) {
+                        self?.menu = sortedMenu
+                        self?.tableView.reloadData()
+                    }
+                }))
+                present(alertController, animated: true, completion: nil)
+        
+
+    }
+    
+    @objc func filterButtonPressed(){
+        print("Filter button pressed")
+        
+    
+    }
     
     
 }

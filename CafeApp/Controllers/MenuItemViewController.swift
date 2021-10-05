@@ -16,17 +16,17 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
     
     // MARK: - Class Properties
     
-    let menuItemSelected: MenuItem
+    var menuItemSelected: MenuItem
     let menu = Menu()
-    
     
     // MARK: - Initializers
     
     init(menuItemSelected: MenuItem) {
+        
         self.menuItemSelected = menuItemSelected
         
         super.init(nibName: nil, bundle: nil)
-        
+
     }
     
     required init?(coder: NSCoder) {
@@ -205,6 +205,7 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
         return label
     }()
     
+    
     // pairing item 2
     
     private var pairing2VStack: UIStackView = {
@@ -279,20 +280,20 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
     
     override func loadView() {
         super.loadView()
-       
-        
-//        navigationController?.navigationBar.barTintColor = .green
-        navigationController?.navigationBar.prefersLargeTitles = true
-        
-        // FIX ME: - Current workaround for barTintColor (above) not displaying appropriately - iOS15 bug?
-        // this workaround causing scroll bug when navigating back to menuviewcontroller but displays color appropriately in menuitemviewcontroller
-        
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor(named: "cream")
-        navigationController?.navigationBar.standardAppearance = appearance;
-        navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
 
+        navigationController?.navigationBar.prefersLargeTitles = true
+        //        navigationController?.navigationBar.barTintColor = .green
+        if #available(iOS 13.0, *) {
+            let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.configureWithOpaqueBackground()
+            navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+            navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
+            navBarAppearance.backgroundColor = UIColor(named: "cream")
+            navigationController?.navigationBar.standardAppearance = navBarAppearance
+            navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+        }
+          
+        addGestures()
         setUpUI()
         activateConstraints()
         updateMenuItemSelected()
@@ -430,12 +431,29 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
         ])
     }
     
+    
     // MARK: - Actions
     
-//    @objc func pairingSelected() {
-//        navigationController?.popViewController(animated: true)
-//    }
-//
+    @objc func pairingSelected() {
+        print("Pairing Option Tapped On \(menuItemSelected.name)")
+
+    }
+    
+    func addGestures(){
+        let v1tapGesture = UITapGestureRecognizer(target: self, action: #selector(pairingSelected))
+        v1tapGesture.numberOfTapsRequired = 1
+        pairing1VStack.addGestureRecognizer(v1tapGesture)
+        
+        let v2tapGesture = UITapGestureRecognizer(target: self, action: #selector(pairingSelected))
+        v2tapGesture.numberOfTapsRequired = 1
+        pairing2VStack.addGestureRecognizer(v2tapGesture)
+        
+        let v3tapGesture = UITapGestureRecognizer(target: self, action: #selector(pairingSelected))
+        v3tapGesture.numberOfTapsRequired = 1
+        pairing3VStack.addGestureRecognizer(v3tapGesture)
+    }
+    
+
     func displayNewMenuItemDetail(menuItem: MenuItem) {
         navigationController?.pushViewController(MenuItemViewController(menuItemSelected: menuItem), animated: true)
         
@@ -456,11 +474,12 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
                 pairing1PriceLabel.text = String(format: "%.2f", pairings[0].price)
                 pairing1Image.image = UIImage(named: pairings[0].imageName)
                 pairing1MenuItemLabel.text = pairings[0].name
-
+                menuItemSelected = pairings[0].self
+                
                 pairing2PriceLabel.text = String(format: "%.2f", pairings[1].price)
                 pairing2Image.image = UIImage(named: pairings[1].imageName)
                 pairing2MenuItemLabel.text = pairings[1].name
-
+                
                 pairing3PriceLabel.text = String(format: "%.2f", pairings[2].price)
                 pairing3Image.image = UIImage(named: pairings[2].imageName)
                 pairing3MenuItemLabel.text = pairings[2].name

@@ -29,6 +29,7 @@ class MenuTableHeaderView: UITableViewHeaderFooterView {
         return label
     }()
     
+    
     private var bottomLineView: UIView = {
         let line = UIView()
         line.backgroundColor = UIColor(named: "navy")
