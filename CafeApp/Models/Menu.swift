@@ -18,7 +18,7 @@ protocol MenuItem {
     init(withImageName imageName: String, withName name: String, withDescription description: String, withPrice price: Double, withIngredients ingredients: [String]?)
 }
 
-enum ProductType {
+enum ProductType: Int, CaseIterable {
     case drinks, foods, merchAndOthers, misc
 }
 
@@ -77,9 +77,14 @@ struct Menu {
               withDescription: "Kalita hand grinder", withPrice: 15.5),
         Merch(withImageName: "merch_filters", withName: "Coffee Filters",
               withDescription: "Chemex filters, packs of 100", withPrice: 6.5),
+    ]
+    
+    var misc: [MenuItem] = [
+        
         MiscItem(withImageName: "other_newspaper", withName: "Newspaper",
               withDescription: "Daily newspaper", withPrice: 3.5),
     ]
+
     
     func sortMenu(bySortType sortType: SortType) -> Menu {
         switch sortType {
@@ -126,4 +131,6 @@ struct Menu {
             return [drinksToShuffle[0], drinksToShuffle[1], foodToShuffle[0]]
         }
     }
+    
+    
 }

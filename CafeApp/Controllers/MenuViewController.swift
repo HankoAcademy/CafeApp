@@ -10,6 +10,7 @@ import UIKit
 class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     private var menu = Menu()
+    private var productTypes: [ProductType] = ProductType.allCases
 
     // MARK: - UI Properties
     
@@ -32,12 +33,15 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let sortButton = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(sortButtonPressed))
         let filterButton = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterButtonPressed))
         
+
         navigationItem.rightBarButtonItems = [
             sortButton,
             filterButton
         ]
         
 //        view.superview?.bringSubviewToFront(view)
+        navigationItem.title = "Menu"
+        
 
     }
     
@@ -55,11 +59,15 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
             print("Selected a \(food.name) that costs \(food.price)")
             navigationController?.pushViewController(MenuItemViewController(menuItemSelected: menu.foods[indexPath.row]), animated: true)
         case 2:
-            let miscItem = menu.merchAndOthers[indexPath.row]
-            print("Selected a \(miscItem.name) that costs \(miscItem.price)")
+            let merch = menu.merchAndOthers[indexPath.row]
+            print("Selected a \(merch.name) that costs \(merch.price)")
             navigationController?.pushViewController(MenuItemViewController(menuItemSelected: menu.merchAndOthers[indexPath.row]), animated: true)
+        case 3:
+            let miscItem = menu.misc[indexPath.row]
+            print("Selected a \(miscItem.name) that costs \(miscItem.price)")
+            navigationController?.pushViewController(MenuItemViewController(menuItemSelected: menu.misc[indexPath.row]), animated: true)
         default:
-            return        }
+            break        }
     }
     
     // MARK: UITableViewDataSource
@@ -84,7 +92,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3 //FIX ME- hard coded
+        return productTypes.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -95,8 +103,10 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
             return menu.foods.count
         case 2:
             return menu.merchAndOthers.count
+        case 3:
+            return menu.misc.count
         default:
-            return 1
+            return 0
         }
     }
     
@@ -115,6 +125,8 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
             menuItem = menu.foods[indexPath.row]
         case 2:
             menuItem = menu.merchAndOthers[indexPath.row]
+        case 3:
+            menuItem = menu.misc[indexPath.row]
         default:
             return UITableViewCell()
         }
@@ -156,7 +168,44 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @objc func filterButtonPressed(){
         print("Filter button pressed")
         
-    
+        // Option1: create new instances of menu.drinks/etc
+        
+        // Option2: filter this array
+        // var arr = [1,2,3,4]
+//        arr = arr.filter{$0 % 2 == 0}
+        
+//        let menuArray = [menu.drinks, menu.foods, menu.merchAndOthers, menu.misc]
+        
+        let alertController = UIAlertController(title: "", message: "Select Filter Type", preferredStyle: .actionSheet)
+                alertController.addAction(UIAlertAction(title: "Drinks", style: .default, handler: { [weak self] _ in
+                    print("Filtering the menu by Drinks")
+                    
+//                    self?.menu.drinks = []
+                    self?.menu.foods = []
+                    self?.menu.merchAndOthers = []
+                    self?.menu.misc = []
+                    
+                    self?.productTypes.remove(at: 3) // removes misc; leaves array 0-2
+                    self?.productTypes.remove(at: 2) // removes merch; leaves array 0-1
+                    self?.productTypes.remove(at: 1) // removes food; leaves array 0-2
+
+                    self?.tableView.reloadData()
+                }))
+                alertController.addAction(UIAlertAction(title: "Food", style: .default, handler: { [weak self] _ in
+                    print("Filtering the menu by Food")
+                    
+                }))
+                alertController.addAction(UIAlertAction(title: "Merch", style: .default, handler: { [weak self] _ in
+                    print("Filtering the menu by Merch")
+
+                    
+                }))
+                alertController.addAction(UIAlertAction(title: "Misc", style: .default, handler: { [weak self] _ in
+                    print("Filtering the menu by Misc")
+                    
+                }))
+                present(alertController, animated: true, completion: nil)
+        
     }
     
     
