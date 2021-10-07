@@ -22,7 +22,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 
         let window = UIWindow(windowScene: windowScene)
         window.makeKeyAndVisible()
-        window.rootViewController = MenuViewController()
+        
+        // MARK: - ADDED NAVIGATION CONTROLLER
+        let navigationController = UINavigationController(rootViewController: MenuViewController())
+        window.rootViewController = navigationController
+        
+        
         self.window = window
     }
 

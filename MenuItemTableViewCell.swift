@@ -1,5 +1,5 @@
 //
-//  ProductDetailTableViewCell.swift
+//  MenuItemTableViewCell.swift
 //  CafeApp
 //
 //  Created by Diana Ruiz-Olvera on 9/20/21.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-class ProductDetailTableViewCell: UITableViewCell {
+class MenuItemTableViewCell: UITableViewCell {
     
-    //MARK: - UI Properties
+    //MARK: - UI Component Declarations
     
     private let mainStackView: UIStackView = {
         let stackView = UIStackView()
