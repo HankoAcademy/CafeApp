@@ -282,7 +282,7 @@ class MenuItemViewController: UIViewController, NewMenuItemViewable {
         super.loadView()
 
         navigationController?.navigationBar.prefersLargeTitles = true
-        //        navigationController?.navigationBar.barTintColor = .green
+    
         if #available(iOS 13.0, *) {
             let navBarAppearance = UINavigationBarAppearance()
             navBarAppearance.configureWithOpaqueBackground()
