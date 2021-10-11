@@ -10,7 +10,7 @@ import UIKit
 
 class ContentView: UIView {
     
-    // Mark: - UI Properties
+    // MARK: - UI Components for Header
     
     let headerStackView: UIStackView = {
         let headerStackView = UIStackView()
@@ -38,29 +38,73 @@ class ContentView: UIView {
     let mainHeaderLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 40, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 30, weight: .medium)
         label.textColor = .black
         label.textAlignment = .center
-        label.text = "Hanko Cafe"
+        label.text = "Coffee Code </> Espresso Bar"
+        label.numberOfLines = 2
         return label
     }()
+    
+    // MARK: - UI Components for Sort & Filter
+    
+    let sortFilterStackView: UIStackView = {
+        let sortFilterView = UIStackView()
+        sortFilterView.translatesAutoresizingMaskIntoConstraints = false
+        sortFilterView.axis = .horizontal
+        sortFilterView.backgroundColor = UIColor(named: "cream")
+        sortFilterView.distribution = .fill
+        sortFilterView.spacing = -275
+        sortFilterView.alignment = .fill
+        sortFilterView.isLayoutMarginsRelativeArrangement = true
+        sortFilterView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 3, leading: 0, bottom: 0, trailing: 20)
+        return sortFilterView
+    }()
+    
+    let sortButton: UIButton = {
+        let sortButton = UIButton()
+        sortButton.translatesAutoresizingMaskIntoConstraints = false
+        sortButton.setTitle("sort", for: .normal)
+        sortButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .light)
+        sortButton.setTitleColor(.systemGray, for: .normal)
+        sortButton.addTarget(self, action: #selector(sortButtonPressed), for: .touchUpInside)
+        return sortButton
+    }()
+    
+    let filterButton: UIButton = {
+        let filterButton = UIButton()
+        filterButton.translatesAutoresizingMaskIntoConstraints = false
+        filterButton.setTitle("filter", for: .normal)
+        filterButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .light)
+        filterButton.setTitleColor(.systemGray, for: .normal)
+        filterButton.addTarget(self, action: #selector(filterButtonPressed), for: .touchUpInside)
+        return filterButton
+    }()
+    
+    var sortButtonAction: (() -> Void)?
+    var filterButtonAction: (() -> Void)?
+    
+    // MARK: - UI Component for TableView
     
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = .white
-        tableView.register(ProductDetailTableViewCell.self,
-                           forCellReuseIdentifier: "ProductDetailTableViewCell")
-        tableView.register(MyCustomHeader.self,
-                           forHeaderFooterViewReuseIdentifier: "sectionHeader")
+        tableView.backgroundColor = UIColor(named: "cream")
+        tableView.register(MenuTableHeaderView.self,
+                           forHeaderFooterViewReuseIdentifier: "SectionHeader")
+        tableView.register(MenuItemTableViewCell.self,
+                           forCellReuseIdentifier: "MenuItemTableViewCell")
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
+        tableView.estimatedSectionHeaderHeight = 100
         return tableView
     }()
     
-    // Mark: - Initializers
+    // MARK: - Initializers
     
-    override init(frame: CGRect) {
+    init(sortButtonAction: @escaping () -> Void, frame: CGRect = .zero, filterButtonAction: @escaping () -> Void ) {
+        self.sortButtonAction = sortButtonAction
+        self.filterButtonAction = filterButtonAction
         super.init(frame: frame)
-        
         backgroundColor = .white
         
         setUpViews()
@@ -70,7 +114,7 @@ class ContentView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // Mark: - UI Setup
+    // MARK: - UI Setup Functions
     
     private func setUpViews() {
         
@@ -78,21 +122,38 @@ class ContentView: UIView {
     
         headerStackView.addArrangedSubview(logoImageView)
         headerStackView.addArrangedSubview(mainHeaderLabel)
-        
+        addSubview(sortFilterStackView)
+        sortFilterStackView.addArrangedSubview(sortButton)
+        sortFilterStackView.addArrangedSubview(filterButton)
+
         addSubview(tableView)
         
         NSLayoutConstraint.activate([
-            headerStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0),
+            headerStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             headerStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            headerStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+            //headerStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
             headerStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             headerStackView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.15),
+            
+            sortFilterStackView.topAnchor.constraint(equalTo: headerStackView.bottomAnchor, constant: 15),
+            sortFilterStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            sortFilterStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
                                             
-            tableView.topAnchor.constraint(equalTo: headerStackView.bottomAnchor, constant: 15),
+            tableView.topAnchor.constraint(equalTo: sortFilterStackView.topAnchor, constant: 27),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
+    }
+    
+    @objc func sortButtonPressed() {
+        print("Sort button pressed")
+        sortButtonAction?()
+    }
+    
+    @objc func filterButtonPressed() {
+        print("Filter button pressed")
+        filterButtonAction?()
     }
     
 }
